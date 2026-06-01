@@ -1,13 +1,3 @@
-
-
-Aller au contenu
-Utiliser Gmail avec un lecteur d'écran
-in:sent 
-Conversations
-22 % sur 100 Go utilisés
-Conditions d'utilisation · Confidentialité · Règlement du programme
-Dernière activité sur le compte : il y a 0 minute
-Ce compte est ouvert depuis 2 autres emplacements. · Détails
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -319,7 +309,7 @@ function VacheSelector({ value, onChange, vaches }) {
 }
 
 // ── Menu latéral ──
-function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved }) {
+function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved, githubLoading, onGithubSave, onGithubRestore }) {
   const csvInputRef = useRef(null);
   const jsonInputRef = useRef(null);
 
@@ -457,6 +447,24 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
               style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #bbdefb", background: "#f3f8ff", color: "#1565c0", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
               📤 Exporter sauvegarde (JSON)
             </button>
+          </div>
+
+          {/* Section GitHub */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8", display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 14 }}>🐙</span> GitHub
+            </div>
+            <button onClick={onGithubSave} disabled={githubLoading}
+              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #1a3a1a", background: githubLoading ? "#f0f4f0" : "#fff", color: githubLoading ? "#8aaa8a" : "#1a3a1a", fontWeight: 700, fontSize: 13, cursor: githubLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: githubLoading ? 0.7 : 1 }}>
+              🐙 {githubLoading ? "En cours…" : "Sauvegarder sur GitHub"}
+            </button>
+            <button onClick={onGithubRestore} disabled={githubLoading}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #ccc", background: "#f7fbf7", color: "#1a3a1a", fontWeight: 600, fontSize: 13, cursor: githubLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: githubLoading ? 0.7 : 1 }}>
+              🔄 Restaurer depuis GitHub
+            </button>
+            <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>
+              Fichier : data.json dans sanitaire2
+            </div>
           </div>
 
         </div>
@@ -688,6 +696,59 @@ function App() {
     try { localStorage.setItem("carnet-sanitaire-vaches", JSON.stringify(vaches)); } catch(e) {}
   }, [vaches]);
 
+  // ── GitHub : config ──
+  const GITHUB_USER = "davjog";
+  const GITHUB_REPO = "sanitaire2";
+  const GITHUB_FILE = "data.json";
+  const GITHUB_TOKEN = "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";
+  const [githubLoading, setGithubLoading] = useState(false);
+
+  const saveToGithub = async () => {
+    setGithubLoading(true);
+    showToast("Sauvegarde GitHub en cours…", "loading");
+    try {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records }, null, 2))));
+      // Récupérer le SHA du fichier existant (nécessaire pour mettre à jour)
+      let sha = "";
+      try {
+        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+          headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" }
+        });
+        if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+      } catch(e) {}
+      const body = { message: `Sauvegarde carnet sanitaire ${new Date().toLocaleDateString("fr-FR")}`, content, ...(sha ? { sha } : {}) };
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+        method: "PUT",
+        headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) throw new Error("Erreur " + res.status);
+      showToast("✓ Sauvegardé sur GitHub", "success");
+    } catch(e) {
+      showToast("Erreur GitHub : " + e.message, "error");
+    } finally { setGithubLoading(false); }
+  };
+
+  const restoreFromGithub = async () => {
+    setGithubLoading(true);
+    showToast("Restauration GitHub en cours…", "loading");
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+        headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" }
+      });
+      if (!res.ok) throw new Error("Fichier introuvable");
+      const d = await res.json();
+      const text = decodeURIComponent(escape(atob(d.content)));
+      const parsed = JSON.parse(text);
+      if (parsed.records) {
+        setRecords(parsed.records);
+        showToast(`✓ ${parsed.records.length} traitement(s) restauré(s) depuis GitHub`, "success");
+      } else throw new Error("Format invalide");
+    } catch(e) {
+      showToast("Erreur GitHub : " + e.message, "error");
+    } finally { setGithubLoading(false); }
+  };
+
   // ── Calcul des alertes délais ──
   const alertes = useMemo(() => {
     const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -757,6 +818,9 @@ function App() {
         vaches={vaches}
         records={records}
         lastSaved={lastSaved}
+        githubLoading={githubLoading}
+        onGithubSave={() => { saveToGithub(); setShowMenu(false); }}
+        onGithubRestore={() => { restoreFromGithub(); setShowMenu(false); }}
         onImportVaches={newVaches => {
           setVaches(newVaches.sort((a, b) => a.nom.localeCompare(b.nom)));
           showToast(`✓ ${newVaches.length} vaches importées`, "success");
@@ -1324,5 +1388,3 @@ ReactDOM.createRoot(rootElement).render(React.createElement(App));
 </script>
 </body>
 </html>
-carnet-sanitaire-pwa-4.html
-Affichage de carnet-sanitaire-pwa-4.html en cours...
