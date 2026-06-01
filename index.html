@@ -309,7 +309,7 @@ function VacheSelector({ value, onChange, vaches }) {
 }
 
 // ── Menu latéral ──
-function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, onDriveSave, onDriveRestore, driveLoading }) {
+function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved }) {
   const csvInputRef = useRef(null);
   const jsonInputRef = useRef(null);
 
@@ -432,6 +432,12 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
             <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
               💾 Sauvegarde locale
             </div>
+            <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 8, padding: "10px 12px", marginBottom: 10, fontFamily: "sans-serif", fontSize: 12, color: "#2d5a27" }}>
+              ✅ Sauvegarde automatique active<br/>
+              {lastSaved
+                ? <span style={{ color: "#5a7a5a" }}>Dernière sauvegarde : {new Date(lastSaved).toLocaleString("fr-FR")}</span>
+                : <span style={{ color: "#5a7a5a" }}>Les données sont sauvegardées dans ce navigateur</span>}
+            </div>
             <input ref={jsonInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={handleJSON} />
             <button onClick={() => jsonInputRef.current?.click()}
               style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #1565c0", background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
@@ -441,30 +447,6 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
               style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #bbdefb", background: "#f3f8ff", color: "#1565c0", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
               📤 Exporter sauvegarde (JSON)
             </button>
-          </div>
-
-          {/* Section Google Drive */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8", display: "flex", alignItems: "center", gap: 6 }}>
-              <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width={14} height={14} />
-              Google Drive
-            </div>
-            <button onClick={() => { onDriveSave(); onClose(); }}
-              disabled={driveLoading}
-              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #2d5a27", background: driveLoading ? "#f0f4f0" : "#fff", color: driveLoading ? "#8aaa8a" : "#2d5a27", fontWeight: 700, fontSize: 13, cursor: driveLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: driveLoading ? 0.7 : 1 }}>
-              <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width={16} height={16} />
-              {driveLoading ? "Sauvegarde en cours…" : "Sauvegarder sur Google Drive"}
-            </button>
-            <button onClick={() => { onDriveRestore(); onClose(); }}
-              disabled={driveLoading}
-              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #c8e6c9", background: "#f7fbf7", color: "#2d5a27", fontWeight: 600, fontSize: 13, cursor: driveLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: driveLoading ? 0.7 : 1 }}>
-              <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width={16} height={16} />
-              Restaurer depuis Google Drive
-            </button>
-            <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 5 }}>
-              <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width={10} height={10} />
-              Fichier : {DRIVE_FILE_NAME}
-            </div>
           </div>
 
         </div>
@@ -477,9 +459,10 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
   );
 }
 
-// ── Zone drag & drop + coller pour photo ──
+// ── Zone photo ordonnance : bouton fichier/caméra (mobile + desktop) ──
 function PhotoDropZone({ onImage }) {
-  const [dragging, setDragging] = useState(false);
+  const inputRef = useRef(null);
+  const cameraRef = useRef(null);
   const [error, setError] = useState("");
 
   const processFile = (file) => {
@@ -487,59 +470,35 @@ function PhotoDropZone({ onImage }) {
       setError("Fichier non reconnu. Utilisez une image JPG ou PNG.");
       return;
     }
+    setError("");
     const reader = new FileReader();
     reader.onload = ev => onImage(ev.target.result);
     reader.readAsDataURL(file);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setDragging(false);
-    const file = e.dataTransfer.files[0];
+  const handleChange = (e) => {
+    const file = e.target.files[0];
     processFile(file);
-  };
-
-  const handlePaste = (e) => {
-    const items = e.clipboardData?.items;
-    if (!items) return;
-    for (const item of items) {
-      if (item.type.startsWith("image/")) {
-        processFile(item.getAsFile());
-        return;
-      }
-    }
-    setError("Aucune image dans le presse-papier.");
+    e.target.value = "";
   };
 
   return (
-    <div
-      onDrop={handleDrop}
-      onDragOver={e => { e.preventDefault(); setDragging(true); }}
-      onDragLeave={() => setDragging(false)}
-      onPaste={handlePaste}
-      tabIndex={0}
-      style={{
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        gap: 10, padding: "28px 20px", borderRadius: 10,
-        border: `2px dashed ${dragging ? "#2d5a27" : "#b8d8b8"}`,
-        background: dragging ? "#e8f5e9" : "#f7fbf7",
-        outline: "none", transition: "all 0.2s", cursor: "default"
-      }}>
-      <span style={{ fontSize: 40 }}>{dragging ? "📂" : "📄"}</span>
-      <div style={{ fontFamily: "sans-serif", fontSize: 14, color: "#3a5a3a", fontWeight: 700, textAlign: "center" }}>
-        Glissez-déposez la photo ici
-      </div>
-      <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a9a7a", textAlign: "center", lineHeight: 1.6 }}>
-        ou cliquez dans cette zone puis <strong>Ctrl+V</strong> / <strong>⌘V</strong><br/>
-        pour coller une image copiée
-      </div>
-      <div style={{ display: "flex", gap: 8, marginTop: 4, flexWrap: "wrap", justifyContent: "center" }}>
-        <span style={{ background: "#e8f5e9", color: "#2d5a27", borderRadius: 6, padding: "3px 10px", fontSize: 11, fontWeight: 700, fontFamily: "sans-serif" }}>🖱️ Glisser-déposer</span>
-        <span style={{ background: "#e3f2fd", color: "#1565c0", borderRadius: 6, padding: "3px 10px", fontSize: 11, fontWeight: 700, fontFamily: "sans-serif" }}>⌨️ Ctrl+V / ⌘V</span>
-      </div>
-      <div style={{ fontSize: 11, color: "#2d5a27", fontWeight: 600, fontFamily: "sans-serif", background: "#e8f5e9", borderRadius: 6, padding: "4px 12px", textAlign: "center" }}>
-        🤖 L'IA lira l'ordonnance et remplira les champs
-      </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {/* Bouton galerie / fichier */}
+      <input ref={inputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleChange} />
+      <button type="button" onClick={() => inputRef.current?.click()}
+        style={{ width: "100%", padding: "16px", borderRadius: 10, border: "2px dashed #b8d8b8", background: "#f7fbf7", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: 36 }}>🖼️</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 14, fontWeight: 700, color: "#2d5a27" }}>Choisir une photo</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a9a7a" }}>Galerie photos ou fichier</span>
+      </button>
+      {/* Bouton appareil photo direct */}
+      <input ref={cameraRef} type="file" accept="image/*" capture="environment" style={{ display: "none" }} onChange={handleChange} />
+      <button type="button" onClick={() => cameraRef.current?.click()}
+        style={{ width: "100%", padding: "13px", borderRadius: 10, border: "2px solid #d4e8d4", background: "#e8f5e9", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+        <span style={{ fontSize: 24 }}>📷</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 14, fontWeight: 700, color: "#1a3a1a" }}>Prendre une photo</span>
+      </button>
       {error && <div style={{ color: "#c62828", fontSize: 12, fontFamily: "sans-serif", fontWeight: 600 }}>{error}</div>}
     </div>
   );
@@ -650,9 +609,8 @@ function App() {
   const [detailId, setDetailId] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const [toast, setToast] = useState(null);
-  const [driveLoading, setDriveLoading] = useState(false);
-  const [driveFileId, setDriveFileId] = useState(null);
   const [lightbox, setLightbox] = useState(null);
+  const [lastSaved, setLastSaved] = useState(null);
 
   const showToast = (msg, type = "success") => setToast({ msg, type });
 
@@ -669,92 +627,6 @@ function App() {
     joursAttenteV: m.viande !== "" ? String(m.viande) : f.joursAttenteV,
   }));
 
-  const [readingOrdonnance, setReadingOrdonnance] = useState(false);
-  const [readResult, setReadResult] = useState(null); // { success, fields, raw }
-
-  const handleReadOrdonnance = async () => {
-    if (!form.photoOrdonnance) return;
-    setReadingOrdonnance(true);
-    setReadResult(null);
-    try {
-      // Strip data URL prefix to get pure base64
-      const base64 = form.photoOrdonnance.split(",")[1];
-      const mediaType = form.photoOrdonnance.split(";")[0].split(":")[1];
-
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: `Tu es un assistant vétérinaire expert en ordonnances bovines françaises.
-Analyse cette ordonnance et extrait les informations suivantes en JSON uniquement, sans texte avant ou après :
-{
-  "nomVache": "nom de l'animal si présent ou vide",
-  "medicament": "nom commercial du médicament principal",
-  "raison": "motif du traitement / diagnostic",
-  "posologie": "posologie ex: 1 injection par jour pendant 5 jours",
-  "quantite": "dose ou quantité ex: 10 ml, 2 comprimés",
-  "voieAdmin": "voie d'administration parmi: Injectable IM, Injectable IV, Injectable SC, Intramammaire, Per os (oral), Topique, Pour-on, Autre",
-  "dateDebut": "date de début au format YYYY-MM-DD si lisible ou vide",
-  "dateFin": "date de fin au format YYYY-MM-DD si lisible ou vide",
-  "joursAttenteL": "délai attente lait en jours entier ou vide",
-  "joursAttenteV": "délai attente viande en jours entier ou vide",
-  "numOrdonnance": "numéro d'ordonnance si présent ou vide",
-  "intervenant": "nom du vétérinaire signataire",
-  "notes": "autres informations utiles"
-}
-Si une information n'est pas lisible ou absente, mets une chaîne vide "".
-Réponds UNIQUEMENT avec le JSON, rien d'autre.`,
-          messages: [{
-            role: "user",
-            content: [
-              { type: "image", source: { type: "base64", media_type: mediaType, data: base64 } },
-              { type: "text", text: "Extrais les informations de cette ordonnance vétérinaire bovine." }
-            ]
-          }]
-        })
-      });
-
-      const data = await res.json();
-      const text = data.content?.filter(b => b.type === "text").map(b => b.text).join("") || "";
-      const clean = text.replace(/```json|```/g, "").trim();
-      const parsed = JSON.parse(clean);
-
-      // Trouver le médicament dans la liste pour auto-remplir délais si pas déjà extraits
-      const medMatch = MEDICAMENTS.find(m =>
-        parsed.medicament && m.nom.toLowerCase().includes(parsed.medicament.toLowerCase().split(" ")[0])
-      );
-
-      const newFields = {
-        nomVache: parsed.nomVache || form.nomVache,
-        medicament: parsed.medicament || form.medicament,
-        raison: parsed.raison || form.raison,
-        posologie: parsed.posologie || form.posologie,
-        quantite: parsed.quantite || form.quantite,
-        voieAdmin: parsed.voieAdmin || form.voieAdmin,
-        dateDebut: parsed.dateDebut || form.dateDebut,
-        dateFin: parsed.dateFin || form.dateFin,
-        joursAttenteL: parsed.joursAttenteL || (medMatch ? String(medMatch.lait) : form.joursAttenteL),
-        joursAttenteV: parsed.joursAttenteV || (medMatch ? String(medMatch.viande) : form.joursAttenteV),
-        numOrdonnance: parsed.numOrdonnance || form.numOrdonnance,
-        intervenant: parsed.intervenant || form.intervenant,
-      };
-      setReadResult({ success: true, fields: newFields, notes: parsed.notes });
-    } catch (e) {
-      setReadResult({ success: false, error: e.message });
-    } finally {
-      setReadingOrdonnance(false);
-    }
-  };
-
-  const applyReadResult = () => {
-    if (!readResult?.fields) return;
-    setForm(f => ({ ...f, ...readResult.fields }));
-    setReadResult(null);
-    showToast("✓ Champs remplis depuis l'ordonnance", "success");
-  };
-
   const handleSubmit = () => {
     if (!form.nomVache || !form.dateDebut) return;
     if (editId !== null) {
@@ -770,98 +642,41 @@ Réponds UNIQUEMENT avec le JSON, rien d'autre.`,
   const handleEdit = record => { setForm({ ...record }); setEditId(record.id); setShowForm(true); setDetailId(null); };
   const handleDelete = id => { setRecords(rs => rs.filter(r => r.id !== id)); setConfirmDelete(null); setDetailId(null); };
 
-  // ── GOOGLE DRIVE : save ──
-  const saveToDrive = async (currentRecords) => {
-    setDriveLoading(true);
-    showToast("Sauvegarde en cours…", "loading");
-    try {
-      const payload = JSON.stringify({
-        version: 1,
-        savedAt: new Date().toISOString(),
-        records: currentRecords ?? records,
-      }, null, 2);
-
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: `Tu es un assistant qui sauvegarde des données sur Google Drive via MCP.
-Ton unique tâche : créer ou écraser un fichier JSON nommé "${DRIVE_FILE_NAME}" dans Google Drive avec le contenu fourni.
-Réponds UNIQUEMENT en JSON : {"success": true, "fileId": "...", "fileName": "..."} ou {"success": false, "error": "..."}
-Ne mets AUCUN texte avant ou après le JSON.`,
-          messages: [{
-            role: "user",
-            content: `Crée un fichier nommé "${DRIVE_FILE_NAME}" sur Google Drive avec ce contenu JSON (disable_conversion_to_google_type=true, contentMimeType="application/json") :\n\n${payload}\n\nRéponds uniquement avec le JSON demandé.`
-          }],
-          mcp_servers: [{ type: "url", url: "https://drivemcp.googleapis.com/mcp/v1", name: "gdrive" }]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.filter(b => b.type === "text").map(b => b.text).join("") || "";
-      const clean = text.replace(/```json|```/g, "").trim();
-      let parsed;
-      try { parsed = JSON.parse(clean); } catch { parsed = { success: true }; }
-      if (parsed.fileId) setDriveFileId(parsed.fileId);
-      showToast(`✓ Sauvegardé sur Google Drive (${DRIVE_FILE_NAME})`, "success");
-    } catch (e) {
-      showToast("Erreur de sauvegarde Drive : " + e.message, "error");
-    } finally {
-      setDriveLoading(false);
-    }
-  };
-
-  // ── GOOGLE DRIVE : restore ──
-  const restoreFromDrive = async () => {
-    setDriveLoading(true);
-    showToast("Restauration en cours…", "loading");
-    try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 8000,
-          system: `Tu es un assistant qui lit des données depuis Google Drive via MCP.
-Ton unique tâche : trouver et lire le fichier "${DRIVE_FILE_NAME}" sur Google Drive et retourner son contenu.
-Réponds UNIQUEMENT avec le contenu JSON brut du fichier, sans aucun texte avant ou après.
-Si le fichier n'existe pas, réponds : {"error": "not_found"}`,
-          messages: [{
-            role: "user",
-            content: `Recherche le fichier "${DRIVE_FILE_NAME}" sur Google Drive, lis son contenu, et retourne uniquement le JSON brut du fichier.`
-          }],
-          mcp_servers: [{ type: "url", url: "https://drivemcp.googleapis.com/mcp/v1", name: "gdrive" }]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.filter(b => b.type === "text").map(b => b.text).join("") || "";
-      const clean = text.replace(/```json|```/g, "").trim();
-      const parsed = JSON.parse(clean);
-      if (parsed.error === "not_found") {
-        showToast("Aucune sauvegarde trouvée sur Drive", "error");
-      } else if (parsed.records) {
-        setRecords(parsed.records);
-        showToast(`✓ ${parsed.records.length} traitement(s) restauré(s) depuis Drive`, "success");
-      } else {
-        showToast("Format de sauvegarde non reconnu", "error");
-      }
-    } catch (e) {
-      showToast("Erreur de restauration Drive : " + e.message, "error");
-    } finally {
-      setDriveLoading(false);
-    }
-  };
-
-  // Auto-save quand records change (après le premier chargement)
+  // ── localStorage : chargement au démarrage ──
   const isFirstRender = useRef(true);
   const photoInputRef = useRef(null);
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem("carnet-sanitaire-records");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setRecords(parsed);
+          setLastSaved(localStorage.getItem("carnet-sanitaire-savedAt") || null);
+        }
+      }
+      const savedVaches = localStorage.getItem("carnet-sanitaire-vaches");
+      if (savedVaches) {
+        const parsedV = JSON.parse(savedVaches);
+        if (Array.isArray(parsedV) && parsedV.length > 0) setVaches(parsedV);
+      }
+    } catch(e) {}
+  }, []);
+
+  // ── localStorage : sauvegarde automatique à chaque changement ──
+  useEffect(() => {
     if (isFirstRender.current) { isFirstRender.current = false; return; }
-    if (records.length === 0) return;
-    const t = setTimeout(() => saveToDrive(records), 2000);
-    return () => clearTimeout(t);
+    try {
+      const now = new Date().toISOString();
+      localStorage.setItem("carnet-sanitaire-records", JSON.stringify(records));
+      localStorage.setItem("carnet-sanitaire-savedAt", now);
+      setLastSaved(now);
+    } catch(e) {}
   }, [records]);
+
+  useEffect(() => {
+    try { localStorage.setItem("carnet-sanitaire-vaches", JSON.stringify(vaches)); } catch(e) {}
+  }, [vaches]);
 
   // ── Calcul des alertes délais ──
   const alertes = useMemo(() => {
@@ -931,9 +746,7 @@ Si le fichier n'existe pas, réponds : {"error": "not_found"}`,
         onClose={() => setShowMenu(false)}
         vaches={vaches}
         records={records}
-        driveLoading={driveLoading}
-        onDriveSave={() => saveToDrive(records)}
-        onDriveRestore={restoreFromDrive}
+        lastSaved={lastSaved}
         onImportVaches={newVaches => {
           setVaches(newVaches.sort((a, b) => a.nom.localeCompare(b.nom)));
           showToast(`✓ ${newVaches.length} vaches importées`, "success");
@@ -1116,8 +929,7 @@ Si le fichier n'existe pas, réponds : {"error": "not_found"}`,
           </div>
 
           <div style={{ marginTop: 8, fontSize: 11, color: "#a8d5a2", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 6 }}>
-            <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" width={12} height={12} />
-            {driveLoading ? "⏳ Drive en cours…" : `Sauvegarde automatique Drive · ${DRIVE_FILE_NAME}`}
+            💾 {lastSaved ? `Sauvegarde automatique · ${new Date(lastSaved).toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"})}` : "Sauvegarde automatique locale activée"}
           </div>
         </div>
         <div style={{ height: 4, background: "linear-gradient(90deg,#4caf50,#8bc34a,#cddc39)" }} />
@@ -1309,48 +1121,9 @@ Si le fichier n'existe pas, réponds : {"error": "not_found"}`,
                           <img src={form.photoOrdonnance} alt="Ordonnance"
                             style={{ width: "100%", maxHeight: 200, objectFit: "contain", borderRadius: 8, border: "2px solid #d4e8d4", background: "#f7fbf7", cursor: "pointer" }}
                             onClick={() => setLightbox(form.photoOrdonnance)} />
-                          <button onClick={() => { setForm(f => ({ ...f, photoOrdonnance: "" })); setReadResult(null); }}
+                          <button onClick={() => setForm(f => ({ ...f, photoOrdonnance: "" }))}
                             style={{ position: "absolute", top: 6, right: 6, background: "#c62828", border: "none", color: "#fff", borderRadius: 20, width: 26, height: 26, cursor: "pointer", fontSize: 14, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
                         </div>
-                        <button onClick={handleReadOrdonnance} disabled={readingOrdonnance}
-                          style={{ marginTop: 10, width: "100%", padding: "11px 16px", borderRadius: 9, border: "2px solid #2d5a27", background: readingOrdonnance ? "#f0f4f0" : "linear-gradient(135deg,#1a3a1a,#2d5a27)", color: readingOrdonnance ? "#5a7a5a" : "#fff", fontWeight: 800, fontSize: 14, cursor: readingOrdonnance ? "wait" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                          {readingOrdonnance ? <>⏳ Lecture en cours…</> : <>🤖 Lire l'ordonnance automatiquement</>}
-                        </button>
-                        {readResult && readResult.success && (
-                          <div style={{ marginTop: 10, background: "#e8f5e9", border: "2px solid #a5d6a7", borderRadius: 10, padding: "14px" }}>
-                            <div style={{ fontWeight: 800, fontSize: 13, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 10 }}>✅ Informations extraites</div>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 10 }}>
-                              {[
-                                { label: "Vache", val: readResult.fields.nomVache },
-                                { label: "Médicament", val: readResult.fields.medicament },
-                                { label: "Raison", val: readResult.fields.raison },
-                                { label: "Posologie", val: readResult.fields.posologie },
-                                { label: "Quantité", val: readResult.fields.quantite },
-                                { label: "Voie admin.", val: readResult.fields.voieAdmin },
-                                { label: "Intervenant", val: readResult.fields.intervenant },
-                                { label: "Date début", val: readResult.fields.dateDebut },
-                                { label: "N° ordonnance", val: readResult.fields.numOrdonnance },
-                                { label: "Attente lait", val: readResult.fields.joursAttenteL ? readResult.fields.joursAttenteL + " j" : "" },
-                                { label: "Attente viande", val: readResult.fields.joursAttenteV ? readResult.fields.joursAttenteV + " j" : "" },
-                              ].filter(f => f.val).map(({ label, val }) => (
-                                <div key={label} style={{ background: "#fff", borderRadius: 6, padding: "5px 9px", fontFamily: "sans-serif" }}>
-                                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", color: "#5a7a5a" }}>{label}</div>
-                                  <div style={{ fontSize: 13, fontWeight: 700, color: "#1a3a1a", marginTop: 1 }}>{val}</div>
-                                </div>
-                              ))}
-                            </div>
-                            {readResult.notes && <div style={{ background: "#fff", borderRadius: 6, padding: "6px 9px", fontFamily: "sans-serif", fontSize: 12, color: "#5a7a5a", marginBottom: 10 }}>📝 {readResult.notes}</div>}
-                            <div style={{ display: "flex", gap: 8 }}>
-                              <button onClick={applyReadResult} style={{ flex: 1, padding: "9px", borderRadius: 8, border: "none", background: "#2d5a27", color: "#fff", fontWeight: 800, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13 }}>✓ Appliquer</button>
-                              <button onClick={() => setReadResult(null)} style={{ padding: "9px 14px", borderRadius: 8, border: "1px solid #a5d6a7", background: "#fff", color: "#2d5a27", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif" }}>Ignorer</button>
-                            </div>
-                          </div>
-                        )}
-                        {readResult && !readResult.success && (
-                          <div style={{ marginTop: 8, background: "#ffebee", border: "1px solid #ffcdd2", borderRadius: 8, padding: "10px 12px", fontFamily: "sans-serif", fontSize: 12, color: "#c62828" }}>
-                            ⚠️ Lecture impossible — vérifiez que l'image est nette.
-                          </div>
-                        )}
                         <div style={{ marginTop: 5, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>Cliquer sur l'image pour agrandir · ✕ pour supprimer</div>
                       </div>
 
