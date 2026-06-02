@@ -561,6 +561,46 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
   );
 }
 
+// ── Modal saisie token GitHub ──
+function TokenModal({ onClose, onConfirm }) {
+  const [tok, setTok] = useState("");
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 360, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ fontWeight: 900, fontSize: 17, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 6 }}>🔑 Token GitHub</div>
+        <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 16, lineHeight: 1.6 }}>
+          Entrez votre token GitHub (ghp_...). Il sera stocké uniquement dans ce navigateur, jamais partagé.
+          <br/><br/>
+          Pour créer un token : <b>github.com</b> → Settings → Developer settings → Tokens (classic) → Generate new token → cochez <b>repo</b>.
+        </div>
+        <input
+          type="password"
+          value={tok}
+          onChange={e => setTok(e.target.value)}
+          placeholder="ghp_..."
+          style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box", marginBottom: 16 }}
+          onKeyDown={e => e.key === "Enter" && tok.startsWith("ghp_") && onConfirm(tok)}
+          autoFocus
+        />
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={() => tok.startsWith("ghp_") && onConfirm(tok)} disabled={!tok.startsWith("ghp_")}
+            style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: tok.startsWith("ghp_") ? "linear-gradient(135deg,#1a3a1a,#2d5a27)" : "#ccc", color: "#fff", fontWeight: 800, fontSize: 14, cursor: tok.startsWith("ghp_") ? "pointer" : "not-allowed", fontFamily: "sans-serif" }}>
+            ✓ Enregistrer
+          </button>
+          <button onClick={onClose} style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
+        </div>
+        {localStorage.getItem("carnet-github-token") && (
+          <button onClick={() => { localStorage.removeItem("carnet-github-token"); onClose(); }}
+            style={{ marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
+            🗑 Supprimer le token enregistré
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── Modal Impression PDF ──
 function PrintModal({ records, onClose }) {
   const today = new Date().toISOString().split("T")[0];
@@ -1029,28 +1069,38 @@ function App() {
   const GITHUB_USER = "davjog";
   const GITHUB_REPO = "sanitaire2";
   const GITHUB_FILE = "data.json";
-  const GITHUB_TOKEN = "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";
   const [githubLoading, setGithubLoading] = useState(false);
+  const [showTokenModal, setShowTokenModal] = useState(false);
+  const [pendingGithubAction, setPendingGithubAction] = useState(null); // "save" | "restore"
 
-  const saveToGithub = async () => {
+  const getToken = () => localStorage.getItem("carnet-github-token") || "";
+
+  const githubAction = (action) => {
+    if (!getToken()) { setPendingGithubAction(action); setShowTokenModal(true); }
+    else { action === "save" ? saveToGithub() : restoreFromGithub(); }
+  };
+
+  const saveToGithub = async (token) => {
+    const tok = token || getToken();
+    if (!tok) { setShowTokenModal(true); setPendingGithubAction("save"); return; }
     setGithubLoading(true);
     showToast("Sauvegarde GitHub en cours…", "loading");
     try {
       const content = btoa(unescape(encodeURIComponent(JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records }, null, 2))));
-      // Récupérer le SHA du fichier existant (nécessaire pour mettre à jour)
       let sha = "";
       try {
         const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-          headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" }
+          headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json" }
         });
         if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
       } catch(e) {}
       const body = { message: `Sauvegarde carnet sanitaire ${new Date().toLocaleDateString("fr-FR")}`, content, ...(sha ? { sha } : {}) };
       const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
         method: "PUT",
-        headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
+        headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
+      if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
       if (!res.ok) throw new Error("Erreur " + res.status);
       showToast("✓ Sauvegardé sur GitHub", "success");
     } catch(e) {
@@ -1058,13 +1108,16 @@ function App() {
     } finally { setGithubLoading(false); }
   };
 
-  const restoreFromGithub = async () => {
+  const restoreFromGithub = async (token) => {
+    const tok = token || getToken();
+    if (!tok) { setShowTokenModal(true); setPendingGithubAction("restore"); return; }
     setGithubLoading(true);
     showToast("Restauration GitHub en cours…", "loading");
     try {
       const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-        headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" }
+        headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json" }
       });
+      if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
       if (!res.ok) throw new Error("Fichier introuvable");
       const d = await res.json();
       const text = decodeURIComponent(escape(atob(d.content)));
@@ -1141,7 +1194,19 @@ function App() {
     <div style={{ minHeight: "100vh", background: "#f0f4f0", fontFamily: "'Georgia','Times New Roman',serif" }}>
       {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
       {showPrint && <PrintModal records={records} onClose={() => setShowPrint(false)} />}
-      {showStats && <StatsModal records={records} onClose={() => setShowStats(false)} />}}
+      {showStats && <StatsModal records={records} onClose={() => setShowStats(false)} />}
+      {showTokenModal && (
+        <TokenModal
+          onClose={() => { setShowTokenModal(false); setPendingGithubAction(null); }}
+          onConfirm={tok => {
+            localStorage.setItem("carnet-github-token", tok);
+            setShowTokenModal(false);
+            if (pendingGithubAction === "save") saveToGithub(tok);
+            else if (pendingGithubAction === "restore") restoreFromGithub(tok);
+            setPendingGithubAction(null);
+          }}
+        />
+      )}}
 
       <MenuPanel
         open={showMenu}
@@ -1150,8 +1215,8 @@ function App() {
         records={records}
         lastSaved={lastSaved}
         githubLoading={githubLoading}
-        onGithubSave={() => { saveToGithub(); setShowMenu(false); }}
-        onGithubRestore={() => { restoreFromGithub(); setShowMenu(false); }}
+        onGithubSave={() => { githubAction("save"); setShowMenu(false); }}
+        onGithubRestore={() => { githubAction("restore"); setShowMenu(false); }}
         onPrint={() => setShowPrint(true)}
         onStats={() => setShowStats(true)}
         onImportVaches={newVaches => {
