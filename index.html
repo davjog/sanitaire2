@@ -147,7 +147,7 @@ function formatDateAvecJour(d) {
 }
 
 const emptyForm = {
-  nomVache: "", numeroVache: "", travailVache: "",
+  nomVache: "", numeroVache: "", travailVache: "", selectedVaches: [],
   dateDebut: "", momentDebut: "matin",
   dateFin: "", momentFin: "matin",
   raison: "", medicament: "",
@@ -224,6 +224,35 @@ const MEDICAMENTS = [
   { nom: "Douvistome (oxyclozanide)", categorie: "Antiparasitaire", lait: 5, viande: 13 },
   { nom: "Ripercol (lévamisole)", categorie: "Antiparasitaire", lait: 3, viande: 14 },
   { nom: "Closantel (Flukiver)", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Ivomec (ivermectine) Injectable", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Ivomec (ivermectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Dectomax (doramectine)", categorie: "Antiparasitaire", lait: 0, viande: 70 },
+  { nom: "Cydectine (moxidectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 14 },
+  { nom: "Eprinex (éprinomectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 15 },
+  { nom: "Fascinex (triclabendazole)", categorie: "Antiparasitaire", lait: 7, viande: 56 },
+  { nom: "Fasinex (triclabendazole) 5%", categorie: "Antiparasitaire", lait: 28, viande: 56 },
+  { nom: "Trodax (nitroxynil)", categorie: "Antiparasitaire", lait: 10, viande: 30 },
+  { nom: "Clorsulon (Ivomec F)", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  // ── Antibiotiques supplémentaires ──
+  { nom: "Aivlosin (tylvalosine)", categorie: "Antibiotique", lait: 2, viande: 2 },
+  { nom: "Alamycin (oxytétracycline) LA", categorie: "Antibiotique", lait: 5, viande: 22 },
+  { nom: "Amoxival (amoxicilline) injectable", categorie: "Antibiotique", lait: 3, viande: 10 },
+  { nom: "Betamox (amoxicilline) LA", categorie: "Antibiotique", lait: 4, viande: 28 },
+  { nom: "Borgal (sulfadoxine+triméthoprime)", categorie: "Antibiotique", lait: 8, viande: 14 },
+  { nom: "Cobactan (céfquinome) Injectable", categorie: "Antibiotique", lait: 2, viande: 5 },
+  { nom: "Danoflox (danofloxacine)", categorie: "Antibiotique", lait: 0, viande: 4 },
+  { nom: "Draxxin (tulathromycine)", categorie: "Antibiotique", lait: 0, viande: 22 },
+  { nom: "Enroflox (enrofloxacine)", categorie: "Antibiotique", lait: 4, viande: 10 },
+  { nom: "Excenel (céftiofur)", categorie: "Antibiotique", lait: 0, viande: 3 },
+  { nom: "Florkem (florfénicol)", categorie: "Antibiotique", lait: 0, viande: 30 },
+  { nom: "Gentaline (gentamicine)", categorie: "Antibiotique", lait: 7, viande: 21 },
+  { nom: "Lincomycine injectable", categorie: "Antibiotique", lait: 4, viande: 2 },
+  { nom: "Marbocyl (marbofloxacine)", categorie: "Antibiotique", lait: 3, viande: 6 },
+  { nom: "Nuflor (florfénicol)", categorie: "Antibiotique", lait: 0, viande: 28 },
+  { nom: "Sulfadimidine injectable", categorie: "Antibiotique", lait: 4, viande: 10 },
+  { nom: "Tilmox (tilmicosine)", categorie: "Antibiotique", lait: 0, viande: 28 },
+  { nom: "Tylan (tylosine)", categorie: "Antibiotique", lait: 4, viande: 4 },
+  { nom: "Zactran (gamithromycine)", categorie: "Antibiotique", lait: 0, viande: 9 },
   // ── Vitamines / Minéraux / Divers ──
   { nom: "Calcium Gluconate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
   { nom: "Magnésium Sulfate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
@@ -231,6 +260,20 @@ const MEDICAMENTS = [
   { nom: "Estrumate (prostaglandine PGF2α)", categorie: "Hormonal", lait: 0, viande: 1 },
   { nom: "Vitamine AD3E", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
   { nom: "Lidocaïne (anesthésie locale)", categorie: "Anesthésie", lait: 15, viande: 28 },
+  { nom: "Vitamine B1 (thiamine)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine B12 (cyanocobalamine)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine C (acide ascorbique)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine E + Sélénium", categorie: "Minéraux/Vitamines", lait: 0, viande: 14 },
+  { nom: "Calcium Borogluconate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Phosphore injectable", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Potassium chlorure", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Oligo-éléments (Cu/Zn/Se/I)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Catosel (sélénium + vitamine E)", categorie: "Minéraux/Vitamines", lait: 0, viande: 21 },
+  { nom: "Multivitamines injectable", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Propylène glycol (énergie)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Dextrose 50% (sérum glucosé)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Chlorure de sodium 0.9%", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Ringer Lactate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
 ];
 
 const DRIVE_FILE_NAME = "carnet-sanitaire-bovin.json";
@@ -255,52 +298,71 @@ function formatDate(d) {
   return `${j}/${m}/${y}`;
 }
 
-function VacheSelector({ value, onChange, vaches }) {
+function VacheSelector({ selected, onChange, vaches }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const liste = vaches || VACHES_DEFAUT;
-  const vache = liste.find(v => v.nom === value);
   const filtered = liste.filter(v =>
     v.nom.toLowerCase().includes(query.toLowerCase()) ||
     v.travail.includes(query) ||
     v.numero.includes(query)
   );
-  const select = (v) => { onChange(v); setOpen(false); setQuery(""); };
+  const toggle = (v) => {
+    const exists = selected.find(s => s.nom === v.nom);
+    if (exists) onChange(selected.filter(s => s.nom !== v.nom));
+    else onChange([...selected, v]);
+  };
+  const selectAll = () => onChange(filtered);
+  const clearAll = () => onChange([]);
+
   return (
     <div style={{ position: "relative" }}>
-      <div onClick={() => setOpen(o => !o)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", cursor: "pointer", justifyContent: "space-between" }}>
-        {vache ? (
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <span style={{ fontSize: 18 }}>🐄</span>
-            <div>
-              <div style={{ fontWeight: 800, fontSize: 15 }}>{vache.nom}</div>
-              <div style={{ fontSize: 11, color: "#5a7a5a" }}>{vache.numero} · N° travail : {vache.travail}</div>
-            </div>
-          </div>
-        ) : <span style={{ color: "#8aaa8a" }}>Sélectionner une vache…</span>}
-        <span style={{ color: "#5a7a5a", fontSize: 12 }}>{open ? "▲" : "▼"}</span>
+      <div onClick={() => setOpen(o => !o)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", cursor: "pointer", justifyContent: "space-between", minHeight: 46 }}>
+        {selected.length === 0
+          ? <span style={{ color: "#8aaa8a" }}>Sélectionner une ou plusieurs vaches…</span>
+          : <div style={{ display: "flex", flexWrap: "wrap", gap: 5, flex: 1 }}>
+              {selected.map(v => (
+                <span key={v.nom} style={{ background: "#2d5a27", color: "#fff", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
+                  🐄 {v.nom}
+                  <span onClick={e => { e.stopPropagation(); toggle(v); }} style={{ cursor: "pointer", fontSize: 13, fontWeight: 900, marginLeft: 2 }}>✕</span>
+                </span>
+              ))}
+            </div>}
+        <span style={{ color: "#5a7a5a", fontSize: 12, flexShrink: 0 }}>{open ? "▲" : "▼"}</span>
       </div>
       {open && (
-        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 999, background: "#fff", borderRadius: 10, border: "2px solid #d4e8d4", boxShadow: "0 8px 32px #0002", maxHeight: 300, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8" }}>
-            <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="🔍 Rechercher nom, N° travail…"
-              style={{ width: "100%", padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none", boxSizing: "border-box" }} />
+        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 999, background: "#fff", borderRadius: 10, border: "2px solid #d4e8d4", boxShadow: "0 8px 32px #0002", maxHeight: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8", display: "flex", gap: 6 }}>
+            <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="🔍 Rechercher…"
+              style={{ flex: 1, padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none", boxSizing: "border-box" }} />
+            <button onClick={selectAll} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#e8f5e9", color: "#2d5a27", fontWeight: 700, fontSize: 11, cursor: "pointer", fontFamily: "sans-serif", whiteSpace: "nowrap" }}>Tout</button>
+            <button onClick={clearAll} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", fontWeight: 700, fontSize: 11, cursor: "pointer", fontFamily: "sans-serif" }}>✕</button>
           </div>
-          <div style={{ overflowY: "auto", maxHeight: 240 }}>
+          <div style={{ overflowY: "auto", maxHeight: 260 }}>
             {filtered.length === 0
               ? <div style={{ padding: 16, textAlign: "center", color: "#8aaa8a", fontSize: 13, fontFamily: "sans-serif" }}>Aucune vache trouvée</div>
-              : filtered.map(v => (
-                <div key={v.numero} onClick={() => select(v)}
-                  style={{ padding: "9px 14px", cursor: "pointer", display: "flex", gap: 10, alignItems: "center", borderBottom: "1px solid #f0f7f0", background: v.nom === value ? "#e8f5e9" : "transparent" }}
-                  onMouseEnter={e => e.currentTarget.style.background = "#f0f9f0"}
-                  onMouseLeave={e => e.currentTarget.style.background = v.nom === value ? "#e8f5e9" : "transparent"}>
-                  <span style={{ fontSize: 20 }}>🐄</span>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a" }}>{v.nom}</div>
-                    <div style={{ fontSize: 11, color: "#7a9a7a", fontFamily: "sans-serif" }}>{v.numero} · N° travail : {v.travail} · Née le {v.naissance}</div>
-                  </div>
-                </div>
-              ))}
+              : filtered.map(v => {
+                  const isSelected = !!selected.find(s => s.nom === v.nom);
+                  return (
+                    <div key={v.numero} onClick={() => toggle(v)}
+                      style={{ padding: "9px 14px", cursor: "pointer", display: "flex", gap: 10, alignItems: "center", borderBottom: "1px solid #f0f7f0", background: isSelected ? "#e8f5e9" : "transparent" }}
+                      onMouseEnter={e => e.currentTarget.style.background = isSelected ? "#d4edda" : "#f0f9f0"}
+                      onMouseLeave={e => e.currentTarget.style.background = isSelected ? "#e8f5e9" : "transparent"}>
+                      <div style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${isSelected ? "#2d5a27" : "#c8d8c8"}`, background: isSelected ? "#2d5a27" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        {isSelected && <span style={{ color: "#fff", fontSize: 13, fontWeight: 900 }}>✓</span>}
+                      </div>
+                      <span style={{ fontSize: 18 }}>🐄</span>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a" }}>{v.nom}</div>
+                        <div style={{ fontSize: 11, color: "#7a9a7a", fontFamily: "sans-serif" }}>{v.numero} · N° travail : {v.travail} · Née le {v.naissance}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+          </div>
+          <div style={{ padding: "8px 14px", borderTop: "1px solid #e8f0e8", fontFamily: "sans-serif", fontSize: 12, color: "#5a7a5a", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span>{selected.length} vache{selected.length > 1 ? "s" : ""} sélectionnée{selected.length > 1 ? "s" : ""}</span>
+            <button onClick={() => setOpen(false)} style={{ padding: "5px 14px", borderRadius: 6, border: "none", background: "#2d5a27", color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>Valider</button>
           </div>
         </div>
       )}
@@ -467,10 +529,266 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
             </div>
           </div>
 
+          {/* Section PDF */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              🖨️ Impression PDF
+            </div>
+            <button onClick={() => { onPrint(); onClose(); }}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "2px solid #6a1b9a", background: "#fff", color: "#6a1b9a", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              🖨️ Imprimer / Exporter PDF
+            </button>
+          </div>
+
+          {/* Section Statistiques */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              📊 Statistiques
+            </div>
+            <button onClick={() => { onStats(); onClose(); }}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "2px solid #1565c0", background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📊 Voir les statistiques
+            </button>
+          </div>
+
         </div>
 
         <div style={{ padding: "12px 16px", borderTop: "1px solid #e8f0e8", fontSize: 10, color: "#8aaa8a", fontFamily: "sans-serif", textAlign: "center" }}>
           CARNET SANITAIRE BOVIN LAIT — Conforme réglementation française
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Modal Impression PDF ──
+function PrintModal({ records, onClose }) {
+  const today = new Date().toISOString().split("T")[0];
+  const firstDay = records.length > 0 ? records.map(r => r.dateDebut).sort()[0] : today;
+  const [du, setDu] = useState(firstDay);
+  const [au, setAu] = useState(today);
+
+  const filtered = records.filter(r => r.dateDebut >= du && r.dateDebut <= au).sort((a,b) => a.dateDebut.localeCompare(b.dateDebut));
+
+  const doPrint = () => {
+    const w = window.open("", "_blank");
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Carnet Sanitaire</title>
+    <style>
+      body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; color: #111; }
+      h1 { font-size: 16px; color: #1a3a1a; border-bottom: 2px solid #1a3a1a; padding-bottom: 6px; }
+      .period { font-size: 12px; color: #555; margin-bottom: 14px; }
+      table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+      th { background: #1a3a1a; color: #fff; padding: 6px 8px; text-align: left; font-size: 10px; }
+      td { padding: 5px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+      tr:nth-child(even) { background: #f5faf5; }
+      .badge-ok { color: #2d5a27; font-weight: bold; }
+      .badge-wait { color: #b85c00; font-weight: bold; }
+      @media print { body { margin: 10px; } }
+    </style></head><body>
+    <h1>🐄 Carnet Sanitaire Bovin Lait</h1>
+    <div class="period">Période : du ${du.split("-").reverse().join("/")} au ${au.split("-").reverse().join("/")} — ${filtered.length} traitement(s)</div>
+    <table>
+      <thead><tr>
+        <th>Date</th><th>Vache</th><th>N° travail</th><th>Médicament</th><th>Raison</th>
+        <th>Posologie</th><th>Voie</th><th>Att. Lait</th><th>Att. Viande</th><th>Intervenant</th><th>Ord.</th>
+      </tr></thead>
+      <tbody>${filtered.map(r => {
+        const finL = r.joursAttenteL ? addDays(r.dateDebut, r.joursAttenteL) : "";
+        const finV = r.joursAttenteV ? addDays(r.dateDebut, r.joursAttenteV) : "";
+        const now = today;
+        const okL = !finL || finL <= now;
+        const okV = !finV || finV <= now;
+        return `<tr>
+          <td>${r.dateDebut ? r.dateDebut.split("-").reverse().join("/") : "—"}</td>
+          <td><b>${r.nomVache||"—"}</b></td>
+          <td>${r.travailVache||"—"}</td>
+          <td>${r.medicament||"—"}</td>
+          <td>${r.raison||"—"}</td>
+          <td>${r.posologie||"—"}</td>
+          <td>${r.voieAdmin||"—"}</td>
+          <td class="${okL?"badge-ok":"badge-wait"}">${finL ? finL.split("-").reverse().join("/") + (okL?" ✓":" ⚠") : "—"}</td>
+          <td class="${okV?"badge-ok":"badge-wait"}">${finV ? finV.split("-").reverse().join("/") + (okV?" ✓":" ⚠") : "—"}</td>
+          <td>${r.intervenant||"—"}</td>
+          <td>${r.numOrdonnance||"—"}</td>
+        </tr>`;
+      }).join("")}</tbody>
+    </table>
+    <div style="margin-top:20px;font-size:10px;color:#888;">Imprimé le ${new Date().toLocaleDateString("fr-FR")} — Conforme réglementation française</div>
+    </body></html>`);
+    w.document.close();
+    w.focus();
+    setTimeout(() => { w.print(); }, 400);
+  };
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0007" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 360, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ fontWeight: 900, fontSize: 18, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 18 }}>🖨️ Impression PDF</div>
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", display: "block", marginBottom: 5 }}>Du</label>
+          <input type="date" value={du} onChange={e => setDu(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box" }} />
+        </div>
+        <div style={{ marginBottom: 20 }}>
+          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", display: "block", marginBottom: 5 }}>Au</label>
+          <input type="date" value={au} onChange={e => setAu(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box" }} />
+        </div>
+        <div style={{ background: "#e8f5e9", borderRadius: 8, padding: "8px 12px", marginBottom: 18, fontFamily: "sans-serif", fontSize: 13, color: "#2d5a27", fontWeight: 600 }}>
+          {filtered.length} traitement(s) dans cette période
+        </div>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={doPrint} disabled={filtered.length === 0}
+            style={{ flex: 1, padding: "12px", borderRadius: 10, border: "none", background: filtered.length === 0 ? "#ccc" : "linear-gradient(135deg,#6a1b9a,#8e24aa)", color: "#fff", fontWeight: 800, fontSize: 14, cursor: filtered.length === 0 ? "not-allowed" : "pointer", fontFamily: "sans-serif" }}>
+            🖨️ Imprimer
+          </button>
+          <button onClick={onClose} style={{ padding: "12px 18px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Modal Statistiques ──
+function StatsModal({ records, onClose }) {
+  const today = new Date().toISOString().split("T")[0];
+
+  // Maladies les plus fréquentes
+  const raisonCount = {};
+  records.forEach(r => { if(r.raison) raisonCount[r.raison] = (raisonCount[r.raison]||0)+1; });
+  const topRaisons = Object.entries(raisonCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const totalRaisons = Object.values(raisonCount).reduce((a,b)=>a+b,0);
+
+  // Traitements par vache
+  const vacheCount = {};
+  records.forEach(r => { if(r.nomVache) vacheCount[r.nomVache] = (vacheCount[r.nomVache]||0)+1; });
+  const topVaches = Object.entries(vacheCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxVache = topVaches.length > 0 ? topVaches[0][1] : 1;
+
+  // Évolution par mois
+  const moisCount = {};
+  records.forEach(r => {
+    if(r.dateDebut) {
+      const m = r.dateDebut.slice(0,7);
+      moisCount[m] = (moisCount[m]||0)+1;
+    }
+  });
+  const moisList = Object.entries(moisCount).sort((a,b)=>a[0].localeCompare(b[0])).slice(-12);
+  const maxMois = moisList.length > 0 ? Math.max(...moisList.map(m=>m[1])) : 1;
+
+  // Médicaments les plus utilisés
+  const medCount = {};
+  records.forEach(r => { if(r.medicament) medCount[r.medicament] = (medCount[r.medicament]||0)+1; });
+  const topMeds = Object.entries(medCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  const COLORS = ["#1a3a1a","#2d5a27","#4a7a40","#6a9a5a","#8aba7a","#a8d5a2","#c8e8c0","#e0f4d8"];
+
+  const [tab, setTab] = useState("maladies");
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "flex-start", justifyContent: "center", overflowY: "auto", padding: "20px 10px" }}>
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "#0007" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, width: 440, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", borderRadius: "16px 16px 0 0", padding: "18px 20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ color: "#fff", fontWeight: 900, fontSize: 18, fontFamily: "sans-serif" }}>📊 Statistiques</div>
+          <button onClick={onClose} style={{ background: "#fff2", border: "none", color: "#fff", borderRadius: 8, padding: "5px 11px", cursor: "pointer", fontSize: 16 }}>✕</button>
+        </div>
+
+        {/* Onglets */}
+        <div style={{ display: "flex", borderBottom: "2px solid #e8f0e8" }}>
+          {[["maladies","🩺 Maladies"],["vaches","🐄 Par vache"],["mois","📅 Par mois"],["meds","💊 Médicaments"]].map(([k,l]) => (
+            <button key={k} onClick={() => setTab(k)}
+              style={{ flex:1, padding:"10px 4px", border:"none", background: tab===k?"#e8f5e9":"#fff", color: tab===k?"#1a3a1a":"#7a9a7a", fontWeight: tab===k?800:500, fontSize:11, cursor:"pointer", fontFamily:"sans-serif", borderBottom: tab===k?"3px solid #2d5a27":"3px solid transparent" }}>
+              {l}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ padding: 20 }}>
+          {records.length === 0 && <div style={{ textAlign:"center", color:"#8aaa8a", fontFamily:"sans-serif", padding:30 }}>Aucun traitement enregistré</div>}
+
+          {/* Maladies */}
+          {tab === "maladies" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Motifs de traitement ({totalRaisons} total)</div>
+              {topRaisons.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topRaisons.map(([raison, count], i) => (
+                <div key={raison} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>{raison}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count} ({Math.round(count/totalRaisons*100)}%)</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/topRaisons[0][1]*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5, transition:"width 0.4s" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Par vache */}
+          {tab === "vaches" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Nombre de traitements par vache</div>
+              {topVaches.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topVaches.map(([nom, count], i) => (
+                <div key={nom} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>🐄 {nom}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count} traitement{count>1?"s":""}</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/maxVache*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Par mois */}
+          {tab === "mois" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Évolution mensuelle (12 derniers mois)</div>
+              {moisList.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:120, padding:"0 4px" }}>
+                {moisList.map(([mois, count], i) => {
+                  const [y,m] = mois.split("-");
+                  const label = `${m}/${y.slice(2)}`;
+                  return (
+                    <div key={mois} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:3 }}>
+                      <div style={{ fontSize:10, fontWeight:700, color:"#2d5a27", fontFamily:"sans-serif" }}>{count}</div>
+                      <div style={{ width:"100%", background:COLORS[i%COLORS.length], borderRadius:"4px 4px 0 0", height:`${Math.max(8, count/maxMois*90)}px`, transition:"height 0.4s" }} />
+                      <div style={{ fontSize:9, color:"#7a9a7a", fontFamily:"sans-serif", textAlign:"center" }}>{label}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Médicaments */}
+          {tab === "meds" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Médicaments les plus utilisés</div>
+              {topMeds.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topMeds.map(([med, count], i) => (
+                <div key={med} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>💊 {med}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count}×</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/topMeds[0][1]*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ marginTop:18, display:"flex", justifyContent:"center" }}>
+            <div style={{ background:"#f0f9f0", borderRadius:10, padding:"10px 20px", fontFamily:"sans-serif", fontSize:12, color:"#3a5a3a", textAlign:"center" }}>
+              <b>{records.length}</b> traitement(s) · <b>{Object.keys(vacheCount).length}</b> vache(s) · <b>{Object.keys(raisonCount).length}</b> motif(s) différent(s)
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -629,6 +947,8 @@ function App() {
   const [toast, setToast] = useState(null);
   const [lightbox, setLightbox] = useState(null);
   const [lastSaved, setLastSaved] = useState(null);
+  const [showPrint, setShowPrint] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const showToast = (msg, type = "success") => setToast({ msg, type });
 
@@ -637,7 +957,7 @@ function App() {
   , [records, search]);
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-  const handleVacheSelect = v => setForm(f => ({ ...f, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail }));
+  const handleVacheSelect = vList => setForm(f => ({ ...f, selectedVaches: vList }));
   const handleMedicamentSelect = m => setForm(f => ({
     ...f,
     medicament: m.nom,
@@ -646,18 +966,23 @@ function App() {
   }));
 
   const handleSubmit = () => {
-    if (!form.nomVache || !form.dateDebut) return;
+    const vachesList = form.selectedVaches && form.selectedVaches.length > 0 ? form.selectedVaches : (form.nomVache ? [{ nom: form.nomVache, numero: form.numeroVache, travail: form.travailVache }] : []);
+    if (vachesList.length === 0 || !form.dateDebut) return;
     if (editId !== null) {
-      setRecords(rs => rs.map(r => r.id === editId ? { ...form, id: editId } : r));
+      // En mode édition : une seule vache
+      const v = vachesList[0];
+      setRecords(rs => rs.map(r => r.id === editId ? { ...form, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail, id: editId } : r));
       setEditId(null);
     } else {
-      setRecords(rs => [...rs, { ...form, id: Date.now() }]);
+      // Nouveau traitement : un enregistrement par vache
+      const newRecords = vachesList.map(v => ({ ...form, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail, id: Date.now() + Math.random() }));
+      setRecords(rs => [...rs, ...newRecords]);
     }
     setForm(emptyForm);
     setShowForm(false);
   };
 
-  const handleEdit = record => { setForm({ ...record }); setEditId(record.id); setShowForm(true); setDetailId(null); };
+  const handleEdit = record => { setForm({ ...record, selectedVaches: [{ nom: record.nomVache, numero: record.numeroVache, travail: record.travailVache }] }); setEditId(record.id); setShowForm(true); setDetailId(null); };
   const handleDelete = id => { setRecords(rs => rs.filter(r => r.id !== id)); setConfirmDelete(null); setDetailId(null); };
 
   // ── localStorage : chargement au démarrage ──
@@ -811,6 +1136,8 @@ function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#f0f4f0", fontFamily: "'Georgia','Times New Roman',serif" }}>
       {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+      {showPrint && <PrintModal records={records} onClose={() => setShowPrint(false)} />}
+      {showStats && <StatsModal records={records} onClose={() => setShowStats(false)} />}}
 
       <MenuPanel
         open={showMenu}
@@ -821,6 +1148,8 @@ function App() {
         githubLoading={githubLoading}
         onGithubSave={() => { saveToGithub(); setShowMenu(false); }}
         onGithubRestore={() => { restoreFromGithub(); setShowMenu(false); }}
+        onPrint={() => setShowPrint(true)}
+        onStats={() => setShowStats(true)}
         onImportVaches={newVaches => {
           setVaches(newVaches.sort((a, b) => a.nom.localeCompare(b.nom)));
           showToast(`✓ ${newVaches.length} vaches importées`, "success");
@@ -1024,9 +1353,13 @@ function App() {
               </div>
               <div style={{ padding: "18px 22px" }}>
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 6, fontFamily: "sans-serif" }}>Vache *</label>
-                  <VacheSelector value={form.nomVache} onChange={handleVacheSelect} vaches={vaches} />
-                  {form.numeroVache && <div style={{ marginTop: 5, fontSize: 11, color: "#5a7a5a", fontFamily: "sans-serif", background: "#f0f9f0", borderRadius: 6, padding: "4px 10px", display: "inline-block" }}>📋 {form.numeroVache} · N° travail : {form.travailVache}</div>}
+                  <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 6, fontFamily: "sans-serif" }}>Vache(s) *</label>
+                  <VacheSelector selected={form.selectedVaches || []} onChange={handleVacheSelect} vaches={vaches} />
+                  {form.selectedVaches && form.selectedVaches.length > 1 && (
+                    <div style={{ marginTop: 6, fontSize: 12, color: "#2d5a27", fontFamily: "sans-serif", background: "#e8f5e9", borderRadius: 6, padding: "5px 10px", fontWeight: 600 }}>
+                      ✓ {form.selectedVaches.length} traitements seront créés (un par vache)
+                    </div>
+                  )}
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
 
