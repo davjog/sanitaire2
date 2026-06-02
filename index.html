@@ -1215,8 +1215,8 @@ function App() {
         records={records}
         lastSaved={lastSaved}
         githubLoading={githubLoading}
-        onGithubSave={() => { githubAction("save"); setShowMenu(false); }}
-        onGithubRestore={() => { githubAction("restore"); setShowMenu(false); }}
+        onGithubSave={() => { setShowMenu(false); setTimeout(() => githubAction("save"), 50); }}
+        onGithubRestore={() => { setShowMenu(false); setTimeout(() => githubAction("restore"), 50); }}
         onPrint={() => setShowPrint(true)}
         onStats={() => setShowStats(true)}
         onImportVaches={newVaches => {
