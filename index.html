@@ -372,6 +372,7 @@ function VacheSelector({ selected, onChange, vaches }) {
 
 // ── Menu latéral ──
 function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved, githubLoading, onGithubSave, onGithubRestore, onPrint, onStats }) {
+  const [selectedHistVache, setSelectedHistVache] = useState("");
   const csvInputRef = useRef(null);
   const jsonInputRef = useRef(null);
 
@@ -487,6 +488,52 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
               style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #d4e8d4", background: "#f7fbf7", color: "#3a5a3a", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
               📤 Exporter troupeau (CSV)
             </button>
+          </div>
+
+          {/* Section historique par vache */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              🐄 Historique par vache
+            </div>
+            <select value={selectedHistVache} onChange={e => setSelectedHistVache(e.target.value)}
+              style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", marginBottom: 10 }}>
+              <option value="">-- Choisir une vache --</option>
+              {[...new Set(records.map(r => r.nomVache).filter(Boolean))].sort().map(nom => (
+                <option key={nom} value={nom}>{nom}</option>
+              ))}
+            </select>
+            {selectedHistVache && (() => {
+              const hist = records.filter(r => r.nomVache === selectedHistVache).sort((a,b) => b.dateDebut.localeCompare(a.dateDebut));
+              const today = new Date().toISOString().split("T")[0];
+              return (
+                <div>
+                  <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#5a7a5a", marginBottom: 8 }}>
+                    {hist.length} traitement{hist.length > 1 ? "s" : ""} enregistré{hist.length > 1 ? "s" : ""}
+                  </div>
+                  <div style={{ maxHeight: 320, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
+                    {hist.map(r => {
+                      const finL = r.joursAttenteL ? addDays(r.dateDebut, r.joursAttenteL) : "";
+                      const finV = r.joursAttenteV ? addDays(r.dateDebut, r.joursAttenteV) : "";
+                      const libre = (!finL || finL <= today) && (!finV || finV <= today);
+                      return (
+                        <div key={r.id} style={{ background: libre ? "#f7fbf7" : "#fff8e8", border: `1px solid ${libre ? "#c8e6c9" : "#ffe0b2"}`, borderRadius: 10, padding: "10px 12px" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                            <span style={{ fontFamily: "sans-serif", fontSize: 12, fontWeight: 800, color: "#1a3a1a" }}>{r.dateDebut ? r.dateDebut.split("-").reverse().join("/") : "—"}</span>
+                            <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 10, background: libre ? "#e8f5e9" : "#fff3e0", color: libre ? "#2d5a27" : "#e65100" }}>
+                              {libre ? "✓ Libérée" : "⚠ Attente"}
+                            </span>
+                          </div>
+                          <div style={{ fontFamily: "sans-serif", fontSize: 13, fontWeight: 700, color: "#1a3a1a", marginBottom: 2 }}>{r.medicament || "—"}</div>
+                          <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#5a7a5a" }}>{r.raison || ""}</div>
+                          {finL && <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#7a5a2a", marginTop: 3 }}>🥛 Lait : {finL.split("-").reverse().join("/")} · 🥩 Viande : {finV ? finV.split("-").reverse().join("/") : "—"}</div>}
+                          {r.intervenant && <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#7a9a7a", marginTop: 2 }}>👤 {r.intervenant}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Section sauvegarde locale */}
