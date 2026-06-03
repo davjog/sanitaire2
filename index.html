@@ -288,8 +288,14 @@ const MEDICAMENTS = [
 const DRIVE_FILE_NAME = "carnet-sanitaire-bovin.json";
 
 // ── helpers ──
-function getDateAttenteL(r) { return r.joursAttenteL ? addDays(r.dateDebut, r.joursAttenteL) : ""; }
-function getDateAttenteV(r) { return r.joursAttenteV ? addDays(r.dateDebut, r.joursAttenteV) : ""; }
+function getDateAttenteL(r) { 
+  const base = r.dateFin || r.dateDebut;
+  return r.joursAttenteL ? addDays(base, r.joursAttenteL) : ""; 
+}
+function getDateAttenteV(r) { 
+  const base = r.dateFin || r.dateDebut;
+  return r.joursAttenteV ? addDays(base, r.joursAttenteV) : ""; 
+}
 
 function StatusBadge({ record }) {
   const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -521,8 +527,8 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
                   </div>
                   <div style={{ maxHeight: 320, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
                     {hist.map(r => {
-                      const finL = r.joursAttenteL ? addDays(r.dateDebut, r.joursAttenteL) : "";
-                      const finV = r.joursAttenteV ? addDays(r.dateDebut, r.joursAttenteV) : "";
+                      const finL = r.joursAttenteL ? addDays(r.dateFin || r.dateDebut, r.joursAttenteL) : "";
+                      const finV = r.joursAttenteV ? addDays(r.dateFin || r.dateDebut, r.joursAttenteV) : "";
                       const libre = (!finL || finL <= today) && (!finV || finV <= today);
                       return (
                         <div key={r.id} style={{ background: libre ? "#f7fbf7" : "#fff8e8", border: `1px solid ${libre ? "#c8e6c9" : "#ffe0b2"}`, borderRadius: 10, padding: "10px 12px" }}>
@@ -720,8 +726,8 @@ function PrintModal({ records, onClose }) {
         <th>Posologie</th><th>Voie</th><th>Att. Lait</th><th>Att. Viande</th><th>Intervenant</th><th>Ord.</th>
       </tr></thead>
       <tbody>${filtered.map(r => {
-        const finL = r.joursAttenteL ? addDays(r.dateDebut, r.joursAttenteL) : "";
-        const finV = r.joursAttenteV ? addDays(r.dateDebut, r.joursAttenteV) : "";
+        const finL = r.joursAttenteL ? addDays(r.dateFin || r.dateDebut, r.joursAttenteL) : "";
+        const finV = r.joursAttenteV ? addDays(r.dateFin || r.dateDebut, r.joursAttenteV) : "";
         const now = today;
         const okL = !finL || finL <= now;
         const okV = !finV || finV <= now;
