@@ -1,36 +1,66 @@
 {
   "version": 1,
-  "savedAt": "2026-06-03T08:38:14.501Z",
+  "savedAt": "2026-06-03T08:43:24.929Z",
   "records": [
     {
-      "nomVache": "ADELE",
-      "numeroVache": "FR 7302461746",
-      "travailVache": "1746",
+      "nomVache": "JALISCA",
+      "numeroVache": "FR 7302124689",
+      "travailVache": "4689",
       "selectedVaches": [
         {
-          "nom": "ADELE",
-          "numero": "FR 7302461746",
-          "travail": "1746",
-          "naissance": "04/02/2025"
+          "nom": "JALISCA",
+          "numero": "FR 7302124689",
+          "travail": "4689",
+          "naissance": "02/11/2014"
         }
       ],
-      "dateDebut": "2026-06-03",
-      "momentDebut": "matin",
-      "dateFin": "2026-06-03",
-      "momentFin": "matin",
-      "raison": "Mamite ",
-      "medicament": "Mastijet (tétracycline/néomycine/bacitracine/prednisolone)",
+      "dateDebut": "2026-04-13",
+      "momentDebut": "soir",
+      "dateFin": "2026-04-13",
+      "momentFin": "soir",
+      "raison": "vrsb",
+      "medicament": "Tolfine IM (acide tolfénamique)",
       "posologie": "1",
-      "quantite": "",
-      "voieAdmin": "Intramammaire",
-      "joursAttenteL": "4",
+      "quantite": "25cc",
+      "voieAdmin": "Injectable IV",
+      "joursAttenteL": "0",
       "momentAttenteL": "matin",
-      "joursAttenteV": "30",
+      "joursAttenteV": "12",
       "momentAttenteV": "matin",
       "numOrdonnance": "",
-      "intervenant": "David",
+      "intervenant": "david",
       "photoOrdonnance": "",
-      "id": 1780475855153.6787
+      "id": 1780476136768.2793
+    },
+    {
+      "nomVache": "JALISCA",
+      "numeroVache": "FR 7302124689",
+      "travailVache": "4689",
+      "selectedVaches": [
+        {
+          "nom": "JALISCA",
+          "numero": "FR 7302124689",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        }
+      ],
+      "dateDebut": "2026-04-16",
+      "momentDebut": "matin",
+      "dateFin": "2026-04-16",
+      "momentFin": "matin",
+      "raison": "vrsb",
+      "medicament": "Tolfine IM (acide tolfénamique)",
+      "posologie": "1",
+      "quantite": "25",
+      "voieAdmin": "Injectable IV",
+      "joursAttenteL": "0",
+      "momentAttenteL": "matin",
+      "joursAttenteV": "12",
+      "momentAttenteV": "matin",
+      "numOrdonnance": "",
+      "intervenant": "david",
+      "photoOrdonnance": "",
+      "id": 1780476197688.547
     }
   ]
 }
