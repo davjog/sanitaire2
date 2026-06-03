@@ -420,13 +420,15 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
     e.target.value = "";
   };
 
+  const [pendingImport, setPendingImport] = useState(null);
+
   const handleJSON = (e) => {
     const file = e.target.files[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
       try {
         const data = JSON.parse(ev.target.result);
-        if (data.records) { onImportSauvegarde(data.records); onClose(); }
+        if (data.records) { setPendingImport(data.records); }
         else alert("Format de sauvegarde invalide.");
       } catch { alert("Fichier JSON invalide."); }
     };
@@ -452,6 +454,30 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0006" }} />
+
+      {/* Modal confirmation import JSON */}
+      {pendingImport && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div onClick={() => setPendingImport(null)} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+          <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 340, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+            <div style={{ fontWeight: 900, fontSize: 17, color: "#c62828", fontFamily: "sans-serif", marginBottom: 10 }}>⚠️ Confirmer l'importation</div>
+            <div style={{ fontSize: 13, color: "#555", fontFamily: "sans-serif", marginBottom: 20, lineHeight: 1.6 }}>
+              Les données locales actuelles seront <strong>remplacées</strong> par celles du fichier ({pendingImport.length} traitement{pendingImport.length > 1 ? "s" : ""}).<br/>Cette action est irréversible.
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => { onImportSauvegarde(pendingImport); setPendingImport(null); onClose(); }}
+                style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: "#c62828", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>
+                📥 Oui, importer
+              </button>
+              <button onClick={() => setPendingImport(null)}
+                style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div style={{ position: "relative", width: 320, background: "#fff", height: "100%", boxShadow: "4px 0 32px #0003", display: "flex", flexDirection: "column", overflowY: "auto" }}>
         {/* Header */}
         <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", padding: "20px 20px 16px", flexShrink: 0 }}>
@@ -1164,13 +1190,18 @@ function App() {
   const GITHUB_FILE = "data.json";
   const [githubLoading, setGithubLoading] = useState(false);
   const [showTokenModal, setShowTokenModal] = useState(false);
-  const [pendingGithubAction, setPendingGithubAction] = useState(null); // "save" | "restore"
+  const [pendingGithubAction, setPendingGithubAction] = useState(null);
+  const [showRestoreConfirm, setShowRestoreConfirm] = useState(false); // "save" | "restore"
 
   const getToken = () => localStorage.getItem("carnet-github-token") || "";
 
   const githubAction = (action) => {
+    if (action === "restore") {
+      setShowRestoreConfirm(true);
+      return;
+    }
     if (!getToken()) { setPendingGithubAction(action); setShowTokenModal(true); }
-    else { action === "save" ? saveToGithub() : restoreFromGithub(); }
+    else { saveToGithub(); }
   };
 
   const saveToGithub = async (token) => {
@@ -1288,7 +1319,30 @@ function App() {
       {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
       {showPrint && <PrintModal records={records} onClose={() => setShowPrint(false)} />}
       {showStats && <StatsModal records={records} onClose={() => setShowStats(false)} />}
-      {showTokenModal && (
+      {showRestoreConfirm && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div onClick={() => setShowRestoreConfirm(false)} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+          <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 340, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+            <div style={{ fontWeight: 900, fontSize: 17, color: "#c62828", fontFamily: "sans-serif", marginBottom: 10 }}>⚠️ Confirmer la restauration</div>
+            <div style={{ fontSize: 13, color: "#555", fontFamily: "sans-serif", marginBottom: 20, lineHeight: 1.6 }}>
+              Les données locales actuelles seront <strong>remplacées</strong> par celles de GitHub.<br/>Cette action est irréversible.
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => {
+                setShowRestoreConfirm(false);
+                if (!getToken()) { setPendingGithubAction("restore"); setShowTokenModal(true); }
+                else restoreFromGithub();
+              }} style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: "#c62828", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>
+                🔄 Oui, restaurer
+              </button>
+              <button onClick={() => setShowRestoreConfirm(false)}
+                style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
         <TokenModal
           onClose={() => { setShowTokenModal(false); setPendingGithubAction(null); }}
           onConfirm={tok => {
@@ -1637,9 +1691,10 @@ function App() {
                         </label>
                       ))}
                     </div>
-                    {form.joursAttenteL && form.dateDebut && (
+                    {form.joursAttenteL && (form.dateFin || form.dateDebut) && (
                       <div style={{ marginTop: 5, fontSize: 12, color: "#1565c0", fontFamily: "sans-serif", fontWeight: 600, background: "#e3f2fd", borderRadius: 6, padding: "4px 10px" }}>
-                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateDebut, form.joursAttenteL))} — {form.momentAttenteL}
+                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateFin || form.dateDebut, form.joursAttenteL))} — {form.momentAttenteL}
+                        {!form.dateFin && <span style={{ color: "#888", fontWeight: 400 }}> (basé sur début — saisir fin de traitement pour précision)</span>}
                       </div>
                     )}
                   </div>
@@ -1658,9 +1713,10 @@ function App() {
                         </label>
                       ))}
                     </div>
-                    {form.joursAttenteV && form.dateDebut && (
+                    {form.joursAttenteV && (form.dateFin || form.dateDebut) && (
                       <div style={{ marginTop: 5, fontSize: 12, color: "#b71c1c", fontFamily: "sans-serif", fontWeight: 600, background: "#ffebee", borderRadius: 6, padding: "4px 10px" }}>
-                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateDebut, form.joursAttenteV))} — {form.momentAttenteV}
+                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateFin || form.dateDebut, form.joursAttenteV))} — {form.momentAttenteV}
+                        {!form.dateFin && <span style={{ color: "#888", fontWeight: 400 }}> (basé sur début — saisir fin de traitement pour précision)</span>}
                       </div>
                     )}
                   </div>
