@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-03T08:47:42.913Z",
+  "savedAt": "2026-06-03T09:20:18.654Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10,8 +10,7 @@
         {
           "nom": "JALISCA",
           "numero": "FR 7302124689",
-          "travail": "4689",
-          "naissance": "02/11/2014"
+          "travail": "4689"
         }
       ],
       "dateDebut": "2026-04-13",
@@ -22,7 +21,7 @@
       "medicament": "Tolfine IM (acide tolfénamique)",
       "posologie": "1",
       "quantite": "25cc",
-      "voieAdmin": "Injectable IV",
+      "voieAdmin": "Injectable IM",
       "joursAttenteL": "0",
       "momentAttenteL": "matin",
       "joursAttenteV": "12",
@@ -40,8 +39,7 @@
         {
           "nom": "JALISCA",
           "numero": "FR 7302124689",
-          "travail": "4689",
-          "naissance": "02/11/2014"
+          "travail": "4689"
         }
       ],
       "dateDebut": "2026-04-16",
@@ -52,7 +50,7 @@
       "medicament": "Tolfine IM (acide tolfénamique)",
       "posologie": "1",
       "quantite": "25",
-      "voieAdmin": "Injectable IV",
+      "voieAdmin": "Injectable IM",
       "joursAttenteL": "0",
       "momentAttenteL": "matin",
       "joursAttenteV": "12",
@@ -91,6 +89,35 @@
       "intervenant": "",
       "photoOrdonnance": "",
       "id": 1780476302312.2852
+    },
+    {
+      "nomVache": "JALISCA",
+      "numeroVache": "FR 7302124689",
+      "travailVache": "4689",
+      "selectedVaches": [
+        {
+          "nom": "JALISCA",
+          "numero": "FR 7302124689",
+          "travail": "4689"
+        }
+      ],
+      "dateDebut": "2026-04-22",
+      "momentDebut": "soir",
+      "dateFin": "2026-04-22",
+      "momentFin": "soir",
+      "raison": "vrsb",
+      "medicament": "tenaline la",
+      "posologie": "",
+      "quantite": "",
+      "voieAdmin": "Injectable IM",
+      "joursAttenteL": "7",
+      "momentAttenteL": "matin",
+      "joursAttenteV": "20",
+      "momentAttenteV": "matin",
+      "numOrdonnance": "",
+      "intervenant": "david",
+      "photoOrdonnance": "",
+      "id": 1780477876605.794
     }
   ]
 }
