@@ -1,5 +1,36 @@
 {
   "version": 1,
-  "savedAt": "2026-06-03T08:36:12.493Z",
-  "records": []
+  "savedAt": "2026-06-03T08:38:14.501Z",
+  "records": [
+    {
+      "nomVache": "ADELE",
+      "numeroVache": "FR 7302461746",
+      "travailVache": "1746",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "FR 7302461746",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        }
+      ],
+      "dateDebut": "2026-06-03",
+      "momentDebut": "matin",
+      "dateFin": "2026-06-03",
+      "momentFin": "matin",
+      "raison": "Mamite ",
+      "medicament": "Mastijet (tétracycline/néomycine/bacitracine/prednisolone)",
+      "posologie": "1",
+      "quantite": "",
+      "voieAdmin": "Intramammaire",
+      "joursAttenteL": "4",
+      "momentAttenteL": "matin",
+      "joursAttenteV": "30",
+      "momentAttenteV": "matin",
+      "numOrdonnance": "",
+      "intervenant": "David",
+      "photoOrdonnance": "",
+      "id": 1780475855153.6787
+    }
+  ]
 }
