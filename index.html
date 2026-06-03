@@ -371,7 +371,7 @@ function VacheSelector({ selected, onChange, vaches }) {
 }
 
 // ── Menu latéral ──
-function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved, githubLoading, onGithubSave, onGithubRestore, onPrint, onStats }) {
+function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved, githubLoading, onGithubSave, onGithubRestore, onPrint, onStats, onManageToken }) {
   const [selectedHistVache, setSelectedHistVache] = useState("");
   const csvInputRef = useRef(null);
   const jsonInputRef = useRef(null);
@@ -574,6 +574,10 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
             <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>
               Fichier : data.json dans sanitaire2
             </div>
+            <button onClick={() => { onManageToken(); onClose(); }}
+              style={{ marginTop: 8, width: "100%", padding: "8px 14px", borderRadius: 8, border: "1px solid #e0e0e0", background: "#fafafa", color: "#555", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              🔑 Gérer le token GitHub
+            </button>
           </div>
 
           {/* Section PDF */}
@@ -611,16 +615,43 @@ function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, 
 // ── Modal saisie token GitHub ──
 function TokenModal({ onClose, onConfirm }) {
   const [tok, setTok] = useState("");
+  const [show, setShow] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const existing = localStorage.getItem("carnet-github-token") || "";
+
+  const copyExisting = () => {
+    navigator.clipboard.writeText(existing).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+  };
+
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0008" }} />
       <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 360, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
         <div style={{ fontWeight: 900, fontSize: 17, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 6 }}>🔑 Token GitHub</div>
-        <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 16, lineHeight: 1.6 }}>
-          Entrez votre token GitHub (ghp_...). Il sera stocké uniquement dans ce navigateur, jamais partagé.
-          <br/><br/>
-          Pour créer un token : <b>github.com</b> → Settings → Developer settings → Tokens (classic) → Generate new token → cochez <b>repo</b>.
+
+        {/* Token existant sur cet appareil */}
+        {existing && (
+          <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 10, padding: "12px", marginBottom: 16 }}>
+            <div style={{ fontFamily: "sans-serif", fontSize: 11, fontWeight: 700, color: "#2d5a27", marginBottom: 8 }}>✅ Token enregistré sur cet appareil</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ flex: 1, fontFamily: "monospace", fontSize: 12, color: "#1a3a1a", wordBreak: "break-all", background: "#fff", borderRadius: 6, padding: "6px 8px", border: "1px solid #c8e6c9" }}>
+                {show ? existing : existing.slice(0, 6) + "••••••••••••••••••••••••"}
+              </div>
+              <button onClick={() => setShow(s => !s)} style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#fff", cursor: "pointer", fontSize: 14 }}>
+                {show ? "🙈" : "👁"}
+              </button>
+            </div>
+            <button onClick={copyExisting} style={{ marginTop: 8, width: "100%", padding: "8px", borderRadius: 7, border: "1px solid #a5d6a7", background: copied ? "#2d5a27" : "#fff", color: copied ? "#fff" : "#2d5a27", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
+              {copied ? "✓ Copié !" : "📋 Copier le token (pour un autre appareil)"}
+            </button>
+          </div>
+        )}
+
+        <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 12, lineHeight: 1.6 }}>
+          {existing ? "Ou saisissez un nouveau token pour remplacer l'actuel :" : "Entrez votre token GitHub (ghp_...). Il sera stocké uniquement dans ce navigateur."}
+          {!existing && <><br/><br/>Pour créer un token : <b>github.com</b> → Settings → Developer settings → Tokens (classic) → Generate new token → cochez <b>repo</b>.</>}
         </div>
+
         <input
           type="password"
           value={tok}
@@ -628,16 +659,16 @@ function TokenModal({ onClose, onConfirm }) {
           placeholder="ghp_..."
           style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box", marginBottom: 16 }}
           onKeyDown={e => e.key === "Enter" && tok.startsWith("ghp_") && onConfirm(tok)}
-          autoFocus
+          autoFocus={!existing}
         />
         <div style={{ display: "flex", gap: 10 }}>
           <button onClick={() => tok.startsWith("ghp_") && onConfirm(tok)} disabled={!tok.startsWith("ghp_")}
             style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: tok.startsWith("ghp_") ? "linear-gradient(135deg,#1a3a1a,#2d5a27)" : "#ccc", color: "#fff", fontWeight: 800, fontSize: 14, cursor: tok.startsWith("ghp_") ? "pointer" : "not-allowed", fontFamily: "sans-serif" }}>
             ✓ Enregistrer
           </button>
-          <button onClick={onClose} style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
+          <button onClick={onClose} style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>Fermer</button>
         </div>
-        {localStorage.getItem("carnet-github-token") && (
+        {existing && (
           <button onClick={() => { localStorage.removeItem("carnet-github-token"); onClose(); }}
             style={{ marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
             🗑 Supprimer le token enregistré
@@ -1266,6 +1297,7 @@ function App() {
         onGithubRestore={() => { setShowMenu(false); setTimeout(() => githubAction("restore"), 50); }}
         onPrint={() => setShowPrint(true)}
         onStats={() => setShowStats(true)}
+        onManageToken={() => { setShowMenu(false); setTimeout(() => setShowTokenModal(true), 50); }}
         onImportVaches={newVaches => {
           setVaches(newVaches.sort((a, b) => a.nom.localeCompare(b.nom)));
           showToast(`✓ ${newVaches.length} vaches importées`, "success");
