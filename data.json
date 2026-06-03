@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-03T09:56:47.297Z",
+  "savedAt": "2026-06-03T10:09:41.313Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -772,39 +772,14 @@
       "travailVache": "5584",
       "selectedVaches": [
         {
-          "nom": "OLGA",
-          "numero": "FR 7302234776",
-          "travail": "4776",
-          "naissance": "15/01/2018"
-        },
-        {
           "nom": "OLAF",
           "numero": "FR 7302255584",
-          "travail": "5584",
-          "naissance": "31/12/2018"
-        },
-        {
-          "nom": "TARTINE",
-          "numero": "FR 7302372792",
-          "travail": "2792",
-          "naissance": "18/03/2022"
-        },
-        {
-          "nom": "TOUPIE",
-          "numero": "FR 7302371093",
-          "travail": "1093",
-          "naissance": "03/06/2022"
-        },
-        {
-          "nom": "TARTIFLETE",
-          "numero": "FR 7302406192",
-          "travail": "6192",
-          "naissance": "20/12/2022"
+          "travail": "5584"
         }
       ],
       "dateDebut": "2026-04-16",
       "momentDebut": "matin",
-      "dateFin": "2026-04-16",
+      "dateFin": "2026-04-18",
       "momentFin": "matin",
       "raison": "vrsb",
       "medicament": "Tolfine IM (acide tolfénamique)",
