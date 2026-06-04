@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-04T09:26:55.237Z",
+  "savedAt": "2026-06-04T17:02:44.888Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -986,6 +986,35 @@
       "intervenant": "david",
       "photoOrdonnance": "",
       "id": 1780479983535.0098
+    },
+    {
+      "nomVache": "BANQUISE",
+      "numeroVache": "",
+      "travailVache": "3439",
+      "selectedVaches": [
+        {
+          "nom": "BANQUISE",
+          "numero": "",
+          "travail": "3439"
+        }
+      ],
+      "dateDebut": "2026-06-04",
+      "momentDebut": "soir",
+      "dateFin": "",
+      "momentFin": "matin",
+      "raison": "Manque apetit du mal a ce lever ",
+      "medicament": "Tenaline la",
+      "posologie": "1inje",
+      "quantite": "6ml",
+      "voieAdmin": "Injectable IM",
+      "joursAttenteL": "",
+      "momentAttenteL": "matin",
+      "joursAttenteV": "28",
+      "momentAttenteV": "matin",
+      "numOrdonnance": "",
+      "intervenant": "David ",
+      "photoOrdonnance": "",
+      "id": 1780592240048.1873
     }
   ]
 }
