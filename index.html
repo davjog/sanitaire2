@@ -13,6 +13,7 @@
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     body{font-family:'Georgia','Times New Roman',serif;background:#f0f4f0;min-height:100vh}
     #root{min-height:100vh}
+    /* PWA install banner */
     #install-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
       background:linear-gradient(135deg,#1a3a1a,#2d5a27);color:#fff;
       padding:14px 16px;align-items:center;gap:12px;box-shadow:0 -4px 20px #0004}
@@ -25,9 +26,11 @@
       padding:9px 16px;font-weight:800;font-size:13px;cursor:pointer;font-family:sans-serif;white-space:nowrap}
     #dismiss-btn{background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;padding:4px}
   </style>
+  <!-- PWA Manifest inline via data URI (compatible GitHub Pages) -->
   <script>
     const manifestData = {
-      name:"Carnet Sanitaire Bovin Lait",short_name:"Carnet Sanitaire",
+      name:"Carnet Sanitaire Bovin Lait",
+      short_name:"Carnet Sanitaire",
       description:"Registre des traitements vétérinaires bovins",
       start_url:"./",display:"standalone",
       background_color:"#f0f4f0",theme_color:"#1a3a1a",orientation:"portrait",
@@ -36,16 +39,19 @@
         {src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231a3a1a' rx='80'/><text y='380' x='40' font-size='380'>🐄</text></svg>",sizes:"512x512",type:"image/svg+xml"}
       ]
     };
-    const blob=new Blob([JSON.stringify(manifestData)],{type:'application/manifest+json'});
-    const manifestURL=URL.createObjectURL(blob);
-    const link=document.createElement('link');
-    link.rel='manifest';link.href=manifestURL;
-    document.head.appendChild(link);
+    try {
+      const dataURI = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifestData));
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = dataURI;
+      document.head.appendChild(link);
+    } catch(e) {}
   </script>
 </head>
 <body>
 <div id="root"></div>
 
+<!-- PWA Install Banner -->
 <div id="install-banner">
   <div class="icon">🐄</div>
   <div class="text">
@@ -56,16 +62,15 @@
   <button id="dismiss-btn">✕</button>
 </div>
 
+<!-- Service Worker pour mode hors-ligne -->
 <script>
 if('serviceWorker' in navigator){
-  const swCode=`
-    const CACHE='carnet-sanitaire-v1';
-    self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./',]))));
-    self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('./'))))); 
-  `;
-  const swBlob=new Blob([swCode],{type:'application/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(()=>{});
+  // Tente d'enregistrer sw.js s'il existe (GitHub Pages avec fichier séparé)
+  // Sinon ignore silencieusement (GitHub Pages ne supporte pas les blob: SW)
+  navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
+
+// PWA Install prompt
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();deferredPrompt=e;
@@ -80,49 +85,48 @@ document.getElementById('dismiss-btn').addEventListener('click',()=>{
 window.addEventListener('appinstalled',()=>{document.getElementById('install-banner').classList.remove('show');});
 </script>
 
+<!-- React + Babel standalone -->
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel" data-presets="react">
 
-const VACHES_DEFAUT = [
-  { nom: "ADELE", numero: "FR 7302461746", travail: "1746", naissance: "04/02/2025" },
-  { nom: "API", numero: "FR 7302503427", travail: "3427", naissance: "16/12/2025" },
-  { nom: "ARIBO", numero: "FR 7302503428", travail: "3428", naissance: "28/12/2025" },
-  { nom: "ARIEL", numero: "FR 7302461747", travail: "1747", naissance: "18/02/2025" },
-  { nom: "ATHENA", numero: "FR 7302503430", travail: "3430", naissance: "09/01/2026" },
-  { nom: "BERGERAC", numero: "FR 7302503438", travail: "3438", naissance: "22/05/2026" },
-  { nom: "JALISCA", numero: "FR 7302124689", travail: "4689", naissance: "02/11/2014" },
-  { nom: "JIVA", numero: "FR 7302100820", travail: "0820", naissance: "17/04/2014" },
-  { nom: "LOLITA", numero: "FR 7302136325", travail: "6325", naissance: "18/12/2015" },
-  { nom: "LUCIOLE", numero: "FR 7302124698", travail: "4698", naissance: "21/04/2015" },
-  { nom: "MOUSSELINE", numero: "FR 7402656868", travail: "6868", naissance: "08/09/2016" },
-  { nom: "NEMO", numero: "FR 7402717493", travail: "7493", naissance: "15/06/2017" },
-  { nom: "NESQUICK", numero: "FR 7302153418", travail: "3418", naissance: "18/02/2017" },
-  { nom: "NOISETTE", numero: "FR 7302188780", travail: "8780", naissance: "09/11/2017" },
-  { nom: "OLAF", numero: "FR 7302255584", travail: "5584", naissance: "31/12/2018" },
-  { nom: "OLGA", numero: "FR 7302234776", travail: "4776", naissance: "15/01/2018" },
-  { nom: "OUVRIERE", numero: "FR 7302255582", travail: "5582", naissance: "13/12/2018" },
-  { nom: "PUCE", numero: "FR 7302293865", travail: "3865", naissance: "31/12/2019" },
-  { nom: "RACLETTE", numero: "FR 7302293883", travail: "3883", naissance: "20/11/2020" },
-  { nom: "RUSTINE", numero: "FR 7302293868", travail: "3868", naissance: "27/01/2020" },
-  { nom: "SHIPIE", numero: "FR 7302372783", travail: "2783", naissance: "09/12/2021" },
-  { nom: "SIDONIE", numero: "FR 7302323705", travail: "3705", naissance: "30/11/2021" },
-  { nom: "TAGADA", numero: "FR 7302372806", travail: "2806", naissance: "17/12/2022" },
-  { nom: "TARTIFLETE", numero: "FR 7302406192", travail: "6192", naissance: "20/12/2022" },
-  { nom: "TARTINE", numero: "FR 7302372792", travail: "2792", naissance: "18/03/2022" },
-  { nom: "THALIA", numero: "FR 7302372802", travail: "2802", naissance: "21/11/2022" },
-  { nom: "TOUPIE", numero: "FR 7302371093", travail: "1093", naissance: "03/06/2022" },
-  { nom: "UGOLINE", numero: "FR 7302406208", travail: "6208", naissance: "23/11/2023" },
-  { nom: "UGUETTE", numero: "FR 7302406210", travail: "6210", naissance: "01/12/2023" },
-  { nom: "VAIANA", numero: "FR 7302461738", travail: "1738", naissance: "06/12/2024" },
-  { nom: "VALDA", numero: "FR 7302461735", travail: "1735", naissance: "29/11/2024" },
-  { nom: "VALJEAN", numero: "FR 7403129860", travail: "9860", naissance: "01/10/2024" },
-  { nom: "VERVEINE", numero: "FR 7302426857", travail: "6857", naissance: "26/01/2024" },
-];
+const VACHES_DEFAUT = [];
 
+// Helper : ajoute N jours à une date "YYYY-MM-DD"
+function addDays(dateStr, days) {
+  if (!dateStr || !days) return "";
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + parseInt(days, 10));
+  return d.toISOString().split("T")[0];
+}
+
+const JOURS_SEMAINE = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+
+function formatDateAvecJour(d) {
+  if (!d || d === "nan") return "—";
+  const [y, m, j] = d.split("-");
+  const date = new Date(d);
+  const jour = JOURS_SEMAINE[date.getDay()];
+  return `${jour} ${j}/${m}/${y}`;
+}
+
+const emptyForm = {
+  nomVache: "", numeroVache: "", travailVache: "", selectedVaches: [],
+  dateDebut: "", momentDebut: "matin",
+  dateFin: "", momentFin: "matin",
+  raison: "", medicament: "",
+  posologie: "", quantite: "", voieAdmin: "",
+  joursAttenteL: "", momentAttenteL: "matin",
+  joursAttenteV: "", momentAttenteV: "matin",
+  numOrdonnance: "", intervenant: "",
+  photoOrdonnance: "",
+};
+
+// ── Liste médicaments bovins avec délais d'attente (jours) — sources RCP ANMV/ANSES ──
 const MEDICAMENTS = [
+  // ── Intramammaires lactation ──
   { nom: "Mastijet (tétracycline/néomycine/bacitracine/prednisolone)", categorie: "Intramammaire lactation", lait: 4, viande: 30 },
   { nom: "Cobactan LC (cefquinome)", categorie: "Intramammaire lactation", lait: 5, viande: 4 },
   { nom: "Rilexine (céfalexine)", categorie: "Intramammaire lactation", lait: 3, viande: 7 },
@@ -136,6 +140,7 @@ const MEDICAMENTS = [
   { nom: "Lincocin Forte (lincomycine/néomycine)", categorie: "Intramammaire lactation", lait: 4, viande: 30 },
   { nom: "Bovaclox LC (amoxicilline/cloxacilline)", categorie: "Intramammaire lactation", lait: 4, viande: 28 },
   { nom: "Ubrocel (céfuroxime)", categorie: "Intramammaire lactation", lait: 3, viande: 14 },
+  // ── Intramammaires tarissement ──
   { nom: "Cepravin DC (céfalonium)", categorie: "Intramammaire tarissement", lait: 0, viande: 28 },
   { nom: "Orbeseal (bissubnitrate de bismuth)", categorie: "Intramammaire tarissement", lait: 0, viande: 0 },
   { nom: "Rilexine DC (céfalexine benzathine)", categorie: "Intramammaire tarissement", lait: 0, viande: 28 },
@@ -143,6 +148,7 @@ const MEDICAMENTS = [
   { nom: "Cobactan DC (cefquinome)", categorie: "Intramammaire tarissement", lait: 0, viande: 28 },
   { nom: "Bovaclox DC (amoxicilline/cloxacilline)", categorie: "Intramammaire tarissement", lait: 0, viande: 28 },
   { nom: "Synulox DC (amoxicilline/acide clavulanique)", categorie: "Intramammaire tarissement", lait: 0, viande: 28 },
+  // ── Antibiotiques injectables ──
   { nom: "Cobactan 2,5% injectable (cefquinome)", categorie: "Antibiotique injectable", lait: 1, viande: 5 },
   { nom: "Excenel (ceftiofur)", categorie: "Antibiotique injectable", lait: 0, viande: 5 },
   { nom: "Draxxin (tulathromycine)", categorie: "Antibiotique injectable", lait: 0, viande: 49 },
@@ -162,6 +168,7 @@ const MEDICAMENTS = [
   { nom: "Neopen (péniciline G/néomycine)", categorie: "Antibiotique injectable", lait: 7, viande: 30 },
   { nom: "Penstrep (péniciline G/streptomycine)", categorie: "Antibiotique injectable", lait: 7, viande: 30 },
   { nom: "Zuprevo (tildipirosine)", categorie: "Antibiotique injectable", lait: 0, viande: 47 },
+  // ── Anti-inflammatoires ──
   { nom: "Tolfine IM (acide tolfénamique)", categorie: "AINS injectable", lait: 0, viande: 12 },
   { nom: "Tolfine IV (acide tolfénamique)", categorie: "AINS injectable", lait: 1, viande: 4 },
   { nom: "Metacam (méloxicam)", categorie: "AINS injectable", lait: 5, viande: 15 },
@@ -171,6 +178,7 @@ const MEDICAMENTS = [
   { nom: "Dexadreson (dexaméthasone)", categorie: "Corticoïde injectable", lait: 3, viande: 8 },
   { nom: "Prednisolone injectable", categorie: "Corticoïde injectable", lait: 3, viande: 7 },
   { nom: "Vetalgin (métamizole)", categorie: "AINS injectable", lait: 1, viande: 1 },
+  // ── Antiparasitaires ──
   { nom: "Ivomec (ivermectine)", categorie: "Antiparasitaire", lait: 0, viande: 49 },
   { nom: "Eprinex (éprinomectine)", categorie: "Antiparasitaire", lait: 0, viande: 15 },
   { nom: "Dectomax (doramectine)", categorie: "Antiparasitaire", lait: 0, viande: 70 },
@@ -182,176 +190,160 @@ const MEDICAMENTS = [
   { nom: "Douvistome (oxyclozanide)", categorie: "Antiparasitaire", lait: 5, viande: 13 },
   { nom: "Ripercol (lévamisole)", categorie: "Antiparasitaire", lait: 3, viande: 14 },
   { nom: "Closantel (Flukiver)", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Ivomec (ivermectine) Injectable", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Ivomec (ivermectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  { nom: "Dectomax (doramectine)", categorie: "Antiparasitaire", lait: 0, viande: 70 },
+  { nom: "Cydectine (moxidectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 14 },
+  { nom: "Eprinex (éprinomectine) Pour-on", categorie: "Antiparasitaire", lait: 0, viande: 15 },
+  { nom: "Fascinex (triclabendazole)", categorie: "Antiparasitaire", lait: 7, viande: 56 },
+  { nom: "Fasinex (triclabendazole) 5%", categorie: "Antiparasitaire", lait: 28, viande: 56 },
+  { nom: "Trodax (nitroxynil)", categorie: "Antiparasitaire", lait: 10, viande: 30 },
+  { nom: "Clorsulon (Ivomec F)", categorie: "Antiparasitaire", lait: 0, viande: 28 },
+  // ── Antibiotiques supplémentaires vérifiés ANMV ──
+  { nom: "Aivlosin (tylvalosine)", categorie: "Antibiotique", lait: 2, viande: 2 },
+  { nom: "Ténaline LA (oxytétracycline)", categorie: "Antibiotique", lait: 7, viande: 21 },
+  { nom: "Alamycin (oxytétracycline) LA", categorie: "Antibiotique", lait: 5, viande: 22 },
+  { nom: "Amoxival (amoxicilline) injectable", categorie: "Antibiotique", lait: 3, viande: 10 },
+  { nom: "Betamox (amoxicilline) LA", categorie: "Antibiotique", lait: 4, viande: 28 },
+  { nom: "Borgal (sulfadoxine+triméthoprime)", categorie: "Antibiotique", lait: 8, viande: 14 },
+  { nom: "Cobactan (céfquinome) Injectable", categorie: "Antibiotique", lait: 2, viande: 5 },
+  { nom: "Clamoxyl LA (amoxicilline) Injectable", categorie: "Antibiotique", lait: 9, viande: 92 },
+  { nom: "Neopen (péniciline+néomycine) Injectable", categorie: "Antibiotique", lait: 7, viande: 25 },
+  { nom: "Tetradure 300 (oxytétracycline) Injectable", categorie: "Antibiotique", lait: 8, viande: 25 },
+  { nom: "Advocine (danofloxacine) Injectable", categorie: "Antibiotique", lait: 4, viande: 8 },
+  { nom: "Engemycin (oxytétracycline) Injectable", categorie: "Antibiotique", lait: 7, viande: 21 },
+  { nom: "Depocilline (procaïne benzylpéniciline)", categorie: "Antibiotique", lait: 4, viande: 6 },
+  { nom: "Penikel (benzylpéniciline) Injectable", categorie: "Antibiotique", lait: 4, viande: 6 },
+  { nom: "Naxcel (céftiofur) Injectable", categorie: "Antibiotique", lait: 0, viande: 3 },
+  { nom: "Longaceph (céftiofur) Injectable", categorie: "Antibiotique", lait: 0, viande: 3 },
+  { nom: "Danoflox (danofloxacine)", categorie: "Antibiotique", lait: 4, viande: 8 },
+  { nom: "Draxxin (tulathromycine)", categorie: "Antibiotique", lait: 0, viande: 22 },
+  { nom: "Enroflox (enrofloxacine)", categorie: "Antibiotique", lait: 4, viande: 10 },
+  { nom: "Excenel (céftiofur)", categorie: "Antibiotique", lait: 0, viande: 3 },
+  { nom: "Gentaline (gentamicine)", categorie: "Antibiotique", lait: 7, viande: 21 },
+  { nom: "Marbocyl (marbofloxacine)", categorie: "Antibiotique", lait: 3, viande: 6 },
+  { nom: "Nuflor (florfénicol)", categorie: "Antibiotique", lait: 0, viande: 28 },
+  { nom: "Sulfadimidine injectable", categorie: "Antibiotique", lait: 4, viande: 10 },
+  { nom: "Tilmox (tilmicosine)", categorie: "Antibiotique", lait: 0, viande: 28 },
+  { nom: "Tylan (tylosine)", categorie: "Antibiotique", lait: 4, viande: 4 },
+  { nom: "Zactran (gamithromycine)", categorie: "Antibiotique", lait: 0, viande: 9 },
+  { nom: "Micotil (tilmicosine) Injectable", categorie: "Antibiotique", lait: 0, viande: 42 },
+  // ── Vitamines / Minéraux / Divers ──
   { nom: "Calcium Gluconate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
   { nom: "Magnésium Sulfate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
   { nom: "Ocytocine (Oxytocine)", categorie: "Hormonal", lait: 0, viande: 1 },
   { nom: "Estrumate (prostaglandine PGF2α)", categorie: "Hormonal", lait: 0, viande: 1 },
   { nom: "Vitamine AD3E", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
   { nom: "Lidocaïne (anesthésie locale)", categorie: "Anesthésie", lait: 15, viande: 28 },
+  { nom: "Vitamine B1 (thiamine)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine B12 (cyanocobalamine)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine C (acide ascorbique)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Vitamine E + Sélénium", categorie: "Minéraux/Vitamines", lait: 0, viande: 14 },
+  { nom: "Calcium Borogluconate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Phosphore injectable", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Potassium chlorure", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Oligo-éléments (Cu/Zn/Se/I)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Catosel (sélénium + vitamine E)", categorie: "Minéraux/Vitamines", lait: 0, viande: 21 },
+  { nom: "Multivitamines injectable", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Propylène glycol (énergie)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Dextrose 50% (sérum glucosé)", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Chlorure de sodium 0.9%", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
+  { nom: "Ringer Lactate", categorie: "Minéraux/Vitamines", lait: 0, viande: 0 },
 ];
 
-const GITHUB_OWNER = "davjog";
-const GITHUB_REPO = "carnet-sanitaire";
-const GITHUB_FILE = "data/backup.json";
+const DRIVE_FILE_NAME = "carnet-sanitaire-bovin.json";
 
-// ─── Traitement vide (un seul) ───
-const emptyTraitement = () => ({
-  id: Date.now() + Math.random(),
-  medicament: "",
-  posologie: "",
-  quantite: "",
-  voieAdmin: "",
-  voieAdminAutre: "",
-  joursAttenteL: "",
-  momentAttenteL: "matin",
-  joursAttenteV: "",
-  momentAttenteV: "matin",
-  numOrdonnance: "",
-  intervenant: "",
-  photoOrdonnance: "",
-  dateDebut: "",
-  momentDebut: "matin",
-  dateFin: "",
-  momentFin: "matin",
-});
-
-// ─── Formulaire global (hors traitements) ───
-const emptyForm = {
-  nomVache: "", numeroVache: "", travailVache: "",
-  annee: new Date().getFullYear().toString(),
-  raison: "",
-  traitements: [emptyTraitement()],
-};
-
-function addDays(dateStr, days) {
-  if (!dateStr || !days) return "";
-  const d = new Date(dateStr);
-  d.setDate(d.getDate() + parseInt(days, 10));
-  return d.toISOString().split("T")[0];
+// ── helpers ──
+function getDateAttenteL(r) { 
+  const base = r.dateFin || r.dateDebut;
+  return r.joursAttenteL ? addDays(base, r.joursAttenteL) : ""; 
 }
-
-const JOURS_SEMAINE = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-function formatDateAvecJour(d) {
-  if (!d || d === "nan") return "—";
-  const [y, m, j] = d.split("-");
-  const date = new Date(d);
-  const jour = JOURS_SEMAINE[date.getDay()];
-  return `${jour} ${j}/${m}/${y}`;
-}
-function formatDate(d) {
-  if (!d || d === "nan") return "—";
-  const [y, m, j] = d.split("-");
-  return `${j}/${m}/${y}`;
-}
-
-// ─── Calcul délai max pour un record multi-traitements ───
-function calcDelaisMax(traitements) {
-  let maxL = null, maxV = null, maxLjours = 0, maxVjours = 0;
-  (traitements || []).forEach(t => {
-    const dateRef = t.dateDebut;
-    if (!dateRef) return;
-    if (t.joursAttenteL) {
-      const fin = new Date(addDays(dateRef, t.joursAttenteL));
-      if (!maxL || fin > maxL) { maxL = fin; maxLjours = parseInt(t.joursAttenteL); }
-    }
-    if (t.joursAttenteV) {
-      const fin = new Date(addDays(dateRef, t.joursAttenteV));
-      if (!maxV || fin > maxV) { maxV = fin; maxVjours = parseInt(t.joursAttenteV); }
-    }
-  });
-  return {
-    dateAttenteL: maxL ? maxL.toISOString().split("T")[0] : "",
-    dateAttenteV: maxV ? maxV.toISOString().split("T")[0] : "",
-    joursAttenteL: maxLjours,
-    joursAttenteV: maxVjours,
-  };
-}
-
-// ─── Compat anciens records (1 traitement → array) ───
-function normalizeRecord(r) {
-  if (r.traitements) return r;
-  const t = emptyTraitement();
-  t.medicament = r.medicament || "";
-  t.posologie = r.posologie || "";
-  t.quantite = r.quantite || "";
-  t.voieAdmin = r.voieAdmin || "";
-  t.voieAdminAutre = r.voieAdminAutre || "";
-  t.joursAttenteL = r.joursAttenteL || "";
-  t.momentAttenteL = r.momentAttenteL || "matin";
-  t.joursAttenteV = r.joursAttenteV || "";
-  t.momentAttenteV = r.momentAttenteV || "matin";
-  t.numOrdonnance = r.numOrdonnance || "";
-  t.intervenant = r.intervenant || "";
-  t.photoOrdonnance = r.photoOrdonnance || "";
-  t.dateDebut = r.dateDebut || "";
-  t.momentDebut = r.momentDebut || "matin";
-  t.dateFin = r.dateFin || "";
-  t.momentFin = r.momentFin || "matin";
-  return {
-    ...r,
-    annee: r.annee || (r.dateDebut ? r.dateDebut.split("-")[0] : new Date().getFullYear().toString()),
-    traitements: [t],
-    raison: r.raison || "",
-  };
+function getDateAttenteV(r) { 
+  const base = r.dateFin || r.dateDebut;
+  return r.joursAttenteV ? addDays(base, r.joursAttenteV) : ""; 
 }
 
 function StatusBadge({ record }) {
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  const { dateAttenteL, dateAttenteV } = calcDelaisMax(record.traitements);
-  const dL = dateAttenteL ? new Date(dateAttenteL) : null;
-  const dV = dateAttenteV ? new Date(dateAttenteV) : null;
+  const dL = getDateAttenteL(record) ? new Date(getDateAttenteL(record)) : null;
+  const dV = getDateAttenteV(record) ? new Date(getDateAttenteV(record)) : null;
   const ok = (!dL || today > dL) && (!dV || today > dV);
   return ok
     ? <span style={{ background: "#d4edda", color: "#1a5c2a", borderRadius: 20, padding: "3px 12px", fontSize: 11, fontWeight: 700, letterSpacing: 1, whiteSpace: "nowrap" }}>✓ LIBÉRÉ</span>
     : <span style={{ background: "#fff3cd", color: "#7a4f00", borderRadius: 20, padding: "3px 12px", fontSize: 11, fontWeight: 700, letterSpacing: 1, whiteSpace: "nowrap" }}>⚠ EN ATTENTE</span>;
 }
 
-// ─── Sélecteur vache ───
-function VacheSelector({ value, onChange, vaches }) {
+function formatDate(d) {
+  if (!d || d === "nan") return "—";
+  const [y, m, j] = d.split("-");
+  return `${j}/${m}/${y}`;
+}
+
+function VacheSelector({ selected, onChange, vaches }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const liste = vaches || VACHES_DEFAUT;
-  const vache = liste.find(v => v.nom === value);
   const filtered = liste.filter(v =>
     v.nom.toLowerCase().includes(query.toLowerCase()) ||
-    v.travail.includes(query) || v.numero.includes(query)
+    v.travail.includes(query) ||
+    v.numero.includes(query)
   );
-  const select = (v) => { onChange(v); setOpen(false); setQuery(""); };
+  const toggle = (v) => {
+    const exists = selected.find(s => s.nom === v.nom);
+    if (exists) onChange(selected.filter(s => s.nom !== v.nom));
+    else onChange([...selected, v]);
+  };
+  const selectAll = () => onChange(filtered);
+  const clearAll = () => onChange([]);
+
   return (
     <div style={{ position: "relative" }}>
-      <div onClick={() => setOpen(o => !o)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", cursor: "pointer", justifyContent: "space-between" }}>
-        {vache ? (
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <span style={{ fontSize: 18 }}>🐄</span>
-            <div>
-              <div style={{ fontWeight: 800, fontSize: 15 }}>{vache.nom}</div>
-              <div style={{ fontSize: 11, color: "#5a7a5a" }}>{vache.numero} · N° travail : {vache.travail}</div>
-            </div>
-          </div>
-        ) : <span style={{ color: "#8aaa8a" }}>Sélectionner une vache…</span>}
-        <span style={{ color: "#5a7a5a", fontSize: 12 }}>{open ? "▲" : "▼"}</span>
+      <div onClick={() => setOpen(o => !o)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", cursor: "pointer", justifyContent: "space-between", minHeight: 46 }}>
+        {selected.length === 0
+          ? <span style={{ color: "#8aaa8a" }}>Sélectionner une ou plusieurs vaches…</span>
+          : <div style={{ display: "flex", flexWrap: "wrap", gap: 5, flex: 1 }}>
+              {selected.map(v => (
+                <span key={v.nom} style={{ background: "#2d5a27", color: "#fff", borderRadius: 20, padding: "2px 10px", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
+                  🐄 {v.nom}
+                  <span onClick={e => { e.stopPropagation(); toggle(v); }} style={{ cursor: "pointer", fontSize: 13, fontWeight: 900, marginLeft: 2 }}>✕</span>
+                </span>
+              ))}
+            </div>}
+        <span style={{ color: "#5a7a5a", fontSize: 12, flexShrink: 0 }}>{open ? "▲" : "▼"}</span>
       </div>
       {open && (
-        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 999, background: "#fff", borderRadius: 10, border: "2px solid #d4e8d4", boxShadow: "0 8px 32px #0002", maxHeight: 300, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8" }}>
-            <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="🔍 Rechercher nom, N° travail…"
-              style={{ width: "100%", padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none", boxSizing: "border-box" }} />
+        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 999, background: "#fff", borderRadius: 10, border: "2px solid #d4e8d4", boxShadow: "0 8px 32px #0002", maxHeight: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8", display: "flex", gap: 6 }}>
+            <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="🔍 Rechercher…"
+              style={{ flex: 1, padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none", boxSizing: "border-box" }} />
+            <button onClick={selectAll} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#e8f5e9", color: "#2d5a27", fontWeight: 700, fontSize: 11, cursor: "pointer", fontFamily: "sans-serif", whiteSpace: "nowrap" }}>Tout</button>
+            <button onClick={clearAll} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", fontWeight: 700, fontSize: 11, cursor: "pointer", fontFamily: "sans-serif" }}>✕</button>
           </div>
-          <div style={{ overflowY: "auto", maxHeight: 240 }}>
+          <div style={{ overflowY: "auto", maxHeight: 260 }}>
             {filtered.length === 0
               ? <div style={{ padding: 16, textAlign: "center", color: "#8aaa8a", fontSize: 13, fontFamily: "sans-serif" }}>Aucune vache trouvée</div>
-              : filtered.map(v => (
-                <div key={v.numero} onClick={() => select(v)}
-                  style={{ padding: "9px 14px", cursor: "pointer", display: "flex", gap: 10, alignItems: "center", borderBottom: "1px solid #f0f7f0", background: v.nom === value ? "#e8f5e9" : "transparent" }}
-                  onMouseEnter={e => e.currentTarget.style.background = "#f0f9f0"}
-                  onMouseLeave={e => e.currentTarget.style.background = v.nom === value ? "#e8f5e9" : "transparent"}>
-                  <span style={{ fontSize: 20 }}>🐄</span>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a" }}>{v.nom}</div>
-                    <div style={{ fontSize: 11, color: "#7a9a7a", fontFamily: "sans-serif" }}>{v.numero} · N° travail : {v.travail} · Née le {v.naissance}</div>
-                  </div>
-                </div>
-              ))}
+              : filtered.map(v => {
+                  const isSelected = !!selected.find(s => s.nom === v.nom);
+                  return (
+                    <div key={v.numero} onClick={() => toggle(v)}
+                      style={{ padding: "9px 14px", cursor: "pointer", display: "flex", gap: 10, alignItems: "center", borderBottom: "1px solid #f0f7f0", background: isSelected ? "#e8f5e9" : "transparent" }}
+                      onMouseEnter={e => e.currentTarget.style.background = isSelected ? "#d4edda" : "#f0f9f0"}
+                      onMouseLeave={e => e.currentTarget.style.background = isSelected ? "#e8f5e9" : "transparent"}>
+                      <div style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${isSelected ? "#2d5a27" : "#c8d8c8"}`, background: isSelected ? "#2d5a27" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        {isSelected && <span style={{ color: "#fff", fontSize: 13, fontWeight: 900 }}>✓</span>}
+                      </div>
+                      <span style={{ fontSize: 18 }}>🐄</span>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a" }}>{v.nom}</div>
+                        <div style={{ fontSize: 11, color: "#7a9a7a", fontFamily: "sans-serif" }}>{v.numero} · N° travail : {v.travail} · Née le {v.naissance}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+          </div>
+          <div style={{ padding: "8px 14px", borderTop: "1px solid #e8f0e8", fontFamily: "sans-serif", fontSize: 12, color: "#5a7a5a", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span>{selected.length} vache{selected.length > 1 ? "s" : ""} sélectionnée{selected.length > 1 ? "s" : ""}</span>
+            <button onClick={() => setOpen(false)} style={{ padding: "5px 14px", borderRadius: 6, border: "none", background: "#2d5a27", color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>Valider</button>
           </div>
         </div>
       )}
@@ -359,24 +351,648 @@ function VacheSelector({ value, onChange, vaches }) {
   );
 }
 
-// ─── Sélecteur médicament ───
+// ── Menu latéral ──
+function MenuPanel({ open, onClose, vaches, onImportVaches, onImportSauvegarde, onExportSauvegarde, onExportVachesCSV, records, lastSaved, githubLoading, onGithubSave, onGithubRestore, onPrint, onStats, onManageToken }) {
+  const [selectedHistVache, setSelectedHistVache] = useState("");
+  const csvInputRef = useRef(null);
+  const jsonInputRef = useRef(null);
+
+  const handleCSV = (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const text = ev.target.result;
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      const sep = lines[0].includes(";") ? ";" : ",";
+      const headers = lines[0].split(sep).map(h => h.replace(/[="]/g, "").trim().toLowerCase());
+      const nomIdx = headers.findIndex(h => h.includes("nom"));
+      const numIdx = headers.findIndex(h => h === "n°" || h.startsWith("n°") || h === "numero" || h.includes("national"));
+      const travailIdx = headers.findIndex(h => h.includes("travail"));
+      const naissIdx = headers.findIndex(h => h.includes("naissance") || h.includes("né"));
+      if (nomIdx === -1) { alert("Colonne 'Nom' introuvable."); return; }
+      const parsed = lines.slice(1).map(line => {
+        const cols = line.split(sep).map(c => c.replace(/[="]/g, "").trim());
+        return {
+          nom: (cols[nomIdx] || "").toUpperCase(),
+          numero: numIdx >= 0 ? cols[numIdx] : "",
+          travail: travailIdx >= 0 ? cols[travailIdx] : "",
+          naissance: naissIdx >= 0 ? cols[naissIdx] : "",
+        };
+      }).filter(v => v.nom && v.nom !== "NAN" && v.nom.length > 1);
+      onImportVaches(parsed);
+      onClose();
+    };
+    reader.readAsText(file, "latin-1");
+    e.target.value = "";
+  };
+
+  const [pendingImport, setPendingImport] = useState(null);
+
+  const handleJSON = (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (data.records) { setPendingImport(data.records); }
+        else alert("Format de sauvegarde invalide.");
+      } catch { alert("Fichier JSON invalide."); }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  };
+
+  const downloadJSON = () => {
+    const blob = new Blob([JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records }, null, 2)], { type: "application/json" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+    a.download = `carnet-sanitaire-${new Date().toISOString().slice(0,10)}.json`; a.click();
+  };
+
+  const downloadVachesCSV = () => {
+    const header = "Nom;Numéro;N° travail;Date naissance";
+    const rows = vaches.map(v => `${v.nom};${v.numero};${v.travail};${v.naissance}`);
+    const blob = new Blob([header + "\n" + rows.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+    a.download = "troupeau.csv"; a.click();
+  };
+
+  if (!open) return null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex" }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0006" }} />
+
+      {/* Modal confirmation import JSON */}
+      {pendingImport && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div onClick={() => setPendingImport(null)} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+          <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 340, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+            <div style={{ fontWeight: 900, fontSize: 17, color: "#c62828", fontFamily: "sans-serif", marginBottom: 10 }}>⚠️ Confirmer l'importation</div>
+            <div style={{ fontSize: 13, color: "#555", fontFamily: "sans-serif", marginBottom: 20, lineHeight: 1.6 }}>
+              Les données locales actuelles seront <strong>remplacées</strong> par celles du fichier ({pendingImport.length} traitement{pendingImport.length > 1 ? "s" : ""}).<br/>Cette action est irréversible.
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => { onImportSauvegarde(pendingImport); setPendingImport(null); onClose(); }}
+                style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: "#c62828", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>
+                📥 Oui, importer
+              </button>
+              <button onClick={() => setPendingImport(null)}
+                style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div style={{ position: "relative", width: 320, background: "#fff", height: "100%", boxShadow: "4px 0 32px #0003", display: "flex", flexDirection: "column", overflowY: "auto" }}>
+        {/* Header */}
+        <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", padding: "20px 20px 16px", flexShrink: 0 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <div style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#a8d5a2", fontFamily: "sans-serif" }}>Navigation</div>
+              <div style={{ color: "#fff", fontSize: 18, fontWeight: 900, marginTop: 2 }}>⚙️ Menu</div>
+            </div>
+            <button onClick={onClose} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 17 }}>✕</button>
+          </div>
+          <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+            <div style={{ flex: 1, background: "#ffffff18", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
+              <div style={{ fontSize: 18, fontWeight: 900, color: "#fff" }}>{vaches.length}</div>
+              <div style={{ fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: "#a8d5a2" }}>Vaches</div>
+            </div>
+            <div style={{ flex: 1, background: "#ffffff18", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
+              <div style={{ fontSize: 18, fontWeight: 900, color: "#fff" }}>{records.length}</div>
+              <div style={{ fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: "#a8d5a2" }}>Traitements</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ padding: 16, flex: 1 }}>
+
+          {/* Section troupeau */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              🐄 Troupeau
+            </div>
+
+            {/* Liste vaches actuelle */}
+            <div style={{ background: "#f7fbf7", borderRadius: 10, padding: "10px 12px", marginBottom: 10, maxHeight: 160, overflowY: "auto" }}>
+              {vaches.length === 0 ? (
+                <div style={{ color: "#8aaa8a", fontSize: 12, fontFamily: "sans-serif", textAlign: "center", padding: 8 }}>Aucune vache</div>
+              ) : vaches.map(v => (
+                <div key={v.numero || v.nom} style={{ display: "flex", justifyContent: "space-between", padding: "4px 0", borderBottom: "1px solid #eef4ee", fontFamily: "sans-serif" }}>
+                  <span style={{ fontWeight: 700, fontSize: 13, color: "#1a3a1a" }}>🐄 {v.nom}</span>
+                  <span style={{ fontSize: 11, color: "#7a9a7a" }}>{v.travail}</span>
+                </div>
+              ))}
+            </div>
+
+            <input ref={csvInputRef} type="file" accept=".csv,.txt" style={{ display: "none" }} onChange={handleCSV} />
+            <button onClick={() => csvInputRef.current?.click()}
+              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #2d5a27", background: "#fff", color: "#2d5a27", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📥 Importer troupeau (CSV Boviclic)
+            </button>
+            <button onClick={downloadVachesCSV}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #d4e8d4", background: "#f7fbf7", color: "#3a5a3a", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📤 Exporter troupeau (CSV)
+            </button>
+          </div>
+
+          {/* Section historique par vache */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              🐄 Historique par vache
+            </div>
+            <select value={selectedHistVache} onChange={e => setSelectedHistVache(e.target.value)}
+              style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", marginBottom: 10 }}>
+              <option value="">-- Choisir une vache --</option>
+              {[...new Set(records.map(r => r.nomVache).filter(Boolean))].sort().map(nom => (
+                <option key={nom} value={nom}>{nom}</option>
+              ))}
+            </select>
+            {selectedHistVache && (() => {
+              const hist = records.filter(r => r.nomVache === selectedHistVache).sort((a,b) => b.dateDebut.localeCompare(a.dateDebut));
+              const today = new Date().toISOString().split("T")[0];
+              return (
+                <div>
+                  <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#5a7a5a", marginBottom: 8 }}>
+                    {hist.length} traitement{hist.length > 1 ? "s" : ""} enregistré{hist.length > 1 ? "s" : ""}
+                  </div>
+                  <div style={{ maxHeight: 320, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
+                    {hist.map(r => {
+                      const finL = r.joursAttenteL ? addDays(r.dateFin || r.dateDebut, r.joursAttenteL) : "";
+                      const finV = r.joursAttenteV ? addDays(r.dateFin || r.dateDebut, r.joursAttenteV) : "";
+                      const libre = (!finL || finL <= today) && (!finV || finV <= today);
+                      return (
+                        <div key={r.id} style={{ background: libre ? "#f7fbf7" : "#fff8e8", border: `1px solid ${libre ? "#c8e6c9" : "#ffe0b2"}`, borderRadius: 10, padding: "10px 12px" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                            <span style={{ fontFamily: "sans-serif", fontSize: 12, fontWeight: 800, color: "#1a3a1a" }}>{r.dateDebut ? r.dateDebut.split("-").reverse().join("/") : "—"}</span>
+                            <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 10, background: libre ? "#e8f5e9" : "#fff3e0", color: libre ? "#2d5a27" : "#e65100" }}>
+                              {libre ? "✓ Libérée" : "⚠ Attente"}
+                            </span>
+                          </div>
+                          <div style={{ fontFamily: "sans-serif", fontSize: 13, fontWeight: 700, color: "#1a3a1a", marginBottom: 2 }}>{r.medicament || "—"}</div>
+                          <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#5a7a5a" }}>{r.raison || ""}</div>
+                          {finL && <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#7a5a2a", marginTop: 3 }}>🥛 Lait : {finL.split("-").reverse().join("/")} · 🥩 Viande : {finV ? finV.split("-").reverse().join("/") : "—"}</div>}
+                          {r.intervenant && <div style={{ fontFamily: "sans-serif", fontSize: 11, color: "#7a9a7a", marginTop: 2 }}>👤 {r.intervenant}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Section sauvegarde locale */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              💾 Sauvegarde locale
+            </div>
+            <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 8, padding: "10px 12px", marginBottom: 10, fontFamily: "sans-serif", fontSize: 12, color: "#2d5a27" }}>
+              ✅ Sauvegarde automatique active<br/>
+              {lastSaved
+                ? <span style={{ color: "#5a7a5a" }}>Dernière sauvegarde : {new Date(lastSaved).toLocaleString("fr-FR")}</span>
+                : <span style={{ color: "#5a7a5a" }}>Les données sont sauvegardées dans ce navigateur</span>}
+            </div>
+            <input ref={jsonInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={handleJSON} />
+            <button onClick={() => jsonInputRef.current?.click()}
+              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #1565c0", background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📥 Importer sauvegarde (JSON)
+            </button>
+            <button onClick={downloadJSON}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #bbdefb", background: "#f3f8ff", color: "#1565c0", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📤 Exporter sauvegarde (JSON)
+            </button>
+          </div>
+
+          {/* Section GitHub */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8", display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 14 }}>🐙</span> GitHub
+            </div>
+            <button onClick={onGithubSave} disabled={githubLoading}
+              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #1a3a1a", background: githubLoading ? "#f0f4f0" : "#fff", color: githubLoading ? "#8aaa8a" : "#1a3a1a", fontWeight: 700, fontSize: 13, cursor: githubLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: githubLoading ? 0.7 : 1 }}>
+              🐙 {githubLoading ? "En cours…" : "Sauvegarder sur GitHub"}
+            </button>
+            <button onClick={onGithubRestore} disabled={githubLoading}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #ccc", background: "#f7fbf7", color: "#1a3a1a", fontWeight: 600, fontSize: 13, cursor: githubLoading ? "not-allowed" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8, opacity: githubLoading ? 0.7 : 1 }}>
+              🔄 Restaurer depuis GitHub
+            </button>
+            <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>
+              Fichier : data.json dans sanitaire2
+            </div>
+            <button onClick={() => { onManageToken(); onClose(); }}
+              style={{ marginTop: 8, width: "100%", padding: "8px 14px", borderRadius: 8, border: "1px solid #e0e0e0", background: "#fafafa", color: "#555", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              🔑 Gérer le token GitHub
+            </button>
+          </div>
+
+          {/* Section PDF */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              🖨️ Impression PDF
+            </div>
+            <button onClick={() => { onPrint(); onClose(); }}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "2px solid #6a1b9a", background: "#fff", color: "#6a1b9a", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              🖨️ Imprimer / Exporter PDF
+            </button>
+          </div>
+
+          {/* Section Statistiques */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
+              📊 Statistiques
+            </div>
+            <button onClick={() => { onStats(); onClose(); }}
+              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "2px solid #1565c0", background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 8 }}>
+              📊 Voir les statistiques
+            </button>
+          </div>
+
+        </div>
+
+        <div style={{ padding: "12px 16px", borderTop: "1px solid #e8f0e8", fontSize: 10, color: "#8aaa8a", fontFamily: "sans-serif", textAlign: "center" }}>
+          CARNET SANITAIRE BOVIN LAIT — Conforme réglementation française
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Modal saisie token GitHub ──
+function TokenModal({ onClose, onConfirm }) {
+  const [tok, setTok] = useState("");
+  const [show, setShow] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const existing = localStorage.getItem("carnet-github-token") || "";
+
+  const copyExisting = () => {
+    navigator.clipboard.writeText(existing).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+  };
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 360, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ fontWeight: 900, fontSize: 17, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 6 }}>🔑 Token GitHub</div>
+
+        {/* Token existant sur cet appareil */}
+        {existing && (
+          <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 10, padding: "12px", marginBottom: 16 }}>
+            <div style={{ fontFamily: "sans-serif", fontSize: 11, fontWeight: 700, color: "#2d5a27", marginBottom: 8 }}>✅ Token enregistré sur cet appareil</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ flex: 1, fontFamily: "monospace", fontSize: 12, color: "#1a3a1a", wordBreak: "break-all", background: "#fff", borderRadius: 6, padding: "6px 8px", border: "1px solid #c8e6c9" }}>
+                {show ? existing : existing.slice(0, 6) + "••••••••••••••••••••••••"}
+              </div>
+              <button onClick={() => setShow(s => !s)} style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#fff", cursor: "pointer", fontSize: 14 }}>
+                {show ? "🙈" : "👁"}
+              </button>
+            </div>
+            <button onClick={copyExisting} style={{ marginTop: 8, width: "100%", padding: "8px", borderRadius: 7, border: "1px solid #a5d6a7", background: copied ? "#2d5a27" : "#fff", color: copied ? "#fff" : "#2d5a27", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
+              {copied ? "✓ Copié !" : "📋 Copier le token (pour un autre appareil)"}
+            </button>
+          </div>
+        )}
+
+        <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 12, lineHeight: 1.6 }}>
+          {existing ? "Ou saisissez un nouveau token pour remplacer l'actuel :" : "Entrez votre token GitHub (ghp_...). Il sera stocké uniquement dans ce navigateur."}
+          {!existing && <><br/><br/>Pour créer un token : <b>github.com</b> → Settings → Developer settings → Tokens (classic) → Generate new token → cochez <b>repo</b>.</>}
+        </div>
+
+        <input
+          type="password"
+          value={tok}
+          onChange={e => setTok(e.target.value)}
+          placeholder="ghp_..."
+          style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box", marginBottom: 16 }}
+          onKeyDown={e => e.key === "Enter" && tok.startsWith("ghp_") && onConfirm(tok)}
+          autoFocus={!existing}
+        />
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={() => tok.startsWith("ghp_") && onConfirm(tok)} disabled={!tok.startsWith("ghp_")}
+            style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: tok.startsWith("ghp_") ? "linear-gradient(135deg,#1a3a1a,#2d5a27)" : "#ccc", color: "#fff", fontWeight: 800, fontSize: 14, cursor: tok.startsWith("ghp_") ? "pointer" : "not-allowed", fontFamily: "sans-serif" }}>
+            ✓ Enregistrer
+          </button>
+          <button onClick={onClose} style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>Fermer</button>
+        </div>
+        {existing && (
+          <button onClick={() => { localStorage.removeItem("carnet-github-token"); onClose(); }}
+            style={{ marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
+            🗑 Supprimer le token enregistré
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Modal Impression PDF ──
+function PrintModal({ records, onClose }) {
+  const today = new Date().toISOString().split("T")[0];
+  const firstDay = records.length > 0 ? records.map(r => r.dateDebut).sort()[0] : today;
+  const [du, setDu] = useState(firstDay);
+  const [au, setAu] = useState(today);
+
+  const filtered = records.filter(r => r.dateDebut >= du && r.dateDebut <= au).sort((a,b) => a.dateDebut.localeCompare(b.dateDebut));
+
+  const doPrint = () => {
+    const w = window.open("", "_blank");
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Carnet Sanitaire</title>
+    <style>
+      body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; color: #111; }
+      h1 { font-size: 16px; color: #1a3a1a; border-bottom: 2px solid #1a3a1a; padding-bottom: 6px; }
+      .period { font-size: 12px; color: #555; margin-bottom: 14px; }
+      table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+      th { background: #1a3a1a; color: #fff; padding: 6px 8px; text-align: left; font-size: 10px; }
+      td { padding: 5px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+      tr:nth-child(even) { background: #f5faf5; }
+      .badge-ok { color: #2d5a27; font-weight: bold; }
+      .badge-wait { color: #b85c00; font-weight: bold; }
+      @media print { body { margin: 10px; } }
+    </style></head><body>
+    <h1>🐄 Carnet Sanitaire Bovin Lait</h1>
+    <div class="period">Période : du ${du.split("-").reverse().join("/")} au ${au.split("-").reverse().join("/")} — ${filtered.length} traitement(s)</div>
+    <table>
+      <thead><tr>
+        <th>Date</th><th>Vache</th><th>N° travail</th><th>Médicament</th><th>Raison</th>
+        <th>Posologie</th><th>Voie</th><th>Att. Lait</th><th>Att. Viande</th><th>Intervenant</th><th>Ord.</th>
+      </tr></thead>
+      <tbody>${filtered.map(r => {
+        const finL = r.joursAttenteL ? addDays(r.dateFin || r.dateDebut, r.joursAttenteL) : "";
+        const finV = r.joursAttenteV ? addDays(r.dateFin || r.dateDebut, r.joursAttenteV) : "";
+        const now = today;
+        const okL = !finL || finL <= now;
+        const okV = !finV || finV <= now;
+        return `<tr>
+          <td>${r.dateDebut ? r.dateDebut.split("-").reverse().join("/") : "—"}</td>
+          <td><b>${r.nomVache||"—"}</b></td>
+          <td>${r.travailVache||"—"}</td>
+          <td>${r.medicament||"—"}</td>
+          <td>${r.raison||"—"}</td>
+          <td>${r.posologie||"—"}</td>
+          <td>${r.voieAdmin||"—"}</td>
+          <td class="${okL?"badge-ok":"badge-wait"}">${finL ? finL.split("-").reverse().join("/") + (okL?" ✓":" ⚠") : "—"}</td>
+          <td class="${okV?"badge-ok":"badge-wait"}">${finV ? finV.split("-").reverse().join("/") + (okV?" ✓":" ⚠") : "—"}</td>
+          <td>${r.intervenant||"—"}</td>
+          <td>${r.numOrdonnance||"—"}</td>
+        </tr>`;
+      }).join("")}</tbody>
+    </table>
+    <div style="margin-top:20px;font-size:10px;color:#888;">Imprimé le ${new Date().toLocaleDateString("fr-FR")} — Conforme réglementation française</div>
+    </body></html>`);
+    w.document.close();
+    w.focus();
+    setTimeout(() => { w.print(); }, 400);
+  };
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0007" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 360, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ fontWeight: 900, fontSize: 18, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 18 }}>🖨️ Impression PDF</div>
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", display: "block", marginBottom: 5 }}>Du</label>
+          <input type="date" value={du} onChange={e => setDu(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box" }} />
+        </div>
+        <div style={{ marginBottom: 20 }}>
+          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", display: "block", marginBottom: 5 }}>Au</label>
+          <input type="date" value={au} onChange={e => setAu(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", boxSizing: "border-box" }} />
+        </div>
+        <div style={{ background: "#e8f5e9", borderRadius: 8, padding: "8px 12px", marginBottom: 18, fontFamily: "sans-serif", fontSize: 13, color: "#2d5a27", fontWeight: 600 }}>
+          {filtered.length} traitement(s) dans cette période
+        </div>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={doPrint} disabled={filtered.length === 0}
+            style={{ flex: 1, padding: "12px", borderRadius: 10, border: "none", background: filtered.length === 0 ? "#ccc" : "linear-gradient(135deg,#6a1b9a,#8e24aa)", color: "#fff", fontWeight: 800, fontSize: 14, cursor: filtered.length === 0 ? "not-allowed" : "pointer", fontFamily: "sans-serif" }}>
+            🖨️ Imprimer
+          </button>
+          <button onClick={onClose} style={{ padding: "12px 18px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Modal Statistiques ──
+function StatsModal({ records, onClose }) {
+  const today = new Date().toISOString().split("T")[0];
+
+  // Maladies les plus fréquentes
+  const raisonCount = {};
+  records.forEach(r => { if(r.raison) raisonCount[r.raison] = (raisonCount[r.raison]||0)+1; });
+  const topRaisons = Object.entries(raisonCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const totalRaisons = Object.values(raisonCount).reduce((a,b)=>a+b,0);
+
+  // Traitements par vache
+  const vacheCount = {};
+  records.forEach(r => { if(r.nomVache) vacheCount[r.nomVache] = (vacheCount[r.nomVache]||0)+1; });
+  const topVaches = Object.entries(vacheCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxVache = topVaches.length > 0 ? topVaches[0][1] : 1;
+
+  // Évolution par mois
+  const moisCount = {};
+  records.forEach(r => {
+    if(r.dateDebut) {
+      const m = r.dateDebut.slice(0,7);
+      moisCount[m] = (moisCount[m]||0)+1;
+    }
+  });
+  const moisList = Object.entries(moisCount).sort((a,b)=>a[0].localeCompare(b[0])).slice(-12);
+  const maxMois = moisList.length > 0 ? Math.max(...moisList.map(m=>m[1])) : 1;
+
+  // Médicaments les plus utilisés
+  const medCount = {};
+  records.forEach(r => { if(r.medicament) medCount[r.medicament] = (medCount[r.medicament]||0)+1; });
+  const topMeds = Object.entries(medCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  const COLORS = ["#1a3a1a","#2d5a27","#4a7a40","#6a9a5a","#8aba7a","#a8d5a2","#c8e8c0","#e0f4d8"];
+
+  const [tab, setTab] = useState("maladies");
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "flex-start", justifyContent: "center", overflowY: "auto", padding: "20px 10px" }}>
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "#0007" }} />
+      <div style={{ position: "relative", background: "#fff", borderRadius: 16, width: 440, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+        <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", borderRadius: "16px 16px 0 0", padding: "18px 20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ color: "#fff", fontWeight: 900, fontSize: 18, fontFamily: "sans-serif" }}>📊 Statistiques</div>
+          <button onClick={onClose} style={{ background: "#fff2", border: "none", color: "#fff", borderRadius: 8, padding: "5px 11px", cursor: "pointer", fontSize: 16 }}>✕</button>
+        </div>
+
+        {/* Onglets */}
+        <div style={{ display: "flex", borderBottom: "2px solid #e8f0e8" }}>
+          {[["maladies","🩺 Maladies"],["vaches","🐄 Par vache"],["mois","📅 Par mois"],["meds","💊 Médicaments"]].map(([k,l]) => (
+            <button key={k} onClick={() => setTab(k)}
+              style={{ flex:1, padding:"10px 4px", border:"none", background: tab===k?"#e8f5e9":"#fff", color: tab===k?"#1a3a1a":"#7a9a7a", fontWeight: tab===k?800:500, fontSize:11, cursor:"pointer", fontFamily:"sans-serif", borderBottom: tab===k?"3px solid #2d5a27":"3px solid transparent" }}>
+              {l}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ padding: 20 }}>
+          {records.length === 0 && <div style={{ textAlign:"center", color:"#8aaa8a", fontFamily:"sans-serif", padding:30 }}>Aucun traitement enregistré</div>}
+
+          {/* Maladies */}
+          {tab === "maladies" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Motifs de traitement ({totalRaisons} total)</div>
+              {topRaisons.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topRaisons.map(([raison, count], i) => (
+                <div key={raison} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>{raison}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count} ({Math.round(count/totalRaisons*100)}%)</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/topRaisons[0][1]*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5, transition:"width 0.4s" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Par vache */}
+          {tab === "vaches" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Nombre de traitements par vache</div>
+              {topVaches.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topVaches.map(([nom, count], i) => (
+                <div key={nom} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>🐄 {nom}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count} traitement{count>1?"s":""}</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/maxVache*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Par mois */}
+          {tab === "mois" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Évolution mensuelle (12 derniers mois)</div>
+              {moisList.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:120, padding:"0 4px" }}>
+                {moisList.map(([mois, count], i) => {
+                  const [y,m] = mois.split("-");
+                  const label = `${m}/${y.slice(2)}`;
+                  return (
+                    <div key={mois} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:3 }}>
+                      <div style={{ fontSize:10, fontWeight:700, color:"#2d5a27", fontFamily:"sans-serif" }}>{count}</div>
+                      <div style={{ width:"100%", background:COLORS[i%COLORS.length], borderRadius:"4px 4px 0 0", height:`${Math.max(8, count/maxMois*90)}px`, transition:"height 0.4s" }} />
+                      <div style={{ fontSize:9, color:"#7a9a7a", fontFamily:"sans-serif", textAlign:"center" }}>{label}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Médicaments */}
+          {tab === "meds" && (
+            <div>
+              <div style={{ fontWeight:700, fontSize:13, color:"#1a3a1a", fontFamily:"sans-serif", marginBottom:14 }}>Médicaments les plus utilisés</div>
+              {topMeds.length === 0 && <div style={{ color:"#8aaa8a", fontFamily:"sans-serif", fontSize:13 }}>Aucune donnée</div>}
+              {topMeds.map(([med, count], i) => (
+                <div key={med} style={{ marginBottom:10 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", fontFamily:"sans-serif", marginBottom:3 }}>
+                    <span style={{ fontSize:13, fontWeight:600, color:"#1a3a1a" }}>💊 {med}</span>
+                    <span style={{ fontSize:12, color:"#5a7a5a", fontWeight:700 }}>{count}×</span>
+                  </div>
+                  <div style={{ height:10, background:"#e8f0e8", borderRadius:5, overflow:"hidden" }}>
+                    <div style={{ width:`${count/topMeds[0][1]*100}%`, height:"100%", background:COLORS[i%COLORS.length], borderRadius:5 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ marginTop:18, display:"flex", justifyContent:"center" }}>
+            <div style={{ background:"#f0f9f0", borderRadius:10, padding:"10px 20px", fontFamily:"sans-serif", fontSize:12, color:"#3a5a3a", textAlign:"center" }}>
+              <b>{records.length}</b> traitement(s) · <b>{Object.keys(vacheCount).length}</b> vache(s) · <b>{Object.keys(raisonCount).length}</b> motif(s) différent(s)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Zone photo ordonnance : bouton fichier/caméra (mobile + desktop) ──
+function PhotoDropZone({ onImage }) {
+  const inputRef = useRef(null);
+  const cameraRef = useRef(null);
+  const [error, setError] = useState("");
+
+  const processFile = (file) => {
+    if (!file || !file.type.startsWith("image/")) {
+      setError("Fichier non reconnu. Utilisez une image JPG ou PNG.");
+      return;
+    }
+    setError("");
+    const reader = new FileReader();
+    reader.onload = ev => onImage(ev.target.result);
+    reader.readAsDataURL(file);
+  };
+
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    processFile(file);
+    e.target.value = "";
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {/* Bouton galerie / fichier */}
+      <input ref={inputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleChange} />
+      <button type="button" onClick={() => inputRef.current?.click()}
+        style={{ width: "100%", padding: "16px", borderRadius: 10, border: "2px dashed #b8d8b8", background: "#f7fbf7", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: 36 }}>🖼️</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 14, fontWeight: 700, color: "#2d5a27" }}>Choisir une photo</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a9a7a" }}>Galerie photos ou fichier</span>
+      </button>
+      {/* Bouton appareil photo direct */}
+      <input ref={cameraRef} type="file" accept="image/*" capture="environment" style={{ display: "none" }} onChange={handleChange} />
+      <button type="button" onClick={() => cameraRef.current?.click()}
+        style={{ width: "100%", padding: "13px", borderRadius: 10, border: "2px solid #d4e8d4", background: "#e8f5e9", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+        <span style={{ fontSize: 24 }}>📷</span>
+        <span style={{ fontFamily: "sans-serif", fontSize: 14, fontWeight: 700, color: "#1a3a1a" }}>Prendre une photo</span>
+      </button>
+      {error && <div style={{ color: "#c62828", fontSize: 12, fontFamily: "sans-serif", fontWeight: 600 }}>{error}</div>}
+    </div>
+  );
+}
+
+// ── Médicament selector with autocomplete ──
 function MedicamentSelector({ value, onSelect }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+
   const categories = [...new Set(MEDICAMENTS.map(m => m.categorie))];
   const filtered = MEDICAMENTS.filter(m =>
     m.nom.toLowerCase().includes(query.toLowerCase()) ||
     m.categorie.toLowerCase().includes(query.toLowerCase())
   );
-  const grouped = categories.map(cat => ({ cat, items: filtered.filter(m => m.categorie === cat) })).filter(g => g.items.length > 0);
+  const grouped = categories.map(cat => ({
+    cat,
+    items: filtered.filter(m => m.categorie === cat)
+  })).filter(g => g.items.length > 0);
+
   const med = MEDICAMENTS.find(m => m.nom === value);
+
   const select = (m) => { onSelect(m); setOpen(false); setQuery(""); };
+  const handleManual = (e) => { onSelect({ nom: e.target.value, lait: "", viande: "" }); };
+
   return (
     <div style={{ position: "relative" }}>
-      <div onClick={() => setOpen(o => !o)}
-        style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: value ? "#1a3a1a" : "#8aaa8a", background: "#f7fbf7", cursor: "pointer" }}>
-        <span style={{ fontWeight: value ? 700 : 400 }}>{value || "Sélectionner ou saisir un médicament…"}</span>
-        <span style={{ fontSize: 11, color: "#5a7a5a" }}>{open ? "▲" : "▼"}</span>
+      <div style={{ display: "flex", gap: 8 }}>
+        <div onClick={() => setOpen(o => !o)}
+          style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: value ? "#1a3a1a" : "#8aaa8a", background: "#f7fbf7", cursor: "pointer" }}>
+          <span style={{ fontWeight: value ? 700 : 400 }}>{value || "Sélectionner ou saisir un médicament…"}</span>
+          <span style={{ fontSize: 11, color: "#5a7a5a" }}>{open ? "▲" : "▼"}</span>
+        </div>
       </div>
       {med && (
         <div style={{ marginTop: 5, display: "flex", gap: 10, fontFamily: "sans-serif", fontSize: 12 }}>
@@ -387,12 +1003,13 @@ function MedicamentSelector({ value, onSelect }) {
       )}
       {open && (
         <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 999, background: "#fff", borderRadius: 10, border: "2px solid #d4e8d4", boxShadow: "0 8px 32px #0003", maxHeight: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8" }}>
+          <div style={{ padding: "8px 10px", borderBottom: "1px solid #e8f0e8", display: "flex", gap: 8 }}>
             <input autoFocus value={query} onChange={e => setQuery(e.target.value)}
               placeholder="🔍 Rechercher médicament ou catégorie…"
-              style={{ width: "100%", padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none", boxSizing: "border-box" }} />
+              style={{ flex: 1, padding: "7px 10px", borderRadius: 6, border: "1px solid #d4e8d4", fontSize: 13, fontFamily: "sans-serif", outline: "none" }} />
           </div>
           <div style={{ overflowY: "auto", maxHeight: 280 }}>
+            {/* Manual entry option */}
             {query && !MEDICAMENTS.find(m => m.nom.toLowerCase() === query.toLowerCase()) && (
               <div onClick={() => { onSelect({ nom: query, lait: "", viande: "" }); setOpen(false); setQuery(""); }}
                 style={{ padding: "9px 14px", cursor: "pointer", borderBottom: "2px solid #e8f5e9", background: "#f9fff9", display: "flex", alignItems: "center", gap: 8 }}
@@ -405,7 +1022,7 @@ function MedicamentSelector({ value, onSelect }) {
                 </div>
               </div>
             )}
-            {grouped.map(({ cat, items }) => (
+            {grouped.length === 0 && !query ? null : grouped.map(({ cat, items }) => (
               <div key={cat}>
                 <div style={{ padding: "6px 14px", fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#8aaa8a", background: "#f7fbf7", borderBottom: "1px solid #eee", fontFamily: "sans-serif" }}>{cat}</div>
                 {items.map(m => (
@@ -429,399 +1046,19 @@ function MedicamentSelector({ value, onSelect }) {
   );
 }
 
-// ─── Zone photo drag&drop ───
-function PhotoDropZone({ onImage }) {
-  const [dragging, setDragging] = useState(false);
-  const [error, setError] = useState("");
-  const processFile = (file) => {
-    if (!file || !file.type.startsWith("image/")) { setError("Fichier non reconnu."); return; }
-    const reader = new FileReader();
-    reader.onload = ev => onImage(ev.target.result);
-    reader.readAsDataURL(file);
-  };
-  return (
-    <div onDrop={e => { e.preventDefault(); setDragging(false); processFile(e.dataTransfer.files[0]); }}
-      onDragOver={e => { e.preventDefault(); setDragging(true); }}
-      onDragLeave={() => setDragging(false)}
-      onPaste={e => { const items = e.clipboardData?.items; if (!items) return; for (const item of items) { if (item.type.startsWith("image/")) { processFile(item.getAsFile()); return; } } setError("Aucune image dans le presse-papier."); }}
-      tabIndex={0}
-      style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, padding: "28px 20px", borderRadius: 10, border: `2px dashed ${dragging ? "#2d5a27" : "#b8d8b8"}`, background: dragging ? "#e8f5e9" : "#f7fbf7", outline: "none", cursor: "default" }}>
-      <span style={{ fontSize: 40 }}>{dragging ? "📂" : "📄"}</span>
-      <div style={{ fontFamily: "sans-serif", fontSize: 14, color: "#3a5a3a", fontWeight: 700 }}>Glissez-déposez la photo ici</div>
-      <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#7a9a7a", textAlign: "center", lineHeight: 1.6 }}>ou cliquez ici puis <strong>Ctrl+V</strong> pour coller</div>
-      <div style={{ fontSize: 11, color: "#2d5a27", fontWeight: 600, fontFamily: "sans-serif", background: "#e8f5e9", borderRadius: 6, padding: "4px 12px" }}>🤖 L'IA lira l'ordonnance et remplira les champs</div>
-      {error && <div style={{ color: "#c62828", fontSize: 12, fontFamily: "sans-serif", fontWeight: 600 }}>{error}</div>}
-    </div>
-  );
-}
-
-// ─── Bloc d'un traitement dans le formulaire ───
-function TraitementBlock({ t, index, total, onChange, onRemove, onReadOrdonnance, readingId, readResult, onApplyRead, onDismissRead }) {
-  const inputStyle = { width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" };
-  const labelStyle = { display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" };
-
-  const handleChange = e => onChange(t.id, e.target.name, e.target.value);
-  const handleMedSelect = m => {
-    onChange(t.id, "medicament", m.nom);
-    if (m.lait !== "") onChange(t.id, "joursAttenteL", String(m.lait));
-    if (m.viande !== "") onChange(t.id, "joursAttenteV", String(m.viande));
-  };
-
-  return (
-    <div style={{ border: "2px solid #c8e6c9", borderRadius: 12, padding: "16px 18px", marginBottom: 14, background: "#f9fff9", position: "relative" }}>
-      {/* Entête bloc traitement */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-        <div style={{ background: "#2d5a27", color: "#fff", borderRadius: 20, padding: "2px 14px", fontFamily: "sans-serif", fontSize: 12, fontWeight: 800 }}>
-          Traitement {index + 1}{total > 1 ? ` / ${total}` : ""}
-        </div>
-        {total > 1 && (
-          <button onClick={() => onRemove(t.id)}
-            style={{ background: "#ffebee", border: "none", color: "#c62828", borderRadius: 8, padding: "4px 10px", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif", fontSize: 12 }}>
-            🗑 Supprimer ce traitement
-          </button>
-        )}
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-        {/* Début */}
-        <div>
-          <label style={labelStyle}>Date début *</label>
-          <input type="date" name="dateDebut" value={t.dateDebut} onChange={handleChange} style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-          <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-            {["matin", "soir"].map(m => (
-              <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: t.momentDebut === m ? 700 : 400, color: t.momentDebut === m ? "#1a3a1a" : "#7a9a7a" }}>
-                <input type="radio" name="momentDebut" value={m} checked={t.momentDebut === m} onChange={handleChange} style={{ accentColor: "#2d5a27" }} />
-                {m.charAt(0).toUpperCase() + m.slice(1)}
-              </label>
-            ))}
-          </div>
-        </div>
-        {/* Fin */}
-        <div>
-          <label style={labelStyle}>Date fin</label>
-          <input type="date" name="dateFin" value={t.dateFin} onChange={handleChange} style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-          <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-            {["matin", "soir"].map(m => (
-              <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: t.momentFin === m ? 700 : 400, color: t.momentFin === m ? "#1a3a1a" : "#7a9a7a" }}>
-                <input type="radio" name="momentFin" value={m} checked={t.momentFin === m} onChange={handleChange} style={{ accentColor: "#2d5a27" }} />
-                {m.charAt(0).toUpperCase() + m.slice(1)}
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Médicament */}
-        <div style={{ gridColumn: "1 / -1" }}>
-          <label style={labelStyle}>Nom du médicament</label>
-          <MedicamentSelector value={t.medicament} onSelect={handleMedSelect} />
-        </div>
-
-        {/* Posologie + Quantité */}
-        <div>
-          <label style={labelStyle}>💊 Posologie</label>
-          <input type="text" name="posologie" value={t.posologie} onChange={handleChange} placeholder="Ex: 1 inj/jour pendant 5 jours" style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-        </div>
-        <div>
-          <label style={labelStyle}>⚖️ Quantité / Dose</label>
-          <input type="text" name="quantite" value={t.quantite} onChange={handleChange} placeholder="Ex: 10 ml" style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-        </div>
-
-        {/* Voie admin */}
-        <div style={{ gridColumn: "1 / -1" }}>
-          <label style={labelStyle}>💉 Voie d'administration</label>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {[
-              { val: "Injectable IM", emoji: "💉" }, { val: "Injectable IV", emoji: "🩸" },
-              { val: "Injectable SC", emoji: "🔬" }, { val: "Intramammaire", emoji: "🐄" },
-              { val: "Per os (oral)", emoji: "👄" }, { val: "Topique", emoji: "🖐️" },
-              { val: "Pour-on", emoji: "💧" }, { val: "Autre", emoji: "➕" },
-            ].map(({ val, emoji }) => (
-              <button key={val} type="button"
-                onClick={() => onChange(t.id, "voieAdmin", t.voieAdmin === val ? "" : val)}
-                style={{ padding: "7px 14px", borderRadius: 20, fontSize: 13, fontFamily: "sans-serif", fontWeight: 600, cursor: "pointer", border: t.voieAdmin === val ? "2px solid #2d5a27" : "2px solid #d4e8d4", background: t.voieAdmin === val ? "#2d5a27" : "#f7fbf7", color: t.voieAdmin === val ? "#fff" : "#3a5a3a" }}>
-                {emoji} {val}
-              </button>
-            ))}
-          </div>
-          {t.voieAdmin === "Autre" && (
-            <input type="text" name="voieAdminAutre" placeholder="Préciser la voie…" value={t.voieAdminAutre || ""} onChange={handleChange}
-              style={{ marginTop: 8, ...inputStyle }} onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-          )}
-        </div>
-
-        {/* Délai lait */}
-        <div>
-          <label style={{ ...labelStyle, color: "#1565c0" }}>🥛 Délai attente LAIT (jours)</label>
-          <input type="number" name="joursAttenteL" value={t.joursAttenteL} onChange={handleChange} placeholder="Ex: 4" min="0"
-            style={{ ...inputStyle, border: "2px solid #bbdefb", color: "#1565c0", background: "#f3f8ff" }}
-            onFocus={e => e.target.style.borderColor = "#1565c0"} onBlur={e => e.target.style.borderColor = "#bbdefb"} />
-          <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-            {["matin", "soir"].map(m => (
-              <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: t.momentAttenteL === m ? 700 : 400, color: t.momentAttenteL === m ? "#1565c0" : "#7a9a7a" }}>
-                <input type="radio" name="momentAttenteL" value={m} checked={t.momentAttenteL === m} onChange={handleChange} style={{ accentColor: "#1565c0" }} />
-                {m === "matin" ? "🌅 Matin" : "🌆 Soir"}
-              </label>
-            ))}
-          </div>
-          {t.joursAttenteL && t.dateDebut && (
-            <div style={{ marginTop: 5, fontSize: 12, color: "#1565c0", fontFamily: "sans-serif", fontWeight: 600, background: "#e3f2fd", borderRadius: 6, padding: "4px 10px" }}>
-              📅 Fin attente : {formatDateAvecJour(addDays(t.dateDebut, t.joursAttenteL))} — {t.momentAttenteL}
-            </div>
-          )}
-        </div>
-
-        {/* Délai viande */}
-        <div>
-          <label style={{ ...labelStyle, color: "#b71c1c" }}>🥩 Délai attente VIANDE (jours)</label>
-          <input type="number" name="joursAttenteV" value={t.joursAttenteV} onChange={handleChange} placeholder="Ex: 28" min="0"
-            style={{ ...inputStyle, border: "2px solid #ffcdd2", color: "#b71c1c", background: "#fff5f5" }}
-            onFocus={e => e.target.style.borderColor = "#b71c1c"} onBlur={e => e.target.style.borderColor = "#ffcdd2"} />
-          <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-            {["matin", "soir"].map(m => (
-              <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: t.momentAttenteV === m ? 700 : 400, color: t.momentAttenteV === m ? "#b71c1c" : "#7a9a7a" }}>
-                <input type="radio" name="momentAttenteV" value={m} checked={t.momentAttenteV === m} onChange={handleChange} style={{ accentColor: "#b71c1c" }} />
-                {m === "matin" ? "🌅 Matin" : "🌆 Soir"}
-              </label>
-            ))}
-          </div>
-          {t.joursAttenteV && t.dateDebut && (
-            <div style={{ marginTop: 5, fontSize: 12, color: "#b71c1c", fontFamily: "sans-serif", fontWeight: 600, background: "#ffebee", borderRadius: 6, padding: "4px 10px" }}>
-              📅 Fin attente : {formatDateAvecJour(addDays(t.dateDebut, t.joursAttenteV))} — {t.momentAttenteV}
-            </div>
-          )}
-        </div>
-
-        {/* Ordonnance + Intervenant */}
-        <div>
-          <label style={labelStyle}>N° ordonnance</label>
-          <input type="text" name="numOrdonnance" value={t.numOrdonnance} onChange={handleChange} placeholder="Ex: ORD-2024-001" style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-        </div>
-        <div>
-          <label style={labelStyle}>Intervenant</label>
-          <input type="text" name="intervenant" value={t.intervenant} onChange={handleChange} placeholder="Ex: Dr. Dupont" style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-        </div>
-
-        {/* Photo ordonnance */}
-        <div style={{ gridColumn: "1 / -1" }}>
-          <label style={labelStyle}>📷 Photo de l'ordonnance</label>
-          {t.photoOrdonnance ? (
-            <div>
-              <div style={{ position: "relative" }}>
-                <img src={t.photoOrdonnance} alt="Ordonnance"
-                  style={{ width: "100%", maxHeight: 200, objectFit: "contain", borderRadius: 8, border: "2px solid #d4e8d4", background: "#f7fbf7" }} />
-                <button onClick={() => onChange(t.id, "photoOrdonnance", "")}
-                  style={{ position: "absolute", top: 6, right: 6, background: "#c62828", border: "none", color: "#fff", borderRadius: 20, width: 26, height: 26, cursor: "pointer", fontSize: 14, fontWeight: 900 }}>✕</button>
-              </div>
-              <button onClick={() => onReadOrdonnance(t)}
-                disabled={readingId === t.id}
-                style={{ marginTop: 10, width: "100%", padding: "11px 16px", borderRadius: 9, border: "2px solid #2d5a27", background: readingId === t.id ? "#f0f4f0" : "linear-gradient(135deg,#1a3a1a,#2d5a27)", color: readingId === t.id ? "#5a7a5a" : "#fff", fontWeight: 800, fontSize: 14, cursor: readingId === t.id ? "wait" : "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                {readingId === t.id ? <>⏳ Lecture en cours…</> : <>🤖 Lire l'ordonnance automatiquement</>}
-              </button>
-              {readResult && readResult.tid === t.id && readResult.success && (
-                <div style={{ marginTop: 10, background: "#e8f5e9", border: "2px solid #a5d6a7", borderRadius: 10, padding: "14px" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "#1a3a1a", fontFamily: "sans-serif", marginBottom: 10 }}>✅ Informations extraites</div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 10 }}>
-                    {[
-                      { label: "Médicament", val: readResult.fields.medicament },
-                      { label: "Posologie", val: readResult.fields.posologie },
-                      { label: "Quantité", val: readResult.fields.quantite },
-                      { label: "Voie admin.", val: readResult.fields.voieAdmin },
-                      { label: "Intervenant", val: readResult.fields.intervenant },
-                      { label: "Date début", val: readResult.fields.dateDebut },
-                      { label: "N° ordonnance", val: readResult.fields.numOrdonnance },
-                      { label: "Attente lait", val: readResult.fields.joursAttenteL ? readResult.fields.joursAttenteL + " j" : "" },
-                      { label: "Attente viande", val: readResult.fields.joursAttenteV ? readResult.fields.joursAttenteV + " j" : "" },
-                    ].filter(f => f.val).map(({ label, val }) => (
-                      <div key={label} style={{ background: "#fff", borderRadius: 6, padding: "5px 9px", fontFamily: "sans-serif" }}>
-                        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", color: "#5a7a5a" }}>{label}</div>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: "#1a3a1a", marginTop: 1 }}>{val}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <button onClick={() => onApplyRead(t.id)} style={{ flex: 1, padding: "9px", borderRadius: 8, border: "none", background: "#2d5a27", color: "#fff", fontWeight: 800, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13 }}>✓ Appliquer</button>
-                    <button onClick={onDismissRead} style={{ padding: "9px 14px", borderRadius: 8, border: "1px solid #a5d6a7", background: "#fff", color: "#2d5a27", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif" }}>Ignorer</button>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <PhotoDropZone onImage={dataUrl => onChange(t.id, "photoOrdonnance", dataUrl)} />
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Toast({ msg, type, onClose }) {
   useEffect(() => { const t = setTimeout(onClose, 4000); return () => clearTimeout(t); }, []);
   const bg = type === "success" ? "#2d5a27" : type === "loading" ? "#1565c0" : "#c62828";
   return (
     <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 999, background: bg, color: "#fff", borderRadius: 12, padding: "14px 20px", fontFamily: "sans-serif", fontSize: 14, fontWeight: 600, boxShadow: "0 4px 24px #0003", display: "flex", alignItems: "center", gap: 10, maxWidth: 340 }}>
-      <span>{type === "loading" ? "⏳" : type === "success" ? "✓" : "✕"}</span><span>{msg}</span>
+      <span>{type === "loading" ? "⏳" : type === "success" ? "✓" : "✕"}</span>
+      <span>{msg}</span>
     </div>
   );
 }
 
-// ─── Menu latéral ───
-function MenuPanel({ open, onClose, vaches, records, onImportVaches, onImportSauvegarde, driveLoading, onDriveSave, onDriveRestore, githubToken, onSaveToken, showTokenInput, setShowTokenInput }) {
-  const csvInputRef = useRef(null);
-  const jsonInputRef = useRef(null);
-
-  const handleCSV = (e) => {
-    const file = e.target.files[0]; if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const text = ev.target.result;
-      const lines = text.split(/\r?\n/).filter(Boolean);
-      const sep = lines[0].includes(";") ? ";" : ",";
-      const headers = lines[0].split(sep).map(h => h.replace(/[="]/g, "").trim().toLowerCase());
-      const nomIdx = headers.findIndex(h => h.includes("nom"));
-      const numIdx = headers.findIndex(h => h === "n°" || h.startsWith("n°") || h === "numero" || h.includes("national"));
-      const travailIdx = headers.findIndex(h => h.includes("travail"));
-      const naissIdx = headers.findIndex(h => h.includes("naissance") || h.includes("né"));
-      if (nomIdx === -1) { alert("Colonne 'Nom' introuvable."); return; }
-      const parsed = lines.slice(1).map(line => {
-        const cols = line.split(sep).map(c => c.replace(/[="]/g, "").trim());
-        return { nom: (cols[nomIdx] || "").toUpperCase(), numero: numIdx >= 0 ? cols[numIdx] : "", travail: travailIdx >= 0 ? cols[travailIdx] : "", naissance: naissIdx >= 0 ? cols[naissIdx] : "" };
-      }).filter(v => v.nom && v.nom !== "NAN" && v.nom.length > 1);
-      onImportVaches(parsed); onClose();
-    };
-    reader.readAsText(file, "latin-1");
-    e.target.value = "";
-  };
-
-  const handleJSON = (e) => {
-    const file = e.target.files[0]; if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const data = JSON.parse(ev.target.result);
-        if (data.records) { onImportSauvegarde(data.records); onClose(); }
-        else alert("Format de sauvegarde invalide.");
-      } catch { alert("Fichier JSON invalide."); }
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  };
-
-  const downloadJSON = () => {
-    const blob = new Blob([JSON.stringify({ version: 2, savedAt: new Date().toISOString(), records }, null, 2)], { type: "application/json" });
-    const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-    a.download = `carnet-sanitaire-${new Date().toISOString().slice(0,10)}.json`; a.click();
-  };
-  const downloadVachesCSV = () => {
-    const header = "Nom;Numéro;N° travail;Date naissance";
-    const rows = vaches.map(v => `${v.nom};${v.numero};${v.travail};${v.naissance}`);
-    const blob = new Blob([header + "\n" + rows.join("\n")], { type: "text/csv;charset=utf-8;" });
-    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "troupeau.csv"; a.click();
-  };
-
-  if (!open) return null;
-  return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "#0006" }} />
-      <div style={{ position: "relative", width: 320, background: "#fff", height: "100%", boxShadow: "4px 0 32px #0003", display: "flex", flexDirection: "column", overflowY: "auto" }}>
-        <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", padding: "20px 20px 16px", flexShrink: 0 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ color: "#fff", fontSize: 18, fontWeight: 900 }}>⚙️ Menu</div>
-            <button onClick={onClose} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 17 }}>✕</button>
-          </div>
-          <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
-            <div style={{ flex: 1, background: "#ffffff18", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
-              <div style={{ fontSize: 18, fontWeight: 900, color: "#fff" }}>{vaches.length}</div>
-              <div style={{ fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: "#a8d5a2" }}>Vaches</div>
-            </div>
-            <div style={{ flex: 1, background: "#ffffff18", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
-              <div style={{ fontSize: 18, fontWeight: 900, color: "#fff" }}>{records.length}</div>
-              <div style={{ fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: "#a8d5a2" }}>Traitements</div>
-            </div>
-          </div>
-        </div>
-        <div style={{ padding: 16, flex: 1 }}>
-          {/* Troupeau */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>🐄 Troupeau</div>
-            <div style={{ background: "#f7fbf7", borderRadius: 10, padding: "10px 12px", marginBottom: 10, maxHeight: 160, overflowY: "auto" }}>
-              {vaches.map(v => (
-                <div key={v.numero || v.nom} style={{ display: "flex", justifyContent: "space-between", padding: "4px 0", borderBottom: "1px solid #eef4ee", fontFamily: "sans-serif" }}>
-                  <span style={{ fontWeight: 700, fontSize: 13, color: "#1a3a1a" }}>🐄 {v.nom}</span>
-                  <span style={{ fontSize: 11, color: "#7a9a7a" }}>{v.travail}</span>
-                </div>
-              ))}
-            </div>
-            <input ref={csvInputRef} type="file" accept=".csv,.txt" style={{ display: "none" }} onChange={handleCSV} />
-            <button onClick={() => csvInputRef.current?.click()} style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #2d5a27", background: "#fff", color: "#2d5a27", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>📥 Importer troupeau (CSV Boviclic)</button>
-            <button onClick={downloadVachesCSV} style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #d4e8d4", background: "#f7fbf7", color: "#3a5a3a", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>📤 Exporter troupeau (CSV)</button>
-          </div>
-          {/* Sauvegarde */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>💾 Sauvegarde locale</div>
-            <input ref={jsonInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={handleJSON} />
-            <button onClick={() => jsonInputRef.current?.click()} style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #1565c0", background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>📥 Importer sauvegarde (JSON)</button>
-            <button onClick={downloadJSON} style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #bbdefb", background: "#f3f8ff", color: "#1565c0", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>📤 Exporter sauvegarde (JSON)</button>
-          </div>
-          {/* GitHub Backup */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #e8f0e8" }}>
-              ☁️ Sauvegarde GitHub
-            </div>
-            {!githubToken || showTokenInput ? (
-              <div style={{ background: "#f7fbf7", borderRadius: 10, padding: 12, marginBottom: 8 }}>
-                <div style={{ fontFamily: "sans-serif", fontSize: 12, color: "#3a5a3a", marginBottom: 8, fontWeight: 600 }}>
-                  Token GitHub (accès repo)
-                </div>
-                <input
-                  id="gh-token-input"
-                  type="password"
-                  defaultValue={githubToken}
-                  placeholder="ghp_xxxxxxxxxxxx"
-                  style={{ width: "100%", padding: "8px 10px", borderRadius: 7, border: "1px solid #c8e6c9", fontSize: 13, fontFamily: "sans-serif", boxSizing: "border-box", marginBottom: 8 }}
-                />
-                <button onClick={() => {
-                  const val = document.getElementById("gh-token-input").value.trim();
-                  if (val) { onSaveToken(val); setShowTokenInput(false); }
-                }} style={{ width: "100%", padding: "8px", borderRadius: 7, border: "none", background: "#2d5a27", color: "#fff", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13 }}>
-                  Enregistrer le token
-                </button>
-                <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif", lineHeight: 1.5 }}>
-                  Créez un token sur <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained</strong> avec accès en écriture au repo <strong>carnet-sanitaire</strong>.
-                </div>
-              </div>
-            ) : (
-              <div style={{ marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: "sans-serif", fontSize: 12, color: "#2d5a27", background: "#e8f5e9", borderRadius: 7, padding: "6px 10px" }}>
-                <span>✓ Token configuré</span>
-                <button onClick={() => setShowTokenInput(true)} style={{ background: "none", border: "none", color: "#5a7a5a", cursor: "pointer", fontSize: 11, fontFamily: "sans-serif" }}>Modifier</button>
-              </div>
-            )}
-            <button onClick={() => { onDriveSave(); onClose(); }} disabled={driveLoading}
-              style={{ width: "100%", marginBottom: 8, padding: "10px 14px", borderRadius: 9, border: "2px solid #2d5a27", background: "#fff", color: "#2d5a27", fontWeight: 700, fontSize: 13, cursor: driveLoading ? "wait" : "pointer", fontFamily: "sans-serif" }}>
-              {driveLoading ? "⏳ En cours…" : "☁️ Sauvegarder sur GitHub"}
-            </button>
-            <button onClick={() => { onDriveRestore(); onClose(); }} disabled={driveLoading}
-              style={{ width: "100%", padding: "10px 14px", borderRadius: 9, border: "1px solid #c8e6c9", background: "#f7fbf7", color: "#2d5a27", fontWeight: 600, fontSize: 13, cursor: driveLoading ? "wait" : "pointer", fontFamily: "sans-serif" }}>
-              ⬇️ Restaurer depuis GitHub
-            </button>
-            <div style={{ marginTop: 8, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>
-              Fichier : {GITHUB_OWNER}/{GITHUB_REPO}/{GITHUB_FILE}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ══════════════════════════════════════════════
-// App principale
-// ══════════════════════════════════════════════
+// ── Main App ──
 function App() {
   const [records, setRecords] = useState([]);
   const [vaches, setVaches] = useState(VACHES_DEFAUT);
@@ -830,197 +1067,194 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState(null);
   const [search, setSearch] = useState("");
-  const [filterAnnee, setFilterAnnee] = useState("");
   const [detailId, setDetailId] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const [toast, setToast] = useState(null);
-  const [driveLoading, setDriveLoading] = useState(false);
-  const [githubToken, setGithubToken] = useState(() => localStorage.getItem("gh_token") || "");
-  const [showTokenInput, setShowTokenInput] = useState(false);
   const [lightbox, setLightbox] = useState(null);
-  const [showAlertes, setShowAlertes] = useState(false);
-  const [notifPermission, setNotifPermission] = useState(typeof Notification !== "undefined" ? Notification.permission : "denied");
-  const [readingId, setReadingId] = useState(null);
-  const [readResult, setReadResult] = useState(null);
-  const notifiedRef = useRef(new Set());
-  const isFirstRender = useRef(true);
+  const [lastSaved, setLastSaved] = useState(null);
+  const [showPrint, setShowPrint] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const showToast = (msg, type = "success") => setToast({ msg, type });
 
-  // Années disponibles pour filtre
-  const anneesDispos = useMemo(() => {
-    const anneeActuelle = new Date().getFullYear();
-    const s = new Set(records.map(r => r.annee || (r.traitements?.[0]?.dateDebut || "").split("-")[0]).filter(Boolean));
-    s.add(String(anneeActuelle));
-    return [...s].sort((a,b) => b-a);
-  }, [records]);
+  const filtered = useMemo(() =>
+    records.filter(r => Object.values(r).some(v => v?.toString().toLowerCase().includes(search.toLowerCase())))
+  , [records, search]);
 
-  const filtered = useMemo(() => {
-    let rs = records.map(normalizeRecord);
-    if (filterAnnee) rs = rs.filter(r => r.annee === filterAnnee || (r.traitements?.[0]?.dateDebut || "").startsWith(filterAnnee));
-    if (search) rs = rs.filter(r =>
-      r.nomVache?.toLowerCase().includes(search.toLowerCase()) ||
-      r.raison?.toLowerCase().includes(search.toLowerCase()) ||
-      r.traitements?.some(t =>
-        t.medicament?.toLowerCase().includes(search.toLowerCase()) ||
-        t.intervenant?.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-    return rs;
-  }, [records, search, filterAnnee]);
-
-  // ─ Formulaire traitements
-  const updateTraitement = (tid, field, value) => {
-    setForm(f => ({ ...f, traitements: f.traitements.map(t => t.id === tid ? { ...t, [field]: value } : t) }));
-  };
-  const addTraitement = () => {
-    setForm(f => ({ ...f, traitements: [...f.traitements, emptyTraitement()] }));
-  };
-  const removeTraitement = (tid) => {
-    setForm(f => ({ ...f, traitements: f.traitements.filter(t => t.id !== tid) }));
-  };
-
-  // ─ Lecture ordonnance IA
-  const handleReadOrdonnance = async (t) => {
-    if (!t.photoOrdonnance) return;
-    setReadingId(t.id);
-    setReadResult(null);
-    try {
-      const base64 = t.photoOrdonnance.split(",")[1];
-      const mediaType = t.photoOrdonnance.split(";")[0].split(":")[1];
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514", max_tokens: 1000,
-          system: `Tu es un assistant vétérinaire expert en ordonnances bovines françaises.
-Analyse cette ordonnance et extrait les informations en JSON uniquement, sans texte avant ou après :
-{"medicament":"","raison":"","posologie":"","quantite":"","voieAdmin":"Injectable IM|Injectable IV|Injectable SC|Intramammaire|Per os (oral)|Topique|Pour-on|Autre","dateDebut":"YYYY-MM-DD","dateFin":"YYYY-MM-DD","joursAttenteL":"","joursAttenteV":"","numOrdonnance":"","intervenant":"","notes":""}
-Réponds UNIQUEMENT avec le JSON.`,
-          messages: [{ role: "user", content: [
-            { type: "image", source: { type: "base64", media_type: mediaType, data: base64 } },
-            { type: "text", text: "Extrais les informations de cette ordonnance." }
-          ]}]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.filter(b => b.type === "text").map(b => b.text).join("") || "";
-      const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
-      const medMatch = MEDICAMENTS.find(m => parsed.medicament && m.nom.toLowerCase().includes(parsed.medicament.toLowerCase().split(" ")[0]));
-      setReadResult({
-        success: true, tid: t.id, notes: parsed.notes,
-        fields: {
-          medicament: parsed.medicament || "", raison: parsed.raison || "",
-          posologie: parsed.posologie || "", quantite: parsed.quantite || "",
-          voieAdmin: parsed.voieAdmin || "",
-          dateDebut: parsed.dateDebut || "", dateFin: parsed.dateFin || "",
-          joursAttenteL: parsed.joursAttenteL || (medMatch ? String(medMatch.lait) : ""),
-          joursAttenteV: parsed.joursAttenteV || (medMatch ? String(medMatch.viande) : ""),
-          numOrdonnance: parsed.numOrdonnance || "", intervenant: parsed.intervenant || "",
-        }
-      });
-    } catch (e) {
-      setReadResult({ success: false, tid: t.id, error: e.message });
-    } finally {
-      setReadingId(null);
-    }
-  };
-
-  const applyReadResult = (tid) => {
-    if (!readResult?.fields) return;
-    const f = readResult.fields;
-    setForm(fm => ({
-      ...fm,
-      raison: fm.raison || f.raison || "",
-      traitements: fm.traitements.map(t => t.id === tid ? { ...t, ...f } : t)
-    }));
-    setReadResult(null);
-    showToast("✓ Champs remplis depuis l'ordonnance");
-  };
+  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleVacheSelect = vList => setForm(f => ({ ...f, selectedVaches: vList }));
+  const handleMedicamentSelect = m => setForm(f => ({
+    ...f,
+    medicament: m.nom,
+    joursAttenteL: m.lait !== "" ? String(m.lait) : f.joursAttenteL,
+    joursAttenteV: m.viande !== "" ? String(m.viande) : f.joursAttenteV,
+  }));
 
   const handleSubmit = () => {
-    if (!form.nomVache || !form.traitements.some(t => t.dateDebut)) return;
-    const annee = form.annee || (form.traitements.find(t => t.dateDebut)?.dateDebut || "").split("-")[0] || new Date().getFullYear().toString();
-    const rec = { ...form, id: editId ?? Date.now(), annee };
-    if (editId !== null) setRecords(rs => rs.map(r => r.id === editId ? rec : r));
-    else setRecords(rs => [...rs, rec]);
-    setEditId(null); setForm(emptyForm); setShowForm(false);
-    showToast(editId ? "✓ Traitement modifié" : "✓ Traitement enregistré");
+    const vachesList = form.selectedVaches && form.selectedVaches.length > 0 ? form.selectedVaches : (form.nomVache ? [{ nom: form.nomVache, numero: form.numeroVache, travail: form.travailVache }] : []);
+    if (vachesList.length === 0 || !form.dateDebut) return;
+    if (editId !== null) {
+      // En mode édition : une seule vache
+      const v = vachesList[0];
+      setRecords(rs => rs.map(r => r.id === editId ? { ...form, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail, id: editId } : r));
+      setEditId(null);
+    } else {
+      // Nouveau traitement : un enregistrement par vache
+      const newRecords = vachesList.map(v => ({ ...form, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail, id: Date.now() + Math.random() }));
+      setRecords(rs => [...rs, ...newRecords]);
+    }
+    setForm(emptyForm);
+    setShowForm(false);
   };
 
-  const handleEdit = record => { setForm({ ...normalizeRecord(record) }); setEditId(record.id); setShowForm(true); setDetailId(null); };
+  const handleEdit = record => { setForm({ ...record, selectedVaches: [{ nom: record.nomVache, numero: record.numeroVache, travail: record.travailVache }] }); setEditId(record.id); setShowForm(true); setDetailId(null); };
   const handleDelete = id => { setRecords(rs => rs.filter(r => r.id !== id)); setConfirmDelete(null); setDetailId(null); };
 
-  // ─ Sauvegarde GitHub
-  const ghHeaders = (token) => ({
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}`,
-    "Accept": "application/vnd.github+json",
-  });
-
-  const saveToGitHub = async (currentRecords) => {
-    if (!githubToken) { setShowTokenInput(true); return; }
-    setDriveLoading(true); showToast("Sauvegarde en cours…", "loading");
+  // ── localStorage : chargement au démarrage ──
+  const isFirstRender = useRef(true);
+  const isLoading = useRef(true);
+  const photoInputRef = useRef(null);
+  useEffect(() => {
     try {
-      const payload = JSON.stringify({ version: 2, savedAt: new Date().toISOString(), records: currentRecords ?? records }, null, 2);
-      const content = btoa(unescape(encodeURIComponent(payload)));
-      const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-      // Récupérer le sha existant si le fichier existe déjà
-      let sha;
-      const existing = await fetch(url, { headers: ghHeaders(githubToken) });
-      if (existing.ok) { const d = await existing.json(); sha = d.sha; }
-      const body = { message: "Sauvegarde carnet sanitaire", content, ...(sha ? { sha } : {}) };
-      const res = await fetch(url, { method: "PUT", headers: ghHeaders(githubToken), body: JSON.stringify(body) });
-      if (!res.ok) throw new Error((await res.json()).message || res.statusText);
-      showToast("✓ Sauvegardé sur GitHub", "success");
-    } catch (e) { showToast("Erreur sauvegarde : " + e.message, "error"); }
-    finally { setDriveLoading(false); }
-  };
+      const saved = localStorage.getItem("carnet-sanitaire-records");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setRecords(parsed);
+          setLastSaved(localStorage.getItem("carnet-sanitaire-savedAt") || null);
+        }
+      }
+      const savedVaches = localStorage.getItem("carnet-sanitaire-vaches");
+      if (savedVaches) {
+        const parsedV = JSON.parse(savedVaches);
+        if (Array.isArray(parsedV) && parsedV.length > 0) setVaches(parsedV);
+      }
+    } catch(e) {}
+    // On marque que le chargement est terminé après le prochain rendu
+    setTimeout(() => { isLoading.current = false; }, 100);
+  }, []);
 
-  const restoreFromGitHub = async () => {
-    if (!githubToken) { setShowTokenInput(true); return; }
-    setDriveLoading(true); showToast("Restauration en cours…", "loading");
+  // ── localStorage : sauvegarde automatique à chaque changement ──
+  useEffect(() => {
+    if (isLoading.current) return; // Ne pas sauvegarder pendant le chargement
     try {
-      const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-      const res = await fetch(url, { headers: ghHeaders(githubToken) });
-      if (!res.ok) throw new Error("Fichier introuvable sur GitHub");
-      const d = await res.json();
-      const text = decodeURIComponent(escape(atob(d.content.replace(/\n/g, ""))));
-      const parsed = JSON.parse(text);
-      if (parsed.records) { setRecords(parsed.records.map(normalizeRecord)); showToast(`✓ ${parsed.records.length} traitement(s) restauré(s)`, "success"); }
-      else showToast("Format non reconnu", "error");
-    } catch (e) { showToast("Erreur restauration : " + e.message, "error"); }
-    finally { setDriveLoading(false); }
-  };
+      const now = new Date().toISOString();
+      localStorage.setItem("carnet-sanitaire-records", JSON.stringify(records));
+      localStorage.setItem("carnet-sanitaire-savedAt", now);
+      setLastSaved(now);
+    } catch(e) {}
+  }, [records]);
 
   useEffect(() => {
-    if (isFirstRender.current) { isFirstRender.current = false; return; }
-    if (records.length === 0) return;
-    const t = setTimeout(() => saveToGitHub(records), 2000);
-    return () => clearTimeout(t);
-  }, [records]);
+    if (isLoading.current) return;
+    try { localStorage.setItem("carnet-sanitaire-vaches", JSON.stringify(vaches)); } catch(e) {}
+  }, [vaches]);
 
-  // ─ Alertes délais
+  // ── GitHub : config ──
+  const GITHUB_USER = "davjog";
+  const GITHUB_REPO = "sanitaire2";
+  const GITHUB_FILE = "data.json";
+  const [githubLoading, setGithubLoading] = useState(false);
+  const [showTokenModal, setShowTokenModal] = useState(false);
+  const [pendingGithubAction, setPendingGithubAction] = useState(null);
+  const [showRestoreConfirm, setShowRestoreConfirm] = useState(false); // "save" | "restore"
+
+  const getToken = () => localStorage.getItem("carnet-github-token") || "";
+
+  const githubAction = (action) => {
+    if (action === "restore") {
+      setShowRestoreConfirm(true);
+      return;
+    }
+    if (!getToken()) { setPendingGithubAction(action); setShowTokenModal(true); }
+    else { saveToGithub(); }
+  };
+
+  const saveToGithub = async (token) => {
+    const tok = token || getToken();
+    if (!tok) { setShowTokenModal(true); setPendingGithubAction("save"); return; }
+    setGithubLoading(true);
+    showToast("Sauvegarde GitHub en cours…", "loading");
+    try {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records }, null, 2))));
+      let sha = "";
+      try {
+        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+          headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json" }
+        });
+        if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+      } catch(e) {}
+      const body = { message: `Sauvegarde carnet sanitaire ${new Date().toLocaleDateString("fr-FR")}`, content, ...(sha ? { sha } : {}) };
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+        method: "PUT",
+        headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json", "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
+      if (!res.ok) throw new Error("Erreur " + res.status);
+      showToast("✓ Sauvegardé sur GitHub", "success");
+    } catch(e) {
+      showToast("Erreur GitHub : " + e.message, "error");
+    } finally { setGithubLoading(false); }
+  };
+
+  const restoreFromGithub = async (token) => {
+    const tok = token || getToken();
+    if (!tok) { setShowTokenModal(true); setPendingGithubAction("restore"); return; }
+    setGithubLoading(true);
+    showToast("Restauration GitHub en cours…", "loading");
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+        headers: { Authorization: `token ${tok}`, Accept: "application/vnd.github.v3+json" }
+      });
+      if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
+      if (!res.ok) throw new Error("Fichier introuvable");
+      const d = await res.json();
+      const text = decodeURIComponent(escape(atob(d.content)));
+      const parsed = JSON.parse(text);
+      if (parsed.records) {
+        setRecords(parsed.records);
+        showToast(`✓ ${parsed.records.length} traitement(s) restauré(s) depuis GitHub`, "success");
+      } else throw new Error("Format invalide");
+    } catch(e) {
+      showToast("Erreur GitHub : " + e.message, "error");
+    } finally { setGithubLoading(false); }
+  };
+
+  // ── Calcul des alertes délais ──
   const alertes = useMemo(() => {
-    const today = new Date(); today.setHours(0,0,0,0);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
     const result = [];
-    records.map(normalizeRecord).forEach(r => {
-      const { dateAttenteL, dateAttenteV } = calcDelaisMax(r.traitements);
-      const momL = r.traitements?.reduce((acc, t) => { if (t.joursAttenteL) return t.momentAttenteL; return acc; }, "matin");
-      const momV = r.traitements?.reduce((acc, t) => { if (t.joursAttenteV) return t.momentAttenteV; return acc; }, "matin");
+    records.forEach(r => {
+      const dL = getDateAttenteL(r);
+      const dV = getDateAttenteV(r);
       [
-        { d: dateAttenteL, type: "LAIT", icon: "🥛", color: "#1565c0", moment: momL },
-        { d: dateAttenteV, type: "VIANDE", icon: "🥩", color: "#b71c1c", moment: momV },
+        { d: dL, type: "LAIT", icon: "🥛", color: "#1565c0", moment: r.momentAttenteL || "matin" },
+        { d: dV, type: "VIANDE", icon: "🥩", color: "#b71c1c", moment: r.momentAttenteV || "matin" },
       ].forEach(({ d, type, icon, color, moment }) => {
         if (!d) return;
-        const date = new Date(d); date.setHours(0,0,0,0);
+        const date = new Date(d); date.setHours(0, 0, 0, 0);
         const diff = Math.round((date - today) / 86400000);
-        if (diff <= 3 && diff >= 0)
-          result.push({ id: r.id, vache: r.nomVache, type, icon, color, moment, quand: diff === 0 ? "aujourd'hui" : diff === 1 ? "demain" : `dans ${diff} j`, urgence: diff === 0 ? "high" : diff === 1 ? "med" : "low", date: d, diff });
+        if (diff === 0)
+          result.push({ id: r.id, vache: r.nomVache, type, icon, color, moment, quand: "aujourd'hui", urgence: "high", date: d, diff });
+        else if (diff === 1)
+          result.push({ id: r.id, vache: r.nomVache, type, icon, color, moment, quand: "demain", urgence: "med", date: d, diff });
+        else if (diff > 0 && diff <= 3)
+          result.push({ id: r.id, vache: r.nomVache, type, icon, color, moment, quand: `dans ${diff} j`, urgence: "low", date: d, diff });
       });
     });
-    return result.sort((a,b) => a.diff - b.diff || a.vache?.localeCompare(b.vache));
+    return result.sort((a, b) => a.diff - b.diff || a.vache.localeCompare(b.vache));
   }, [records]);
+
+  // ── Notifications navigateur ──
+  const [notifPermission, setNotifPermission] = useState(typeof Notification !== "undefined" ? Notification.permission : "denied");
+  const notifiedRef = useRef(new Set());
+
+  const requestNotifPermission = async () => {
+    if (typeof Notification === "undefined") return;
+    const perm = await Notification.requestPermission();
+    setNotifPermission(perm);
+  };
 
   useEffect(() => {
     if (notifPermission !== "granted") return;
@@ -1028,68 +1262,209 @@ Réponds UNIQUEMENT avec le JSON.`,
       const key = `${a.id}-${a.type}-${a.date}`;
       if (notifiedRef.current.has(key)) return;
       if (a.urgence === "high" || a.urgence === "med") {
-        new Notification(a.urgence === "high" ? `🚨 Délai ${a.type} expire AUJOURD'HUI` : `⚠️ Délai ${a.type} expire DEMAIN`, {
-          body: `🐄 ${a.vache} — Fin d'attente ${a.type} : ${formatDateAvecJour(a.date)} ${a.moment}`,
-          icon: "https://cdn.jsdelivr.net/npm/twemoji@14/assets/72x72/1f404.png", tag: key,
+        const momentEmoji = a.moment === "matin" ? "🌅" : "🌆";
+        const title = a.urgence === "high"
+          ? `🚨 Délai ${a.type} expire AUJOURD'HUI`
+          : `⚠️ Délai ${a.type} expire DEMAIN`;
+        new Notification(title, {
+          body: `🐄 ${a.vache} — Fin d'attente ${a.type} : ${formatDateAvecJour(a.date)} ${momentEmoji} ${a.moment}\n${a.urgence === "high" ? "Ne pas collecter le lait !" : "Préparez-vous pour demain."}`,
+          icon: "https://cdn.jsdelivr.net/npm/twemoji@14/assets/72x72/1f404.png",
+          tag: key,
         });
         notifiedRef.current.add(key);
       }
     });
   }, [alertes, notifPermission]);
 
-  const detail = records.map(normalizeRecord).find(r => r.id === detailId);
+  const [showAlertes, setShowAlertes] = useState(false);
+
+  const detail = records.find(r => r.id === detailId);
 
   return (
     <div style={{ minHeight: "100vh", background: "#f0f4f0", fontFamily: "'Georgia','Times New Roman',serif" }}>
       {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+      {showPrint && <PrintModal records={records} onClose={() => setShowPrint(false)} />}
+      {showStats && <StatsModal records={records} onClose={() => setShowStats(false)} />}
+      {showRestoreConfirm && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div onClick={() => setShowRestoreConfirm(false)} style={{ position: "absolute", inset: 0, background: "#0008" }} />
+          <div style={{ position: "relative", background: "#fff", borderRadius: 16, padding: 24, width: 340, maxWidth: "95vw", boxShadow: "0 8px 40px #0004" }}>
+            <div style={{ fontWeight: 900, fontSize: 17, color: "#c62828", fontFamily: "sans-serif", marginBottom: 10 }}>⚠️ Confirmer la restauration</div>
+            <div style={{ fontSize: 13, color: "#555", fontFamily: "sans-serif", marginBottom: 20, lineHeight: 1.6 }}>
+              Les données locales actuelles seront <strong>remplacées</strong> par celles de GitHub.<br/>Cette action est irréversible.
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => {
+                setShowRestoreConfirm(false);
+                if (!getToken()) { setPendingGithubAction("restore"); setShowTokenModal(true); }
+                else restoreFromGithub();
+              }} style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: "#c62828", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer", fontFamily: "sans-serif" }}>
+                🔄 Oui, restaurer
+              </button>
+              <button onClick={() => setShowRestoreConfirm(false)}
+                style={{ padding: "11px 16px", borderRadius: 10, border: "1px solid #ddd", background: "#fff", color: "#555", fontWeight: 600, cursor: "pointer", fontFamily: "sans-serif" }}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showTokenModal && (
+        <TokenModal
+          onClose={() => { setShowTokenModal(false); setPendingGithubAction(null); }}
+          onConfirm={tok => {
+            localStorage.setItem("carnet-github-token", tok);
+            setShowTokenModal(false);
+            if (pendingGithubAction === "save") saveToGithub(tok);
+            else if (pendingGithubAction === "restore") restoreFromGithub(tok);
+            setPendingGithubAction(null);
+          }}
+        />
+      )}}
 
-      <MenuPanel open={showMenu} onClose={() => setShowMenu(false)} vaches={vaches} records={records}
-        driveLoading={driveLoading} onDriveSave={() => saveToGitHub(records)} onDriveRestore={restoreFromGitHub}
-        githubToken={githubToken} onSaveToken={t => { setGithubToken(t); localStorage.setItem("gh_token", t); }}
-        showTokenInput={showTokenInput} setShowTokenInput={setShowTokenInput}
-        onImportVaches={nv => { setVaches(nv.sort((a,b) => a.nom.localeCompare(b.nom))); showToast(`✓ ${nv.length} vaches importées`); }}
-        onImportSauvegarde={nr => { setRecords(nr.map(normalizeRecord)); showToast(`✓ ${nr.length} traitements restaurés`); }} />
+      <MenuPanel
+        open={showMenu}
+        onClose={() => setShowMenu(false)}
+        vaches={vaches}
+        records={records}
+        lastSaved={lastSaved}
+        githubLoading={githubLoading}
+        onGithubSave={() => { setShowMenu(false); setTimeout(() => githubAction("save"), 50); }}
+        onGithubRestore={() => { setShowMenu(false); setTimeout(() => githubAction("restore"), 50); }}
+        onPrint={() => setShowPrint(true)}
+        onStats={() => setShowStats(true)}
+        onManageToken={() => { setShowMenu(false); setTimeout(() => setShowTokenModal(true), 50); }}
+        onImportVaches={newVaches => {
+          setVaches(newVaches.sort((a, b) => a.nom.localeCompare(b.nom)));
+          showToast(`✓ ${newVaches.length} vaches importées`, "success");
+        }}
+        onImportSauvegarde={newRecords => {
+          setRecords(newRecords);
+          showToast(`✓ ${newRecords.length} traitements restaurés`, "success");
+        }}
+        onExportSauvegarde={() => {}}
+        onExportVachesCSV={() => {}}
+      />
 
-      {/* PANEL ALERTES */}
+      {/* ── PANNEAU ALERTES ── */}
       {showAlertes && (
         <div style={{ position: "fixed", top: 0, right: 0, bottom: 0, zIndex: 150, display: "flex", flexDirection: "column" }}>
           <div onClick={() => setShowAlertes(false)} style={{ position: "fixed", inset: 0, background: "#0004", zIndex: -1 }} />
           <div style={{ marginLeft: "auto", width: 340, height: "100%", background: "#fff", boxShadow: "-4px 0 32px #0003", display: "flex", flexDirection: "column", overflowY: "auto" }}>
+            {/* Header */}
             <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", padding: "18px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0 }}>
-              <h3 style={{ margin: 0, color: "#fff", fontSize: 17, fontWeight: 900 }}>🔔 Alertes délais</h3>
+              <div>
+                <div style={{ color: "#a8d5a2", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", fontFamily: "sans-serif" }}>Surveillance</div>
+                <h3 style={{ margin: 0, color: "#fff", fontSize: 17, fontWeight: 900 }}>🔔 Alertes délais</h3>
+              </div>
               <button onClick={() => setShowAlertes(false)} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 17 }}>✕</button>
             </div>
+
             <div style={{ padding: "16px", flex: 1 }}>
+              {/* Bouton activer notifications */}
               {notifPermission !== "granted" && (
                 <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 10, padding: "12px 14px", marginBottom: 14, fontFamily: "sans-serif" }}>
-                  <div style={{ fontWeight: 700, fontSize: 13, color: "#1a3a1a", marginBottom: 6 }}>🔔 Activer les notifications</div>
-                  <button onClick={async () => setNotifPermission(await Notification.requestPermission())}
-                    style={{ background: "#2d5a27", color: "#fff", border: "none", borderRadius: 7, padding: "7px 16px", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>Autoriser</button>
+                  <div style={{ fontWeight: 700, fontSize: 13, color: "#1a3a1a", marginBottom: 4 }}>🔔 Activer les notifications</div>
+                  <div style={{ fontSize: 12, color: "#5a7a5a", marginBottom: 8 }}>Recevez une alerte automatique le matin ou le soir quand un délai expire.</div>
+                  <button onClick={requestNotifPermission}
+                    style={{ background: "#2d5a27", color: "#fff", border: "none", borderRadius: 7, padding: "7px 16px", fontWeight: 700, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
+                    Autoriser les notifications
+                  </button>
                 </div>
               )}
+              {notifPermission === "granted" && (
+                <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 8, padding: "8px 12px", marginBottom: 12, fontFamily: "sans-serif", fontSize: 12, color: "#2d5a27", display: "flex", alignItems: "center", gap: 6 }}>
+                  ✅ Notifications activées — vous serez alerté automatiquement
+                </div>
+              )}
+
               {alertes.length === 0 ? (
                 <div style={{ textAlign: "center", padding: "40px 16px", color: "#5a7a5a" }}>
                   <div style={{ fontSize: 40, marginBottom: 10 }}>✅</div>
-                  <div style={{ fontWeight: 700, color: "#2d5a27", fontFamily: "sans-serif" }}>Aucune alerte</div>
+                  <div style={{ fontWeight: 700, color: "#2d5a27", fontSize: 15, fontFamily: "sans-serif" }}>Aucune alerte</div>
+                  <div style={{ fontSize: 12, color: "#8aaa8a", fontFamily: "sans-serif", marginTop: 4 }}>Tous les délais &gt; 3 jours</div>
                 </div>
-              ) : alertes.map((a, i) => {
-                const bgMap = { high: "#fff5f5", med: "#fffdf0", low: "#f7fbf7" };
-                const badgeMap = { high: { bg: "#ffebee", color: "#c62828", text: "AUJOURD'HUI" }, med: { bg: "#fff3cd", color: "#7a4f00", text: "DEMAIN" }, low: { bg: "#e8f5e9", color: "#2d5a27", text: a.quand.toUpperCase() } };
-                const badge = badgeMap[a.urgence];
-                return (
-                  <div key={i} onClick={() => { setDetailId(a.id); setShowAlertes(false); }}
-                    style={{ background: bgMap[a.urgence], borderRadius: 10, padding: "12px 14px", marginBottom: 10, cursor: "pointer", border: `1px solid ${a.urgence === "high" ? "#ffcdd2" : a.urgence === "med" ? "#ffe082" : "#c8e6c9"}` }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-                      <div>
-                        <div style={{ fontWeight: 800, fontSize: 14, color: "#1a3a1a", fontFamily: "sans-serif" }}>🐄 {a.vache}</div>
-                        <div style={{ fontSize: 13, color: a.color, fontWeight: 700, fontFamily: "sans-serif", marginTop: 3 }}>{a.icon} Délai {a.type} expire</div>
-                        <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginTop: 4 }}>📅 {formatDateAvecJour(a.date)} — {a.moment}</div>
-                      </div>
-                      <span style={{ background: badge.bg, color: badge.color, borderRadius: 20, padding: "2px 10px", fontSize: 10, fontWeight: 800, fontFamily: "sans-serif", flexShrink: 0 }}>{badge.text}</span>
-                    </div>
+              ) : (
+                <>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
+                    {alertes.filter(a => a.urgence === "high").length > 0 && (
+                      <span style={{ background: "#ffebee", color: "#c62828", borderRadius: 20, padding: "2px 10px", fontWeight: 700, fontSize: 11, fontFamily: "sans-serif" }}>
+                        🚨 {alertes.filter(a => a.urgence === "high").length} aujourd'hui
+                      </span>
+                    )}
+                    {alertes.filter(a => a.urgence === "med").length > 0 && (
+                      <span style={{ background: "#fff3cd", color: "#7a4f00", borderRadius: 20, padding: "2px 10px", fontWeight: 700, fontSize: 11, fontFamily: "sans-serif" }}>
+                        ⚠️ {alertes.filter(a => a.urgence === "med").length} demain
+                      </span>
+                    )}
+                    {alertes.filter(a => a.urgence === "low").length > 0 && (
+                      <span style={{ background: "#e8f5e9", color: "#2d5a27", borderRadius: 20, padding: "2px 10px", fontWeight: 700, fontSize: 11, fontFamily: "sans-serif" }}>
+                        📅 {alertes.filter(a => a.urgence === "low").length} dans 2-3j
+                      </span>
+                    )}
                   </div>
-                );
-              })}
+                  {alertes.map((a, i) => {
+                    const momentEmoji = a.moment === "matin" ? "🌅" : "🌆";
+                    const bgMap = { high: "#fff5f5", med: "#fffdf0", low: "#f7fbf7" };
+                    const borderMap = { high: "#ffcdd2", med: "#ffe082", low: "#c8e6c9" };
+                    const badgeMap = {
+                      high: { bg: "#ffebee", color: "#c62828", text: "AUJOURD'HUI" },
+                      med: { bg: "#fff3cd", color: "#7a4f00", text: "DEMAIN" },
+                      low: { bg: "#e8f5e9", color: "#2d5a27", text: a.quand.toUpperCase() }
+                    };
+                    const badge = badgeMap[a.urgence];
+                    return (
+                      <div key={i} onClick={() => { setDetailId(a.id); setShowAlertes(false); }}
+                        style={{ background: bgMap[a.urgence], border: `1px solid ${borderMap[a.urgence]}`, borderRadius: 10, padding: "12px 14px", marginBottom: 10, cursor: "pointer", transition: "transform 0.1s" }}
+                        onMouseEnter={e => e.currentTarget.style.transform = "translateX(-2px)"}
+                        onMouseLeave={e => e.currentTarget.style.transform = "none"}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontWeight: 800, fontSize: 14, color: "#1a3a1a", fontFamily: "sans-serif" }}>🐄 {a.vache}</div>
+                            <div style={{ fontSize: 13, color: a.color, fontWeight: 700, fontFamily: "sans-serif", marginTop: 3 }}>
+                              {a.icon} Délai {a.type} expire
+                            </div>
+                            <div style={{ fontSize: 12, color: "#5a7a5a", fontFamily: "sans-serif", marginTop: 4, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                              <span>📅 {formatDateAvecJour(a.date)}</span>
+                              <span style={{ background: a.moment === "matin" ? "#e3f2fd" : "#f3e5f5", color: a.moment === "matin" ? "#1565c0" : "#6a1b9a", borderRadius: 6, padding: "1px 8px", fontWeight: 700 }}>
+                                {momentEmoji} {a.moment.charAt(0).toUpperCase() + a.moment.slice(1)}
+                              </span>
+                            </div>
+                            {a.urgence === "high" && (
+                              <div style={{ marginTop: 6, fontSize: 11, fontWeight: 700, color: "#c62828", fontFamily: "sans-serif", background: "#ffebee", borderRadius: 5, padding: "3px 8px", display: "inline-block" }}>
+                                ⛔ Ne pas collecter le lait {a.type === "LAIT" ? "de cette traite" : ""}
+                              </div>
+                            )}
+                          </div>
+                          <span style={{ background: badge.bg, color: badge.color, borderRadius: 20, padding: "2px 10px", fontSize: 10, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", fontFamily: "sans-serif", flexShrink: 0, marginTop: 2 }}>
+                            {badge.text}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div style={{ marginTop: 6, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif", textAlign: "center" }}>
+                    Cliquer sur une alerte pour voir le détail
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Légende matin/soir */}
+            <div style={{ padding: "14px 16px", borderTop: "1px solid #e8f0e8", background: "#f7fbf7", flexShrink: 0 }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 8 }}>Rappel traite</div>
+              <div style={{ display: "flex", gap: 8 }}>
+                <div style={{ flex: 1, background: "#e3f2fd", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
+                  <div style={{ fontSize: 16 }}>🌅</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#1565c0", marginTop: 2 }}>Traite matin</div>
+                  <div style={{ fontSize: 10, color: "#5a7a5a" }}>Vérifier délai lait avant collecte du matin</div>
+                </div>
+                <div style={{ flex: 1, background: "#f3e5f5", borderRadius: 8, padding: "8px 10px", textAlign: "center", fontFamily: "sans-serif" }}>
+                  <div style={{ fontSize: 16 }}>🌆</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#6a1b9a", marginTop: 2 }}>Traite soir</div>
+                  <div style={{ fontSize: 10, color: "#5a7a5a" }}>Vérifier délai lait avant collecte du soir</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1099,12 +1474,15 @@ Réponds UNIQUEMENT avec le JSON.`,
       <div style={{ background: "linear-gradient(135deg,#1a3a1a 0%,#2d5a27 60%,#4a7c3f 100%)", color: "#fff", boxShadow: "0 4px 24px #0003" }}>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "22px 20px 14px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-            <button onClick={() => setShowMenu(true)} style={{ background: "#ffffff22", border: "1px solid #ffffff44", color: "#fff", borderRadius: 8, padding: "8px 12px", cursor: "pointer", fontSize: 18 }}>☰</button>
+            {/* Hamburger */}
+            <button onClick={() => setShowMenu(true)}
+              style={{ background: "#ffffff22", border: "1px solid #ffffff44", color: "#fff", borderRadius: 8, padding: "8px 12px", cursor: "pointer", fontSize: 18, lineHeight: 1, flexShrink: 0 }}
+              title="Menu">☰</button>
             <div style={{ fontSize: 42, lineHeight: 1 }}>🐄</div>
             <div>
-              <div style={{ fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "#a8d5a2", fontFamily: "sans-serif" }}>Élevage bovin lait</div>
+              <div style={{ fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: "#a8d5a2", fontFamily: "sans-serif", marginBottom: 2 }}>Élevage bovin lait</div>
               <h1 style={{ margin: 0, fontSize: 24, fontWeight: 900, letterSpacing: -1 }}>Carnet Sanitaire</h1>
-              <div style={{ fontSize: 11, color: "#c8e6c5", fontFamily: "sans-serif" }}>Registre des traitements vétérinaires — {vaches.length} vaches</div>
+              <div style={{ fontSize: 11, color: "#c8e6c5", marginTop: 2, fontFamily: "sans-serif" }}>Registre des traitements vétérinaires — {vaches.length} vaches</div>
             </div>
             <div style={{ marginLeft: "auto", display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
               {[{ n: records.length, label: "Traitements" }, { n: new Set(records.map(r => r.nomVache)).size, label: "Vaches" }, { n: vaches.length, label: "Troupeau" }].map(({ n, label }) => (
@@ -1113,127 +1491,244 @@ Réponds UNIQUEMENT avec le JSON.`,
                   <div style={{ fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: "#c8e6c5" }}>{label}</div>
                 </div>
               ))}
-              <button onClick={() => setShowAlertes(o => !o)}
-                style={{ position: "relative", background: alertes.length > 0 ? "#fff3cd" : "#ffffff22", border: alertes.length > 0 ? "1px solid #f0c040" : "1px solid #ffffff44", color: alertes.length > 0 ? "#7a4f00" : "#fff", borderRadius: 8, padding: "7px 14px", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 6 }}>
-                🔔{alertes.length > 0 && <span style={{ background: "#c62828", color: "#fff", borderRadius: 20, fontSize: 10, fontWeight: 900, padding: "1px 6px" }}>{alertes.length}</span>}
-              </button>
+
+              {/* Cloche alertes + menu Drive déplacé dans ☰ */}
+              <div style={{ display: "flex", gap: 6, marginLeft: 6 }}>
+                <button onClick={() => setShowAlertes(o => !o)}
+                  title="Alertes délais d'attente"
+                  style={{ position: "relative", background: alertes.length > 0 ? "#fff3cd" : "#ffffff22", border: alertes.length > 0 ? "1px solid #f0c040" : "1px solid #ffffff44", color: alertes.length > 0 ? "#7a4f00" : "#fff", borderRadius: 8, padding: "7px 14px", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 6 }}>
+                  🔔
+                  {alertes.length > 0 && (
+                    <span style={{ background: "#c62828", color: "#fff", borderRadius: 20, fontSize: 10, fontWeight: 900, padding: "1px 6px", minWidth: 18, textAlign: "center" }}>{alertes.length}</span>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Barre de recherche + bouton */}
           <div style={{ marginTop: 12, display: "flex", gap: 10, flexWrap: "wrap" }}>
             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍  Rechercher (vache, médicament, intervenant…)"
               style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 8, border: "none", fontSize: 13, fontFamily: "sans-serif", background: "#ffffff22", color: "#fff", outline: "none" }} />
             <button onClick={() => { setShowForm(true); setForm(emptyForm); setEditId(null); }}
-              style={{ background: "#fff", color: "#1a3a1a", border: "none", borderRadius: 8, padding: "9px 20px", fontWeight: 800, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>
+              style={{ background: "#fff", color: "#1a3a1a", border: "none", borderRadius: 8, padding: "9px 20px", fontWeight: 800, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif", boxShadow: "0 2px 8px #0002" }}>
               + Nouveau traitement
             </button>
           </div>
-          <div style={{ marginTop: 8, fontSize: 11, color: "#a8d5a2", fontFamily: "sans-serif" }}>
-            {driveLoading ? "⏳ Sauvegarde en cours…" : githubToken ? "☁️ Sauvegarde automatique GitHub activée" : "☁️ Configurez un token GitHub dans le menu pour la sauvegarde en ligne"}
+
+          <div style={{ marginTop: 8, fontSize: 11, color: "#a8d5a2", fontFamily: "sans-serif", display: "flex", alignItems: "center", gap: 6 }}>
+            💾 {lastSaved ? `Sauvegarde automatique · ${new Date(lastSaved).toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"})}` : "Sauvegarde automatique locale activée"}
           </div>
         </div>
         <div style={{ height: 4, background: "linear-gradient(90deg,#4caf50,#8bc34a,#cddc39)" }} />
       </div>
 
-      {/* ─── Onglets année ─── */}
-      <div style={{ background: "#fff", borderBottom: "2px solid #e8f0e8", overflowX: "auto" }}>
-        <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 16px", display: "flex", gap: 0 }}>
-          {["", ...anneesDispos].map(a => {
-            const actif = filterAnnee === a;
-            const label = a === "" ? "Tous" : a;
-            const nb = a === "" ? records.length : records.filter(r => (r.annee || (r.traitements?.[0]?.dateDebut || "").split("-")[0]) === a).length;
-            return (
-              <button key={a} onClick={() => setFilterAnnee(a)}
-                style={{ padding: "13px 22px", border: "none", borderBottom: actif ? "3px solid #2d5a27" : "3px solid transparent", background: "transparent", color: actif ? "#1a3a1a" : "#7a9a7a", fontWeight: actif ? 800 : 500, fontSize: 14, fontFamily: "sans-serif", cursor: "pointer", whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 7, transition: "color .15s" }}>
-                {label}
-                <span style={{ background: actif ? "#2d5a27" : "#e8f0e8", color: actif ? "#fff" : "#7a9a7a", borderRadius: 20, fontSize: 11, fontWeight: 700, padding: "1px 8px" }}>{nb}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 16px" }}>
 
-        {/* ─── FORMULAIRE ─── */}
+        {/* FORM MODAL */}
         {showForm && (
           <div style={{ position: "fixed", inset: 0, background: "#0007", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-            <div style={{ background: "#fff", borderRadius: 16, width: "100%", maxWidth: 680, boxShadow: "0 8px 48px #0004", maxHeight: "92vh", overflowY: "auto" }}>
-              {/* Header form */}
-              <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", borderRadius: "16px 16px 0 0", padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", position: "sticky", top: 0, zIndex: 10 }}>
+            <div style={{ background: "#fff", borderRadius: 16, width: "100%", maxWidth: 660, boxShadow: "0 8px 48px #0004", maxHeight: "92vh", overflowY: "auto" }}>
+              <div style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", borderRadius: "16px 16px 0 0", padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
                   <div style={{ color: "#a8d5a2", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", fontFamily: "sans-serif" }}>{editId ? "Modifier" : "Nouveau"}</div>
                   <h2 style={{ margin: 0, color: "#fff", fontSize: 18, fontWeight: 900 }}>Traitement vétérinaire</h2>
                 </div>
                 <button onClick={() => { setShowForm(false); setEditId(null); }} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 11px", cursor: "pointer", fontSize: 17 }}>✕</button>
               </div>
-
               <div style={{ padding: "18px 22px" }}>
-                {/* Vache */}
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 6, fontFamily: "sans-serif" }}>Vache *</label>
-                  <VacheSelector value={form.nomVache} onChange={v => setForm(f => ({ ...f, nomVache: v.nom, numeroVache: v.numero, travailVache: v.travail }))} vaches={vaches} />
-                  {form.numeroVache && <div style={{ marginTop: 5, fontSize: 11, color: "#5a7a5a", fontFamily: "sans-serif", background: "#f0f9f0", borderRadius: 6, padding: "4px 10px", display: "inline-block" }}>📋 {form.numeroVache} · N° travail : {form.travailVache}</div>}
-                </div>
-
-                {/* Année + Raison */}
-                <div style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 12, marginBottom: 16 }}>
-                  <div>
-                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>📅 Année</label>
-                    <input type="number" name="annee" value={form.annee} onChange={e => setForm(f => ({ ...f, annee: e.target.value }))} min="2000" max="2099"
-                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none" }}
-                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-                  </div>
-                  <div>
-                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Raison du traitement</label>
-                    <input type="text" name="raison" value={form.raison} onChange={e => setForm(f => ({ ...f, raison: e.target.value }))} placeholder="Ex: Mammite, boiterie…"
-                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none" }}
-                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
-                  </div>
-                </div>
-
-                {/* ─── Traitements ─── */}
-                <div style={{ marginBottom: 4 }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                    <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", fontFamily: "sans-serif" }}>Traitements administrés ({form.traitements.length})</label>
-                    <button onClick={addTraitement}
-                      style={{ background: "#e8f5e9", border: "2px solid #2d5a27", color: "#2d5a27", borderRadius: 20, padding: "5px 16px", fontWeight: 800, fontSize: 12, cursor: "pointer", fontFamily: "sans-serif" }}>
-                      + Ajouter un traitement
-                    </button>
-                  </div>
-
-                  {/* Résumé délais max si > 1 traitement */}
-                  {form.traitements.length > 1 && (() => {
-                    const { dateAttenteL, dateAttenteV, joursAttenteL, joursAttenteV } = calcDelaisMax(form.traitements);
-                    return (dateAttenteL || dateAttenteV) ? (
-                      <div style={{ background: "#fff8e1", border: "2px solid #f0c040", borderRadius: 10, padding: "10px 16px", marginBottom: 12, fontFamily: "sans-serif" }}>
-                        <div style={{ fontWeight: 800, fontSize: 12, color: "#7a4f00", marginBottom: 6 }}>⚠️ Délais d'attente maximaux (tous traitements confondus)</div>
-                        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                          {dateAttenteL && <span style={{ background: "#e3f2fd", color: "#1565c0", borderRadius: 6, padding: "3px 12px", fontWeight: 700, fontSize: 12 }}>🥛 Lait : {joursAttenteL}j → {formatDateAvecJour(dateAttenteL)}</span>}
-                          {dateAttenteV && <span style={{ background: "#ffebee", color: "#b71c1c", borderRadius: 6, padding: "3px 12px", fontWeight: 700, fontSize: 12 }}>🥩 Viande : {joursAttenteV}j → {formatDateAvecJour(dateAttenteV)}</span>}
-                        </div>
-                      </div>
-                    ) : null;
-                  })()}
-
-                  {form.traitements.map((t, i) => (
-                    <TraitementBlock key={t.id} t={t} index={i} total={form.traitements.length}
-                      onChange={updateTraitement} onRemove={removeTraitement}
-                      onReadOrdonnance={handleReadOrdonnance} readingId={readingId}
-                      readResult={readResult} onApplyRead={applyReadResult} onDismissRead={() => setReadResult(null)} />
-                  ))}
-
-                  {form.traitements.length > 1 && (
-                    <button onClick={addTraitement}
-                      style={{ width: "100%", padding: "11px", borderRadius: 10, border: "2px dashed #2d5a27", background: "#f9fff9", color: "#2d5a27", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "sans-serif" }}>
-                      + Ajouter un traitement supplémentaire
-                    </button>
+                  <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 6, fontFamily: "sans-serif" }}>Vache(s) *</label>
+                  <VacheSelector selected={form.selectedVaches || []} onChange={handleVacheSelect} vaches={vaches} />
+                  {form.selectedVaches && form.selectedVaches.length > 1 && (
+                    <div style={{ marginTop: 6, fontSize: 12, color: "#2d5a27", fontFamily: "sans-serif", background: "#e8f5e9", borderRadius: 6, padding: "5px 10px", fontWeight: 600 }}>
+                      ✓ {form.selectedVaches.length} traitements seront créés (un par vache)
+                    </div>
                   )}
                 </div>
-              </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
 
-              <div style={{ padding: "0 22px 18px", display: "flex", gap: 10, justifyContent: "flex-end", position: "sticky", bottom: 0, background: "#fff", borderTop: "1px solid #e8f0e8", paddingTop: 12 }}>
+                  {/* Début */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Date début traitement *</label>
+                    <input type="date" name="dateDebut" value={form.dateDebut} onChange={handleChange}
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      {["matin", "soir"].map(m => (
+                        <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: form.momentDebut === m ? 700 : 400, color: form.momentDebut === m ? "#1a3a1a" : "#7a9a7a" }}>
+                          <input type="radio" name="momentDebut" value={m} checked={form.momentDebut === m} onChange={handleChange} style={{ accentColor: "#2d5a27" }} />
+                          {m.charAt(0).toUpperCase() + m.slice(1)}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Fin */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Date fin traitement</label>
+                    <input type="date" name="dateFin" value={form.dateFin} onChange={handleChange}
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      {["matin", "soir"].map(m => (
+                        <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: form.momentFin === m ? 700 : 400, color: form.momentFin === m ? "#1a3a1a" : "#7a9a7a" }}>
+                          <input type="radio" name="momentFin" value={m} checked={form.momentFin === m} onChange={handleChange} style={{ accentColor: "#2d5a27" }} />
+                          {m.charAt(0).toUpperCase() + m.slice(1)}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Raison */}
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Raison du traitement</label>
+                    <input type="text" name="raison" value={form.raison} onChange={handleChange} placeholder="Ex: Mammite, boiterie…"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                  </div>
+
+                  {/* Médicament */}
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Nom du médicament</label>
+                    <MedicamentSelector value={form.medicament} onSelect={handleMedicamentSelect} />
+                  </div>
+
+                  {/* Posologie */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>💊 Posologie</label>
+                    <input type="text" name="posologie" value={form.posologie} onChange={handleChange} placeholder="Ex: 1 inj/jour pendant 5 jours"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                  </div>
+
+                  {/* Quantité */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>⚖️ Quantité / Dose</label>
+                    <input type="text" name="quantite" value={form.quantite} onChange={handleChange} placeholder="Ex: 10 ml, 2 comprimés"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                  </div>
+
+                  {/* Voie d'administration */}
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 6, fontFamily: "sans-serif" }}>💉 Voie d'administration</label>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                      {[
+                        { val: "Injectable IM", emoji: "💉" },
+                        { val: "Injectable IV", emoji: "🩸" },
+                        { val: "Injectable SC", emoji: "🔬" },
+                        { val: "Intramammaire", emoji: "🐄" },
+                        { val: "Per os (oral)", emoji: "👄" },
+                        { val: "Topique", emoji: "🖐️" },
+                        { val: "Pour-on", emoji: "💧" },
+                        { val: "Autre", emoji: "➕" },
+                      ].map(({ val, emoji }) => (
+                        <button key={val} type="button"
+                          onClick={() => setForm(f => ({ ...f, voieAdmin: f.voieAdmin === val ? "" : val }))}
+                          style={{
+                            padding: "7px 14px", borderRadius: 20, fontSize: 13, fontFamily: "sans-serif", fontWeight: 600, cursor: "pointer", transition: "all 0.15s",
+                            border: form.voieAdmin === val ? "2px solid #2d5a27" : "2px solid #d4e8d4",
+                            background: form.voieAdmin === val ? "#2d5a27" : "#f7fbf7",
+                            color: form.voieAdmin === val ? "#fff" : "#3a5a3a",
+                          }}>
+                          {emoji} {val}
+                        </button>
+                      ))}
+                    </div>
+                    {form.voieAdmin === "Autre" && (
+                      <input type="text" name="voieAdminAutre" placeholder="Préciser la voie…"
+                        value={form.voieAdminAutre || ""}
+                        onChange={e => setForm(f => ({ ...f, voieAdminAutre: e.target.value }))}
+                        style={{ marginTop: 8, width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                        onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                    )}
+                  </div>
+
+                  {/* Attente lait */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#1565c0", marginBottom: 5, fontFamily: "sans-serif" }}>🥛 Délai attente LAIT (jours)</label>
+                    <input type="number" name="joursAttenteL" value={form.joursAttenteL} onChange={handleChange} placeholder="Ex: 4" min="0"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #bbdefb", fontSize: 14, fontFamily: "sans-serif", color: "#1565c0", background: "#f3f8ff", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#1565c0"} onBlur={e => e.target.style.borderColor = "#bbdefb"} />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      {["matin", "soir"].map(m => (
+                        <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: form.momentAttenteL === m ? 700 : 400, color: form.momentAttenteL === m ? "#1565c0" : "#7a9a7a" }}>
+                          <input type="radio" name="momentAttenteL" value={m} checked={form.momentAttenteL === m} onChange={handleChange} style={{ accentColor: "#1565c0" }} />
+                          {m === "matin" ? "🌅 Matin" : "🌆 Soir"}
+                        </label>
+                      ))}
+                    </div>
+                    {form.joursAttenteL && (form.dateFin || form.dateDebut) && (
+                      <div style={{ marginTop: 5, fontSize: 12, color: "#1565c0", fontFamily: "sans-serif", fontWeight: 600, background: "#e3f2fd", borderRadius: 6, padding: "4px 10px" }}>
+                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateFin || form.dateDebut, form.joursAttenteL))} — {form.momentAttenteL}
+                        {!form.dateFin && <span style={{ color: "#888", fontWeight: 400 }}> (basé sur début — saisir fin de traitement pour précision)</span>}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Attente viande */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#b71c1c", marginBottom: 5, fontFamily: "sans-serif" }}>🥩 Délai attente VIANDE (jours)</label>
+                    <input type="number" name="joursAttenteV" value={form.joursAttenteV} onChange={handleChange} placeholder="Ex: 28" min="0"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #ffcdd2", fontSize: 14, fontFamily: "sans-serif", color: "#b71c1c", background: "#fff5f5", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#b71c1c"} onBlur={e => e.target.style.borderColor = "#ffcdd2"} />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      {["matin", "soir"].map(m => (
+                        <label key={m} style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer", fontFamily: "sans-serif", fontSize: 13, fontWeight: form.momentAttenteV === m ? 700 : 400, color: form.momentAttenteV === m ? "#b71c1c" : "#7a9a7a" }}>
+                          <input type="radio" name="momentAttenteV" value={m} checked={form.momentAttenteV === m} onChange={handleChange} style={{ accentColor: "#b71c1c" }} />
+                          {m === "matin" ? "🌅 Matin" : "🌆 Soir"}
+                        </label>
+                      ))}
+                    </div>
+                    {form.joursAttenteV && (form.dateFin || form.dateDebut) && (
+                      <div style={{ marginTop: 5, fontSize: 12, color: "#b71c1c", fontFamily: "sans-serif", fontWeight: 600, background: "#ffebee", borderRadius: 6, padding: "4px 10px" }}>
+                        📅 Fin attente : {formatDateAvecJour(addDays(form.dateFin || form.dateDebut, form.joursAttenteV))} — {form.momentAttenteV}
+                        {!form.dateFin && <span style={{ color: "#888", fontWeight: 400 }}> (basé sur début — saisir fin de traitement pour précision)</span>}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Ordonnance */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>N° ordonnance</label>
+                    <input type="text" name="numOrdonnance" value={form.numOrdonnance} onChange={handleChange} placeholder="Ex: ORD-2024-001"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                  </div>
+
+                  {/* Intervenant */}
+                  <div>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>Intervenant</label>
+                    <input type="text" name="intervenant" value={form.intervenant} onChange={handleChange} placeholder="Ex: Dr. Dupont"
+                      style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: "2px solid #d4e8d4", fontSize: 14, fontFamily: "sans-serif", color: "#1a3a1a", background: "#f7fbf7", outline: "none", boxSizing: "border-box" }}
+                      onFocus={e => e.target.style.borderColor = "#2d5a27"} onBlur={e => e.target.style.borderColor = "#d4e8d4"} />
+                  </div>
+
+                  {/* Photo ordonnance */}
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#3a5a3a", marginBottom: 5, fontFamily: "sans-serif" }}>📷 Photo de l'ordonnance</label>
+
+                    {form.photoOrdonnance ? (
+                      <div style={{ width: "100%" }}>
+                        <div style={{ position: "relative" }}>
+                          <img src={form.photoOrdonnance} alt="Ordonnance"
+                            style={{ width: "100%", maxHeight: 200, objectFit: "contain", borderRadius: 8, border: "2px solid #d4e8d4", background: "#f7fbf7", cursor: "pointer" }}
+                            onClick={() => setLightbox(form.photoOrdonnance)} />
+                          <button onClick={() => setForm(f => ({ ...f, photoOrdonnance: "" }))}
+                            style={{ position: "absolute", top: 6, right: 6, background: "#c62828", border: "none", color: "#fff", borderRadius: 20, width: 26, height: 26, cursor: "pointer", fontSize: 14, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+                        </div>
+                        <div style={{ marginTop: 5, fontSize: 11, color: "#8aaa8a", fontFamily: "sans-serif" }}>Cliquer sur l'image pour agrandir · ✕ pour supprimer</div>
+                      </div>
+
+                    ) : (
+                      // Zone drag & drop + coller
+                      <PhotoDropZone onImage={dataUrl => setForm(f => ({ ...f, photoOrdonnance: dataUrl }))} />
+                    )}
+                  </div>
+
+                </div>
+              </div>
+              <div style={{ padding: "0 22px 18px", display: "flex", gap: 10, justifyContent: "flex-end" }}>
                 <button onClick={() => { setShowForm(false); setEditId(null); }} style={{ padding: "9px 18px", borderRadius: 8, border: "2px solid #d4e8d4", background: "#fff", color: "#2d5a27", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
                 <button onClick={handleSubmit} style={{ padding: "9px 24px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", color: "#fff", fontWeight: 800, cursor: "pointer", fontFamily: "sans-serif", fontSize: 14 }}>{editId ? "✓ Enregistrer" : "✓ Ajouter"}</button>
               </div>
@@ -1241,79 +1736,76 @@ Réponds UNIQUEMENT avec le JSON.`,
           </div>
         )}
 
-        {/* LIGHTBOX */}
+      {/* LIGHTBOX */}
         {lightbox && (
           <div onClick={() => setLightbox(null)} style={{ position: "fixed", inset: 0, background: "#000c", zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", padding: 16, cursor: "zoom-out" }}>
-            <div onClick={e => e.stopPropagation()} style={{ position: "relative" }}>
-              <img src={lightbox} alt="Ordonnance" style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: 10, objectFit: "contain" }} />
-              <button onClick={() => setLightbox(null)} style={{ position: "absolute", top: -14, right: -14, background: "#c62828", border: "none", color: "#fff", borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontSize: 17, fontWeight: 900 }}>✕</button>
+            <div onClick={e => e.stopPropagation()} style={{ position: "relative", maxWidth: "95vw", maxHeight: "92vh" }}>
+              <img src={lightbox} alt="Ordonnance"
+                style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: 10, boxShadow: "0 8px 48px #000a", objectFit: "contain" }} />
+              <button onClick={() => setLightbox(null)}
+                style={{ position: "absolute", top: -14, right: -14, background: "#c62828", border: "none", color: "#fff", borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontSize: 17, fontWeight: 900, boxShadow: "0 2px 8px #0004" }}>✕</button>
+              <a href={lightbox} download="ordonnance.jpg"
+                style={{ position: "absolute", bottom: -14, right: -14, background: "#2d5a27", border: "none", color: "#fff", borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none", boxShadow: "0 2px 8px #0004" }}
+                title="Télécharger">⬇</a>
             </div>
           </div>
         )}
 
-        {/* DETAIL */}
+        {/* DETAIL MODAL */}
         {detail && (
           <div style={{ position: "fixed", inset: 0, background: "#0007", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-            <div style={{ background: "#fff", borderRadius: 16, width: "100%", maxWidth: 560, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 8px 48px #0004" }}>
+            <div style={{ background: "#fff", borderRadius: 16, width: "100%", maxWidth: 540, boxShadow: "0 8px 48px #0004" }}>
               <div style={{ background: "linear-gradient(135deg,#1a3a1a,#4a7c3f)", borderRadius: "16px 16px 0 0", padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
-                  <div style={{ color: "#a8d5a2", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", fontFamily: "sans-serif" }}>Détail</div>
+                  <div style={{ color: "#a8d5a2", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", fontFamily: "sans-serif" }}>Détail du traitement</div>
                   <h2 style={{ margin: "3px 0 0", color: "#fff", fontSize: 20, fontWeight: 900 }}>🐄 {detail.nomVache}</h2>
-                  {detail.annee && <div style={{ color: "#c8e6c5", fontSize: 12, fontFamily: "sans-serif", marginTop: 2 }}>📅 {detail.annee}</div>}
-                  {detail.numeroVache && <div style={{ color: "#c8e6c5", fontSize: 11, fontFamily: "sans-serif" }}>{detail.numeroVache} · N° {detail.travailVache}</div>}
+                  {detail.numeroVache && <div style={{ color: "#c8e6c5", fontSize: 11, fontFamily: "sans-serif", marginTop: 2 }}>{detail.numeroVache} · N° {detail.travailVache}</div>}
                 </div>
-                <button onClick={() => setDetailId(null)} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 11px", cursor: "pointer", fontSize: 17 }}>✕</button>
+                <button onClick={() => setDetailId(null)} style={{ background: "#ffffff22", border: "none", color: "#fff", borderRadius: 8, padding: "5px 11px", cursor: "pointer", fontSize: 17, marginTop: 2 }}>✕</button>
               </div>
               <div style={{ padding: "16px 24px" }}>
                 <StatusBadge record={detail} />
-                {detail.raison && <div style={{ marginTop: 10, background: "#f7fbf7", borderRadius: 8, padding: "8px 12px", fontFamily: "sans-serif", fontWeight: 600, color: "#1a3a1a" }}>🩺 {detail.raison}</div>}
+                <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                  {[
+                    { label: "Médicament", value: detail.medicament },
+                    { label: "Raison", value: detail.raison },
+                    { label: "💊 Posologie", value: detail.posologie },
+                    { label: "⚖️ Quantité / Dose", value: detail.quantite },
+                    { label: "💉 Voie d'administration", value: detail.voieAdmin === "Autre" ? detail.voieAdminAutre : detail.voieAdmin, span: true },
+                    { label: "Début traitement", value: detail.dateDebut ? `${formatDateAvecJour(detail.dateDebut)} — ${detail.momentDebut || "matin"}` : "—" },
+                    { label: "Fin traitement", value: detail.dateFin ? `${formatDateAvecJour(detail.dateFin)} — ${detail.momentFin || "matin"}` : "—" },
+                    { label: "Délai attente LAIT", value: detail.joursAttenteL ? `${detail.joursAttenteL} j → ${formatDateAvecJour(getDateAttenteL(detail))} ${detail.momentAttenteL === "matin" ? "🌅 matin" : "🌆 soir"}` : "—", accent: "#1565c0" },
+                    { label: "Délai attente VIANDE", value: detail.joursAttenteV ? `${detail.joursAttenteV} j → ${formatDateAvecJour(getDateAttenteV(detail))} ${detail.momentAttenteV === "matin" ? "🌅 matin" : "🌆 soir"}` : "—", accent: "#b71c1c" },
+                    { label: "N° ordonnance", value: detail.numOrdonnance },
+                    { label: "Intervenant", value: detail.intervenant },
+                  ].map(({ label, value, accent, span }) => (
+                    <div key={label} style={{ background: "#f7fbf7", borderRadius: 8, padding: "8px 12px", borderLeft: `3px solid ${accent || "#2d5a27"}`, gridColumn: span ? "1 / -1" : undefined }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 3 }}>{label}</div>
+                      <div style={{ fontWeight: 700, color: accent || "#1a3a1a", fontFamily: "sans-serif", fontSize: 13 }}>{value || "—"}</div>
+                    </div>
+                  ))}
+                </div>
 
-                {/* Résumé délais max */}
-                {(() => {
-                  const { dateAttenteL, dateAttenteV, joursAttenteL, joursAttenteV } = calcDelaisMax(detail.traitements);
-                  return (dateAttenteL || dateAttenteV) ? (
-                    <div style={{ marginTop: 12, background: "#fff8e1", border: "1px solid #f0c040", borderRadius: 10, padding: "10px 14px", fontFamily: "sans-serif" }}>
-                      <div style={{ fontWeight: 800, fontSize: 12, color: "#7a4f00", marginBottom: 6 }}>⚠️ Délais maximaux ({detail.traitements.length} traitement{detail.traitements.length > 1 ? "s" : ""})</div>
-                      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                        {dateAttenteL && <span style={{ background: "#e3f2fd", color: "#1565c0", borderRadius: 6, padding: "3px 12px", fontWeight: 700, fontSize: 12 }}>🥛 {joursAttenteL}j → {formatDateAvecJour(dateAttenteL)}</span>}
-                        {dateAttenteV && <span style={{ background: "#ffebee", color: "#b71c1c", borderRadius: 6, padding: "3px 12px", fontWeight: 700, fontSize: 12 }}>🥩 {joursAttenteV}j → {formatDateAvecJour(dateAttenteV)}</span>}
+                {/* Photo ordonnance dans le détail */}
+                {detail.photoOrdonnance && (
+                  <div style={{ marginTop: 14 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif", marginBottom: 6 }}>📷 Photo de l'ordonnance</div>
+                    <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
+                      <img src={detail.photoOrdonnance} alt="Ordonnance"
+                        onClick={() => setLightbox(detail.photoOrdonnance)}
+                        style={{ width: "100%", maxHeight: 180, objectFit: "contain", borderRadius: 8, border: "2px solid #d4e8d4", background: "#f7fbf7", cursor: "zoom-in" }} />
+                      <div style={{ marginTop: 4, fontSize: 11, color: "#5a7a5a", fontFamily: "sans-serif", display: "flex", gap: 12 }}>
+                        <span style={{ cursor: "pointer", color: "#1565c0", fontWeight: 600 }} onClick={() => setLightbox(detail.photoOrdonnance)}>🔍 Agrandir</span>
+                        <a href={detail.photoOrdonnance} download="ordonnance.jpg" style={{ color: "#2d5a27", fontWeight: 600, textDecoration: "none" }}>⬇ Télécharger</a>
                       </div>
                     </div>
-                  ) : null;
-                })()}
-
-                {/* Liste des traitements */}
-                {detail.traitements.map((t, i) => (
-                  <div key={t.id || i} style={{ marginTop: 14, border: "1px solid #e0f0e0", borderRadius: 10, padding: "12px 14px", background: "#f9fff9" }}>
-                    <div style={{ fontFamily: "sans-serif", fontSize: 12, fontWeight: 800, color: "#2d5a27", marginBottom: 8 }}>Traitement {i + 1}{detail.traitements.length > 1 ? ` / ${detail.traitements.length}` : ""}</div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                      {[
-                        { label: "Médicament", val: t.medicament, accent: "#2d5a27" },
-                        { label: "Posologie", val: t.posologie },
-                        { label: "Quantité", val: t.quantite },
-                        { label: "Voie d'admin.", val: t.voieAdmin === "Autre" ? t.voieAdminAutre : t.voieAdmin },
-                        { label: "Début", val: t.dateDebut ? `${formatDateAvecJour(t.dateDebut)} — ${t.momentDebut || "matin"}` : "—" },
-                        { label: "Fin", val: t.dateFin ? `${formatDateAvecJour(t.dateFin)} — ${t.momentFin || "matin"}` : "—" },
-                        { label: "Attente lait", val: t.joursAttenteL ? `${t.joursAttenteL}j → ${formatDateAvecJour(addDays(t.dateDebut, t.joursAttenteL))} ${t.momentAttenteL === "matin" ? "🌅" : "🌆"}` : "—", accent: "#1565c0" },
-                        { label: "Attente viande", val: t.joursAttenteV ? `${t.joursAttenteV}j → ${formatDateAvecJour(addDays(t.dateDebut, t.joursAttenteV))} ${t.momentAttenteV === "matin" ? "🌅" : "🌆"}` : "—", accent: "#b71c1c" },
-                        { label: "N° ordonnance", val: t.numOrdonnance },
-                        { label: "Intervenant", val: t.intervenant },
-                      ].map(({ label, val, accent }) => val && val !== "—" ? (
-                        <div key={label} style={{ background: "#fff", borderRadius: 7, padding: "7px 10px", borderLeft: `3px solid ${accent || "#2d5a27"}` }}>
-                          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", color: "#5a7a5a", fontFamily: "sans-serif" }}>{label}</div>
-                          <div style={{ fontWeight: 700, color: accent || "#1a3a1a", fontFamily: "sans-serif", fontSize: 12, marginTop: 2 }}>{val}</div>
-                        </div>
-                      ) : null)}
-                    </div>
-                    {t.photoOrdonnance && (
-                      <div style={{ marginTop: 10 }}>
-                        <img src={t.photoOrdonnance} alt="Ordonnance" onClick={() => setLightbox(t.photoOrdonnance)}
-                          style={{ width: "100%", maxHeight: 150, objectFit: "contain", borderRadius: 8, border: "2px solid #d4e8d4", cursor: "zoom-in" }} />
-                      </div>
-                    )}
                   </div>
-                ))}
-
+                )}
+                {!detail.photoOrdonnance && (
+                  <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, border: "1px dashed #c8d8c8", background: "#f7fbf7", fontFamily: "sans-serif", fontSize: 12, color: "#8aaa8a", textAlign: "center" }}>
+                    📄 Aucune photo d'ordonnance — modifier pour en ajouter une
+                  </div>
+                )}
                 <div style={{ marginTop: 16, display: "flex", gap: 10, justifyContent: "flex-end" }}>
                   <button onClick={() => setConfirmDelete(detail.id)} style={{ padding: "8px 14px", borderRadius: 8, border: "2px solid #ffcdd2", background: "#fff", color: "#c62828", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif" }}>🗑 Supprimer</button>
                   <button onClick={() => handleEdit(detail)} style={{ padding: "8px 16px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", color: "#fff", fontWeight: 800, cursor: "pointer", fontFamily: "sans-serif" }}>✎ Modifier</button>
@@ -1329,7 +1821,8 @@ Réponds UNIQUEMENT avec le JSON.`,
             <div style={{ background: "#fff", borderRadius: 14, padding: "24px 28px", maxWidth: 320, textAlign: "center", boxShadow: "0 8px 40px #0004" }}>
               <div style={{ fontSize: 36, marginBottom: 10 }}>⚠️</div>
               <h3 style={{ margin: "0 0 8px", color: "#1a3a1a", fontWeight: 900 }}>Confirmer la suppression</h3>
-              <div style={{ display: "flex", gap: 10, justifyContent: "center", marginTop: 16 }}>
+              <p style={{ color: "#555", fontFamily: "sans-serif", fontSize: 13, margin: "0 0 16px" }}>Cette action est irréversible.</p>
+              <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
                 <button onClick={() => setConfirmDelete(null)} style={{ padding: "8px 16px", borderRadius: 8, border: "2px solid #ddd", background: "#fff", color: "#333", fontWeight: 700, cursor: "pointer", fontFamily: "sans-serif" }}>Annuler</button>
                 <button onClick={() => handleDelete(confirmDelete)} style={{ padding: "8px 16px", borderRadius: 8, border: "none", background: "#c62828", color: "#fff", fontWeight: 800, cursor: "pointer", fontFamily: "sans-serif" }}>Supprimer</button>
               </div>
@@ -1345,7 +1838,7 @@ Réponds UNIQUEMENT avec le JSON.`,
               {records.length === 0 ? "Aucun traitement enregistré" : "Aucun résultat trouvé"}
             </div>
             <div style={{ fontSize: 13, fontFamily: "sans-serif", color: "#7a9a7a" }}>
-              {records.length === 0 ? 'Cliquez sur "+ Nouveau traitement" pour commencer' : "Essayez un autre terme ou année"}
+              {records.length === 0 ? 'Cliquez sur "+ Nouveau traitement" pour commencer\nou restaurez vos données depuis Google Drive ↗' : "Essayez un autre terme"}
             </div>
           </div>
         ) : (
@@ -1353,54 +1846,48 @@ Réponds UNIQUEMENT avec le JSON.`,
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "sans-serif" }}>
               <thead>
                 <tr style={{ background: "linear-gradient(135deg,#1a3a1a,#2d5a27)", color: "#fff" }}>
-                  {["Vache", "N° travail", "Année", "Raison", "Traitements", "Délai Lait max", "Délai Viande max", "Statut", ""].map(h => (
+                  {["Vache", "N° travail", "Médicament", "Voie", "Posologie / Dose", "Raison", "Début", "Fin", "Att. Lait", "Att. Viande", "Ordonnance", "Intervenant", "Statut", ""].map(h => (
                     <th key={h} style={{ padding: "10px 11px", textAlign: "left", fontSize: 9, letterSpacing: 1.5, textTransform: "uppercase", fontWeight: 700, whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((r, i) => {
-                  const { dateAttenteL, dateAttenteV, joursAttenteL, joursAttenteV } = calcDelaisMax(r.traitements);
-                  return (
-                    <tr key={r.id} onClick={() => setDetailId(r.id)}
-                      style={{ background: i % 2 === 0 ? "#fff" : "#f7fbf7", cursor: "pointer" }}
-                      onMouseEnter={e => e.currentTarget.style.background = "#e8f5e9"}
-                      onMouseLeave={e => e.currentTarget.style.background = i % 2 === 0 ? "#fff" : "#f7fbf7"}>
-                      <td style={{ padding: "9px 11px", fontWeight: 800, color: "#1a3a1a", whiteSpace: "nowrap" }}>🐄 {r.nomVache}</td>
-                      <td style={{ padding: "9px 11px", color: "#2d5a27", fontWeight: 600 }}>{r.travailVache || "—"}</td>
-                      <td style={{ padding: "9px 11px", color: "#5a7a5a", fontWeight: 600 }}>
-                        <span style={{ background: "#e8f5e9", color: "#1a3a1a", borderRadius: 6, padding: "2px 8px", fontSize: 12, fontWeight: 700 }}>{r.annee || "—"}</span>
-                      </td>
-                      <td style={{ padding: "9px 11px", color: "#555" }}>{r.raison || "—"}</td>
-                      <td style={{ padding: "9px 11px" }}>
-                        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                          {(r.traitements || []).map((t, j) => (
-                            <span key={j} style={{ background: "#f0f7f0", color: "#1a3a1a", borderRadius: 5, padding: "2px 8px", fontSize: 11, fontWeight: 600, display: "block" }}>
-                              {t.medicament || "—"}
-                              {t.voieAdmin && <span style={{ color: "#7a9a7a", marginLeft: 5 }}>· {t.voieAdmin}</span>}
-                            </span>
-                          ))}
-                        </div>
-                        {r.traitements.length > 1 && (
-                          <div style={{ fontSize: 10, color: "#8aaa8a", marginTop: 3 }}>{r.traitements.length} traitements</div>
-                        )}
-                      </td>
-                      <td style={{ padding: "9px 11px", color: "#1565c0", fontWeight: 700, whiteSpace: "nowrap", fontSize: 12 }}>
-                        {dateAttenteL ? <>{joursAttenteL}j<br/><span style={{ fontWeight: 400 }}>{formatDate(dateAttenteL)}</span></> : "—"}
-                      </td>
-                      <td style={{ padding: "9px 11px", color: "#b71c1c", fontWeight: 700, whiteSpace: "nowrap", fontSize: 12 }}>
-                        {dateAttenteV ? <>{joursAttenteV}j<br/><span style={{ fontWeight: 400 }}>{formatDate(dateAttenteV)}</span></> : "—"}
-                      </td>
-                      <td style={{ padding: "9px 11px" }}><StatusBadge record={r} /></td>
-                      <td style={{ padding: "9px 7px" }}>
-                        <div style={{ display: "flex", gap: 4 }}>
-                          <button onClick={e => { e.stopPropagation(); handleEdit(r); }} style={{ padding: "3px 8px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#f1f8e9", color: "#2d5a27", cursor: "pointer", fontWeight: 700, fontSize: 12 }}>✎</button>
-                          <button onClick={e => { e.stopPropagation(); setConfirmDelete(r.id); }} style={{ padding: "3px 8px", borderRadius: 6, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", cursor: "pointer", fontWeight: 700, fontSize: 12 }}>🗑</button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                {filtered.map((r, i) => (
+                  <tr key={r.id} onClick={() => setDetailId(r.id)}
+                    style={{ background: i % 2 === 0 ? "#fff" : "#f7fbf7", cursor: "pointer", transition: "background 0.15s" }}
+                    onMouseEnter={e => e.currentTarget.style.background = "#e8f5e9"}
+                    onMouseLeave={e => e.currentTarget.style.background = i % 2 === 0 ? "#fff" : "#f7fbf7"}>
+                    <td style={{ padding: "9px 11px", fontWeight: 800, color: "#1a3a1a", whiteSpace: "nowrap" }}>🐄 {r.nomVache}</td>
+                    <td style={{ padding: "9px 11px", color: "#2d5a27", fontWeight: 600 }}>{r.travailVache || "—"}</td>
+                    <td style={{ padding: "9px 11px", color: "#2d5a27", fontWeight: 600, maxWidth: 140, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.medicament || "—"}</td>
+                    <td style={{ padding: "9px 11px", color: "#555", whiteSpace: "nowrap" }}>
+                      {r.voieAdmin ? <span style={{ background: "#f3e5f5", color: "#6a1b9a", borderRadius: 5, padding: "2px 7px", fontSize: 11, fontWeight: 700 }}>{r.voieAdmin === "Autre" ? r.voieAdminAutre : r.voieAdmin}</span> : "—"}
+                    </td>
+                    <td style={{ padding: "9px 11px", color: "#555", fontSize: 12 }}>
+                      {r.posologie && <div>{r.posologie}</div>}
+                      {r.quantite && <div style={{ color: "#2d5a27", fontWeight: 600 }}>{r.quantite}</div>}
+                      {!r.posologie && !r.quantite && "—"}
+                    </td>
+                    <td style={{ padding: "9px 11px", color: "#555" }}>{r.raison || "—"}</td>
+                    <td style={{ padding: "9px 11px", color: "#333", whiteSpace: "nowrap", fontSize: 12 }}>{r.dateDebut ? `${formatDate(r.dateDebut)} ${r.momentDebut || ""}` : "—"}</td>
+                    <td style={{ padding: "9px 11px", color: "#333", whiteSpace: "nowrap", fontSize: 12 }}>{r.dateFin ? `${formatDate(r.dateFin)} ${r.momentFin || ""}` : "—"}</td>
+                    <td style={{ padding: "9px 11px", color: "#1565c0", fontWeight: 700, whiteSpace: "nowrap", fontSize: 12 }}>
+                      {r.joursAttenteL ? <>{r.joursAttenteL}j<br/><span style={{fontWeight:400}}>{formatDate(getDateAttenteL(r))}</span></> : "—"}
+                    </td>
+                    <td style={{ padding: "9px 11px", color: "#b71c1c", fontWeight: 700, whiteSpace: "nowrap", fontSize: 12 }}>
+                      {r.joursAttenteV ? <>{r.joursAttenteV}j<br/><span style={{fontWeight:400}}>{formatDate(getDateAttenteV(r))}</span></> : "—"}
+                    </td>
+                    <td style={{ padding: "9px 11px", color: "#555" }}>{r.numOrdonnance || "—"}{r.photoOrdonnance && <span title="Photo ordonnance" style={{ marginLeft: 5, fontSize: 12 }}>📷</span>}</td>
+                    <td style={{ padding: "9px 11px", color: "#555" }}>{r.intervenant || "—"}</td>
+                    <td style={{ padding: "9px 11px" }}><StatusBadge record={r} /></td>
+                    <td style={{ padding: "9px 7px" }}>
+                      <div style={{ display: "flex", gap: 4 }}>
+                        <button onClick={e => { e.stopPropagation(); handleEdit(r); }} style={{ padding: "3px 8px", borderRadius: 6, border: "1px solid #c8e6c9", background: "#f1f8e9", color: "#2d5a27", cursor: "pointer", fontWeight: 700, fontSize: 12 }}>✎</button>
+                        <button onClick={e => { e.stopPropagation(); setConfirmDelete(r.id); }} style={{ padding: "3px 8px", borderRadius: 6, border: "1px solid #ffcdd2", background: "#fff8f8", color: "#c62828", cursor: "pointer", fontWeight: 700, fontSize: 12 }}>🗑</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -1415,7 +1902,8 @@ Réponds UNIQUEMENT avec le JSON.`,
 }
 
 const { useState, useMemo, useRef, useEffect } = React;
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+const rootElement = document.getElementById('root');
+ReactDOM.createRoot(rootElement).render(React.createElement(App));
 </script>
 </body>
 </html>
