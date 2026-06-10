@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-09T17:22:44.303Z",
+  "savedAt": "2026-06-10T18:48:35.017Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -1054,8 +1054,7 @@
         {
           "nom": "BANQUISE",
           "numero": "",
-          "travail": "3439",
-          "naissance": "30/05/2026"
+          "travail": "3439"
         }
       ],
       "dateDebut": "2026-06-09",
