@@ -1210,7 +1210,15 @@ function App() {
       if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
       if (!res.ok) throw new Error("Fichier introuvable");
       const d = await res.json();
-      const text = decodeURIComponent(escape(atob(d.content)));
+      let text;
+      if (d.content) {
+        text = decodeURIComponent(escape(atob(d.content.replace(/\n/g, ""))));
+      } else if (d.download_url) {
+        const dl = await fetch(d.download_url);
+        text = await dl.text();
+      } else {
+        throw new Error("Fichier trop volumineux ou inaccessible");
+      }
       const parsed = JSON.parse(text);
       if (parsed.records) {
         setRecords(parsed.records);
