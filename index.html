@@ -1176,7 +1176,14 @@ function App() {
     setGithubLoading(true);
     showToast("Sauvegarde GitHub en cours…", "loading");
     try {
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records }, null, 2))));
+      // Supprimer les photos (base64) pour réduire la taille — elles restent en localStorage
+      const recordsSansPhotos = records.map(r => ({
+        ...r,
+        photoOrdonnance: r.photoOrdonnance ? "[photo]" : "",
+        traitements: (r.traitements || []).map(t => ({ ...t, photoOrdonnance: t.photoOrdonnance ? "[photo]" : "" }))
+      }));
+      const payload = JSON.stringify({ version: 1, savedAt: new Date().toISOString(), records: recordsSansPhotos }, null, 2);
+      const content = btoa(unescape(encodeURIComponent(payload)));
       let sha = "";
       try {
         const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
@@ -1191,8 +1198,9 @@ function App() {
         body: JSON.stringify(body)
       });
       if (res.status === 401) { localStorage.removeItem("carnet-github-token"); throw new Error("Token invalide — veuillez en créer un nouveau"); }
+      if (res.status === 422) throw new Error("Fichier trop volumineux pour GitHub (limite 1 Mo)");
       if (!res.ok) throw new Error("Erreur " + res.status);
-      showToast("✓ Sauvegardé sur GitHub", "success");
+      showToast("✓ Sauvegardé sur GitHub (photos exclues)", "success");
     } catch(e) {
       showToast("Erreur GitHub : " + e.message, "error");
     } finally { setGithubLoading(false); }
