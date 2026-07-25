@@ -915,6 +915,7 @@ function App() {
   const [form, setForm] = useState(emptyForm);
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [editGroupId, setEditGroupId] = useState(null);
   const [search, setSearch] = useState("");
   const [filterAnnee, setFilterAnnee] = useState("");
   const [detailId, setDetailId] = useState(null);
@@ -971,6 +972,22 @@ function App() {
     });
     return [...rs].sort((a,b)=>(b.dateDebut||"").localeCompare(a.dateDebut||""));
   },[records,search,filterAnnee]);
+
+  // Regroupe sur une ligne les fiches créées ensemble pour plusieurs vaches (même groupId)
+  const groupedFiltered = useMemo(()=>{
+    const groups=[];
+    const byId=new Map();
+    filtered.forEach(r=>{
+      if(r.groupId&&byId.has(r.groupId)){
+        byId.get(r.groupId).push(r);
+      } else {
+        const g=[r];
+        if(r.groupId)byId.set(r.groupId,g);
+        groups.push(g);
+      }
+    });
+    return groups;
+  },[filtered]);
 
   // ── GitHub ──
   const GITHUB_USER="davjog", GITHUB_REPO="sanitaire2", GITHUB_FILE="data.json";
@@ -1052,8 +1069,25 @@ function App() {
       const v=vList[0];
       setRecords(rs=>rs.map(r=>r.id===editId?{...form,nomVache:v.nom,numeroVache:v.numero,travailVache:v.travail,annee:anneeVal,id:editId}:r));
       setEditId(null);
+    } else if(editGroupId!==null){
+      const gid=editGroupId;
+      setRecords(rs=>{
+        const kept=rs.filter(r=>r.groupId!==gid);
+        const fresh=vList.map(v=>{
+          const rec={...form,nomVache:v.nom,numeroVache:v.numero,travailVache:v.travail,annee:anneeVal,id:Date.now()+Math.random()};
+          if(vList.length>1)rec.groupId=gid;else delete rec.groupId;
+          return rec;
+        });
+        return [...kept,...fresh];
+      });
+      setEditGroupId(null);
     } else {
-      setRecords(rs=>[...rs,...vList.map(v=>({...form,nomVache:v.nom,numeroVache:v.numero,travailVache:v.travail,annee:anneeVal,id:Date.now()+Math.random()}))]);
+      const gid=vList.length>1?Date.now()+Math.random():null;
+      setRecords(rs=>[...rs,...vList.map(v=>{
+        const rec={...form,nomVache:v.nom,numeroVache:v.numero,travailVache:v.travail,annee:anneeVal,id:Date.now()+Math.random()};
+        if(gid)rec.groupId=gid;
+        return rec;
+      })]);
     }
     setForm(emptyForm);setShowForm(false);
   };
@@ -1073,7 +1107,26 @@ function App() {
     setForm({...record,annee:record.annee||(record.dateDebut||"").split("-")[0]||new Date().getFullYear().toString(),traitements,selectedVaches:[{nom:record.nomVache,numero:record.numeroVache,travail:record.travailVache}]});
     setEditId(record.id);setShowForm(true);setDetailId(null);
   };
-  const handleDelete=id=>{setRecords(rs=>rs.filter(r=>r.id!==id));setConfirmDelete(null);setDetailId(null);};
+  const handleEditGroup=groupRecords=>{
+    const rep=groupRecords[0];
+    const traitements=rep.traitements&&rep.traitements.length>0?rep.traitements:[{
+      ...emptyTraitement(),
+      medicament:rep.medicament||"",posologie:rep.posologie||"",quantite:rep.quantite||"",
+      voieAdmin:rep.voieAdmin||"",dateDebut:rep.dateDebut||"",momentDebut:rep.momentDebut||"matin",
+      dateFin:rep.dateFin||"",momentFin:rep.momentFin||"matin",
+      joursAttenteL:rep.joursAttenteL||"",momentAttenteL:rep.momentAttenteL||"matin",
+      joursAttenteV:rep.joursAttenteV||"",momentAttenteV:rep.momentAttenteV||"matin",
+      numOrdonnance:rep.numOrdonnance||"",intervenant:rep.intervenant||"",
+      photoOrdonnance:rep.photoOrdonnance||"",
+    }];
+    setForm({...rep,annee:rep.annee||(rep.dateDebut||"").split("-")[0]||new Date().getFullYear().toString(),traitements,
+      selectedVaches:groupRecords.map(r=>({nom:r.nomVache,numero:r.numeroVache,travail:r.travailVache}))});
+    setEditGroupId(rep.groupId);setShowForm(true);setDetailId(null);
+  };
+  const handleDelete=id=>{
+    setRecords(rs=>Array.isArray(id)?rs.filter(r=>!id.includes(r.id)):rs.filter(r=>r.id!==id));
+    setConfirmDelete(null);setDetailId(null);
+  };
 
   // ── Mise à jour d'un champ d'un traitement ──
   const setTrt=(tid,field,val)=>setForm(f=>({...f,traitements:f.traitements.map(t=>t.id===tid?{...t,[field]:val}:t)}));
@@ -1363,8 +1416,8 @@ function App() {
                 </div>
               </div>
               <div style={{padding:"0 22px 18px",display:"flex",gap:10,justifyContent:"flex-end",position:"sticky",bottom:0,background:"#fff",borderTop:"1px solid #e8f0e8",paddingTop:12}}>
-                <button onClick={()=>{setShowForm(false);setEditId(null);}} style={{padding:"9px 18px",borderRadius:8,border:"2px solid #d4e8d4",background:"#fff",color:"#2d5a27",fontWeight:700,cursor:"pointer",fontFamily:"sans-serif"}}>Annuler</button>
-                <button onClick={handleSubmit} style={{padding:"9px 24px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#1a3a1a,#2d5a27)",color:"#fff",fontWeight:800,cursor:"pointer",fontFamily:"sans-serif",fontSize:14}}>{editId?"✓ Enregistrer":"✓ Ajouter"}</button>
+                <button onClick={()=>{setShowForm(false);setEditId(null);setEditGroupId(null);}} style={{padding:"9px 18px",borderRadius:8,border:"2px solid #d4e8d4",background:"#fff",color:"#2d5a27",fontWeight:700,cursor:"pointer",fontFamily:"sans-serif"}}>Annuler</button>
+                <button onClick={handleSubmit} style={{padding:"9px 24px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#1a3a1a,#2d5a27)",color:"#fff",fontWeight:800,cursor:"pointer",fontFamily:"sans-serif",fontSize:14}}>{editId||editGroupId?"✓ Enregistrer":"✓ Ajouter"}</button>
               </div>
             </div>
           </div>
@@ -1394,6 +1447,20 @@ function App() {
               </div>
               <div style={{padding:"16px 24px"}}>
                 <StatusBadge record={detail}/>
+                {detail.groupId&&(()=>{
+                  const siblings=records.filter(x=>x.groupId===detail.groupId&&x.id!==detail.id);
+                  return siblings.length>0?(
+                    <div style={{marginTop:9,fontFamily:"sans-serif"}}>
+                      <div style={{fontSize:10,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:"#5a7a5a",marginBottom:5}}>Même traitement aussi appliqué à</div>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                        {siblings.map(s=>(
+                          <button key={s.id} onClick={()=>setDetailId(s.id)}
+                            style={{padding:"4px 10px",borderRadius:20,border:"1px solid #c8e6c9",background:"#f1f8e9",color:"#2d5a27",fontWeight:700,fontSize:12,cursor:"pointer"}}>🐄 {s.nomVache}</button>
+                        ))}
+                      </div>
+                    </div>
+                  ):null;
+                })()}
                 {detail.raison&&<div style={{marginTop:9,background:"#f7fbf7",borderRadius:8,padding:"8px 12px",fontFamily:"sans-serif",fontWeight:600,color:"#1a3a1a"}}>🩺 {detail.raison}</div>}
                 {/* Délais max */}
                 {(()=>{
@@ -1455,7 +1522,9 @@ function App() {
             <div style={{background:"#fff",borderRadius:14,padding:"24px 28px",maxWidth:320,textAlign:"center",boxShadow:"0 8px 40px #0004"}}>
               <div style={{fontSize:36,marginBottom:10}}>⚠️</div>
               <h3 style={{margin:"0 0 8px",color:"#1a3a1a",fontWeight:900}}>Confirmer la suppression</h3>
-              <p style={{color:"#555",fontFamily:"sans-serif",fontSize:13,margin:"0 0 16px"}}>Cette action est irréversible.</p>
+              <p style={{color:"#555",fontFamily:"sans-serif",fontSize:13,margin:"0 0 16px"}}>
+                {Array.isArray(confirmDelete)&&confirmDelete.length>1?`${confirmDelete.length} fiches seront supprimées. Cette action est irréversible.`:"Cette action est irréversible."}
+              </p>
               <div style={{display:"flex",gap:10,justifyContent:"center"}}>
                 <button onClick={()=>setConfirmDelete(null)} style={{padding:"8px 16px",borderRadius:8,border:"2px solid #ddd",background:"#fff",color:"#333",fontWeight:700,cursor:"pointer",fontFamily:"sans-serif"}}>Annuler</button>
                 <button onClick={()=>handleDelete(confirmDelete)} style={{padding:"8px 16px",borderRadius:8,border:"none",background:"#c62828",color:"#fff",fontWeight:800,cursor:"pointer",fontFamily:"sans-serif"}}>Supprimer</button>
@@ -1482,7 +1551,9 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((r,i)=>{
+                {groupedFiltered.map((g,i)=>{
+                  const r=g[0];
+                  const isGroup=g.length>1;
                   const {dateAttenteL,dateAttenteV,joursAttenteL,joursAttenteV}=calcDelaisMax(r);
                   const trts=(r.traitements&&r.traitements.length>0)?r.traitements:[r];
                   const annee=r.annee||((r.dateDebut||trts[0]?.dateDebut||"").split("-")[0])||"";
@@ -1491,8 +1562,11 @@ function App() {
                       style={{background:i%2===0?"#fff":"#f7fbf7",cursor:"pointer"}}
                       onMouseEnter={e=>e.currentTarget.style.background="#e8f5e9"}
                       onMouseLeave={e=>e.currentTarget.style.background=i%2===0?"#fff":"#f7fbf7"}>
-                      <td style={{padding:"9px 11px",fontWeight:800,color:"#1a3a1a",whiteSpace:"nowrap"}}>🐄 {r.nomVache}</td>
-                      <td style={{padding:"9px 11px",color:"#2d5a27",fontWeight:600}}>{r.travailVache||"—"}</td>
+                      <td style={{padding:"9px 11px",fontWeight:800,color:"#1a3a1a"}}>
+                        🐄 {g.map(x=>x.nomVache).join(", ")}
+                        {isGroup&&<span style={{marginLeft:6,background:"#e8f5e9",color:"#2d5a27",borderRadius:6,padding:"1px 7px",fontSize:11,fontWeight:800}}>×{g.length}</span>}
+                      </td>
+                      <td style={{padding:"9px 11px",color:"#2d5a27",fontWeight:600}}>{isGroup?"—":(r.travailVache||"—")}</td>
                       <td style={{padding:"9px 11px"}}>
                         {annee&&<span style={{background:"#e8f5e9",color:"#1a3a1a",borderRadius:6,padding:"2px 8px",fontSize:12,fontWeight:700}}>{annee}</span>}
                       </td>
@@ -1516,8 +1590,8 @@ function App() {
                       <td style={{padding:"9px 11px"}}><StatusBadge record={r}/></td>
                       <td style={{padding:"9px 7px"}}>
                         <div style={{display:"flex",gap:4}}>
-                          <button onClick={e=>{e.stopPropagation();handleEdit(r);}} style={{padding:"3px 8px",borderRadius:6,border:"1px solid #c8e6c9",background:"#f1f8e9",color:"#2d5a27",cursor:"pointer",fontWeight:700,fontSize:12}}>✎</button>
-                          <button onClick={e=>{e.stopPropagation();setConfirmDelete(r.id);}} style={{padding:"3px 8px",borderRadius:6,border:"1px solid #ffcdd2",background:"#fff8f8",color:"#c62828",cursor:"pointer",fontWeight:700,fontSize:12}}>🗑</button>
+                          <button onClick={e=>{e.stopPropagation();isGroup?handleEditGroup(g):handleEdit(r);}} style={{padding:"3px 8px",borderRadius:6,border:"1px solid #c8e6c9",background:"#f1f8e9",color:"#2d5a27",cursor:"pointer",fontWeight:700,fontSize:12}}>✎</button>
+                          <button onClick={e=>{e.stopPropagation();setConfirmDelete(isGroup?g.map(x=>x.id):r.id);}} style={{padding:"3px 8px",borderRadius:6,border:"1px solid #ffcdd2",background:"#fff8f8",color:"#c62828",cursor:"pointer",fontWeight:700,fontSize:12}}>🗑</button>
                         </div>
                       </td>
                     </tr>
