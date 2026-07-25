@@ -969,7 +969,7 @@ function App() {
       const trts=(r.traitements&&r.traitements.length>0)?r.traitements:[r];
       return [r.nomVache,r.raison,r.annee,...trts.flatMap(t=>[t.medicament,t.intervenant,t.numOrdonnance])].some(v=>v?.toString().toLowerCase().includes(search.toLowerCase()));
     });
-    return rs;
+    return [...rs].sort((a,b)=>(b.dateDebut||"").localeCompare(a.dateDebut||""));
   },[records,search,filterAnnee]);
 
   // ── GitHub ──
