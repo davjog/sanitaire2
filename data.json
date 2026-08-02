@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-25T19:25:50.594Z",
+  "savedAt": "2026-08-02T08:36:19.891Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -1271,28 +1271,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -1308,9 +1290,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.122
+      "id": 1785659733516.3037,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "JIVA",
@@ -1451,28 +1452,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -1488,9 +1471,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.9895
+      "id": 1785659733516.514,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "LOLITA",
@@ -1631,28 +1633,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -1668,9 +1652,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.095
+      "id": 1785659733516.2324,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "LUCIOLE",
@@ -1811,28 +1814,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -1848,9 +1833,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.1282
+      "id": 1785659733516.7961,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "MOUSSELINE",
@@ -1991,28 +1995,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2028,9 +2014,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.8762
+      "id": 1785659733516.331,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "NEMO",
@@ -2171,28 +2176,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2208,9 +2195,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.0127
+      "id": 1785659733516.8113,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "NESQUICK",
@@ -2351,28 +2357,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2388,9 +2376,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.2446
+      "id": 1785659733516.9478,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "NOISETTE",
@@ -2531,28 +2538,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2568,9 +2557,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.092
+      "id": 1785659733516.751,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "OLAF",
@@ -2711,28 +2719,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2748,9 +2738,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584838.6155
+      "id": 1785659733516.6348,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "OLGA",
@@ -2891,28 +2900,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -2928,9 +2919,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.6492
+      "id": 1785659733516.06,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "OUVRIERE",
@@ -3071,28 +3081,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -3108,9 +3100,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.1963
+      "id": 1785659733516.3298,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "PUCE",
@@ -3251,28 +3262,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -3288,9 +3281,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.311
+      "id": 1785659733516.7747,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "RACLETTE",
@@ -3431,28 +3443,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -3468,9 +3462,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.181
+      "id": 1785659733516.1396,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "RUSTINE",
@@ -3611,28 +3624,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -3648,9 +3643,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.2632
+      "id": 1785659733516.9153,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "SHIPIE",
@@ -3791,28 +3805,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -3828,9 +3824,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.2107
+      "id": 1785659733516.606,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "SIDONIE",
@@ -3971,28 +3986,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4008,9 +4005,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.1223
+      "id": 1785659733516.2256,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "TAGADA",
@@ -4151,28 +4167,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4188,9 +4186,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.0752
+      "id": 1785659733516.51,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "TARTIFLETE",
@@ -4331,28 +4348,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4368,9 +4367,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.1873
+      "id": 1785659733516.4814,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "TARTINE",
@@ -4511,28 +4529,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4548,9 +4548,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.6084
+      "id": 1785659733516.4495,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "THALIA",
@@ -4691,28 +4710,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4728,9 +4729,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.5244
+      "id": 1785659733516.8054,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "TOUPIE",
@@ -4871,28 +4891,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -4908,9 +4910,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.247
+      "id": 1785659733516.378,
+      "groupId": 1785659733516.8362
     },
     {
       "nomVache": "VALJEAN",
@@ -5051,28 +5072,10 @@
         }
       ],
       "annee": "2026",
-      "raison": "Mouche",
+      "raison": "mouche",
       "traitements": [
         {
-          "id": 1785006449050.908,
-          "medicament": "Butox",
-          "posologie": "",
-          "quantite": "",
-          "voieAdmin": "Pour-on",
-          "dateDebut": "2026-07-07",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
-          "joursAttenteL": "",
-          "momentAttenteL": "matin",
-          "joursAttenteV": "",
-          "momentAttenteV": "matin",
-          "numOrdonnance": "",
-          "intervenant": "",
-          "photoOrdonnance": ""
-        },
-        {
-          "id": 1785006517675.2935,
+          "id": 1785658911566.3745,
           "medicament": "",
           "posologie": "",
           "quantite": "",
@@ -5088,9 +5091,28 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1785659708651.6448,
+          "medicament": "GERAPYX ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-02",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
-      "id": 1785006584839.3823
+      "id": 1785659733516.103,
+      "groupId": 1785659733516.8362
     }
   ]
 }
