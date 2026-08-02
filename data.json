@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-02T09:36:08.013Z",
+  "savedAt": "2026-08-02T09:36:31.864Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -8807,6 +8807,43 @@
       ],
       "id": 1785663364982.7163,
       "updatedAt": "2026-08-02T09:36:04.981Z"
+    },
+    {
+      "nomVache": "ADELE",
+      "numeroVache": "",
+      "travailVache": "1746",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        }
+      ],
+      "annee": "2026",
+      "raison": "mamite",
+      "traitements": [
+        {
+          "id": 1785663346516.1672,
+          "medicament": "Mastijet",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-02",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "4",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "30",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1785663388429.8477,
+      "updatedAt": "2026-08-02T09:36:28.429Z"
     }
   ]
 }
