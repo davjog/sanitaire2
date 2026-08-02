@@ -169,6 +169,13 @@ function formatDate(d) {
   return `${j}/${m}/${y}`;
 }
 
+// Date représentative d'une fiche (pour le tri) : date de début la plus récente parmi ses traitements
+function dateFiche(r) {
+  const trts = (r.traitements && r.traitements.length > 0) ? r.traitements : [r];
+  const dates = trts.map(t => t.dateDebut).filter(Boolean).sort();
+  return r.dateDebut || (dates.length ? dates[dates.length - 1] : "");
+}
+
 // Traitement vide (une ligne du tableau)
 const emptyTraitement = () => ({
   id: Date.now() + Math.random(),
@@ -970,7 +977,10 @@ function App() {
       const trts=(r.traitements&&r.traitements.length>0)?r.traitements:[r];
       return [r.nomVache,r.raison,r.annee,...trts.flatMap(t=>[t.medicament,t.intervenant,t.numOrdonnance])].some(v=>v?.toString().toLowerCase().includes(search.toLowerCase()));
     });
-    return [...rs].sort((a,b)=>(b.dateDebut||"").localeCompare(a.dateDebut||""));
+    return [...rs].sort((a,b)=>{
+      const c=dateFiche(b).localeCompare(dateFiche(a));
+      return c!==0?c:(b.id||0)-(a.id||0);
+    });
   },[records,search,filterAnnee]);
 
   // Regroupe sur une ligne les fiches créées ensemble pour plusieurs vaches (même groupId)
@@ -1248,7 +1258,7 @@ function App() {
             </button>
             <button onClick={()=>{setShowForm(true);setForm(emptyForm);setEditId(null);}}
               style={{background:"#fff",color:"#1a3a1a",border:"none",borderRadius:8,padding:"9px 20px",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"sans-serif",boxShadow:"0 2px 8px #0002"}}>
-              + Nouvelle fiche
+              + Nouveau traitement
             </button>
           </div>
           <div style={{marginTop:8,fontSize:11,color:"#a8d5a2",fontFamily:"sans-serif"}}>
@@ -1266,7 +1276,7 @@ function App() {
             <div style={{background:"#fff",borderRadius:16,width:"100%",maxWidth:800,boxShadow:"0 8px 48px #0004",maxHeight:"92vh",overflowY:"auto"}}>
               <div style={{background:"linear-gradient(135deg,#1a3a1a,#2d5a27)",borderRadius:"16px 16px 0 0",padding:"16px 24px",display:"flex",justifyContent:"space-between",alignItems:"center",position:"sticky",top:0,zIndex:10}}>
                 <div>
-                  <div style={{color:"#a8d5a2",fontSize:10,letterSpacing:3,textTransform:"uppercase",fontFamily:"sans-serif"}}>{editId?"Modifier":"Nouvelle"} fiche</div>
+                  <div style={{color:"#a8d5a2",fontSize:10,letterSpacing:3,textTransform:"uppercase",fontFamily:"sans-serif"}}>{editId?"Modifier":"Nouveau"} traitement</div>
                   <h2 style={{margin:0,color:"#fff",fontSize:18,fontWeight:900}}>Traitement vétérinaire</h2>
                 </div>
                 <button onClick={()=>{setShowForm(false);setEditId(null);}} style={{background:"#ffffff22",border:"none",color:"#fff",borderRadius:8,padding:"5px 11px",cursor:"pointer",fontSize:17}}>✕</button>
@@ -1538,7 +1548,7 @@ function App() {
           <div style={{textAlign:"center",padding:"52px 24px",color:"#5a7a5a"}}>
             <div style={{fontSize:52,marginBottom:12}}>🐄</div>
             <div style={{fontSize:17,fontWeight:700,color:"#2d5a27",marginBottom:6}}>{records.length===0?"Aucune fiche enregistrée":"Aucun résultat"}</div>
-            <div style={{fontSize:13,fontFamily:"sans-serif",color:"#7a9a7a"}}>{records.length===0?'Cliquez sur "+ Nouvelle fiche" pour commencer':"Essayez un autre terme"}</div>
+            <div style={{fontSize:13,fontFamily:"sans-serif",color:"#7a9a7a"}}>{records.length===0?'Cliquez sur "+ Nouveau traitement" pour commencer':"Essayez un autre terme"}</div>
           </div>
         ):(
           <div style={{overflowX:"auto",borderRadius:14,boxShadow:"0 2px 20px #0001",background:"#fff"}}>
