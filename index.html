@@ -183,30 +183,6 @@ function tsRecord(r) {
   return (r.id != null && !isNaN(n)) ? new Date(n).toISOString() : new Date(0).toISOString();
 }
 
-// Fusion de deux ensembles de fiches par id.
-// La version la plus récente (updatedAt) gagne ; à égalité, une suppression l'emporte.
-// Les fiches supprimées sont conservées comme « pierres tombales » (deleted:true) pour ne pas réapparaître.
-function mergeRecords(local, remote) {
-  const map = new Map();
-  const consider = rec => {
-    if (!rec || rec.id == null) return;
-    const norm = { ...rec, updatedAt: tsRecord(rec) };
-    const ex = map.get(rec.id);
-    if (!ex) { map.set(rec.id, norm); return; }
-    if (norm.updatedAt > ex.updatedAt || (norm.updatedAt === ex.updatedAt && norm.deleted && !ex.deleted)) {
-      map.set(rec.id, norm);
-    }
-  };
-  (local || []).forEach(consider);
-  (remote || []).forEach(consider);
-  return [...map.values()];
-}
-
-// Signature d'un ensemble de fiches (id + date de modif + tombstone) pour détecter les différences.
-function sigRecords(arr) {
-  return (arr || []).map(r => `${r.id}:${tsRecord(r)}:${r.deleted ? 1 : 0}`).sort().join("|");
-}
-
 // Traitement vide (une ligne du tableau)
 const emptyTraitement = () => ({
   id: Date.now() + Math.random(),
@@ -425,49 +401,6 @@ function Toast({ msg, type, onClose }) {
   return (
     <div style={{position:"fixed",bottom:24,right:24,zIndex:999,background:bg,color:"#fff",borderRadius:12,padding:"14px 20px",fontFamily:"sans-serif",fontSize:14,fontWeight:600,boxShadow:"0 4px 24px #0003",display:"flex",alignItems:"center",gap:10,maxWidth:340}}>
       <span>{type==="loading"?"⏳":type==="success"?"✓":"✕"}</span><span>{msg}</span>
-    </div>
-  );
-}
-
-// ══ MODAL TOKEN GITHUB ════════════════════════════════════════════
-function TokenModal({ onClose, onConfirm }) {
-  const [tok, setTok] = useState("");
-  const [show, setShow] = useState(false);
-  const existing = localStorage.getItem("carnet-github-token")||"";
-  return (
-    <div style={{position:"fixed",inset:0,zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
-      <div onClick={onClose} style={{position:"absolute",inset:0,background:"#0008"}}/>
-      <div style={{position:"relative",background:"#fff",borderRadius:16,padding:24,width:360,maxWidth:"95vw",boxShadow:"0 8px 40px #0004"}}>
-        <div style={{fontWeight:900,fontSize:17,color:"#1a3a1a",fontFamily:"sans-serif",marginBottom:12}}>🔑 Token GitHub</div>
-        {existing && (
-          <div style={{background:"#e8f5e9",border:"1px solid #a5d6a7",borderRadius:10,padding:12,marginBottom:14,fontFamily:"sans-serif"}}>
-            <div style={{fontSize:11,fontWeight:700,color:"#2d5a27",marginBottom:6}}>✅ Token enregistré</div>
-            <div style={{display:"flex",gap:6,alignItems:"center"}}>
-              <div style={{flex:1,fontFamily:"monospace",fontSize:12,background:"#fff",borderRadius:6,padding:"5px 8px",border:"1px solid #c8e6c9",wordBreak:"break-all"}}>
-                {show?existing:existing.slice(0,6)+"••••••••••••••"}
-              </div>
-              <button onClick={()=>setShow(s=>!s)} style={{padding:"5px 8px",borderRadius:6,border:"1px solid #c8e6c9",background:"#fff",cursor:"pointer"}}>{show?"🙈":"👁"}</button>
-            </div>
-          </div>
-        )}
-        <div style={{fontSize:12,color:"#5a7a5a",fontFamily:"sans-serif",marginBottom:10,lineHeight:1.6}}>
-          {existing?"Nouveau token pour remplacer l'actuel :":"Entrez votre token GitHub (ghp_...) — stocké localement dans ce navigateur."}
-        </div>
-        <input type="password" value={tok} onChange={e=>setTok(e.target.value)} placeholder="ghp_..."
-          style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"2px solid #d4e8d4",fontSize:14,fontFamily:"sans-serif",boxSizing:"border-box",marginBottom:14}}
-          onKeyDown={e=>e.key==="Enter"&&tok.startsWith("ghp_")&&onConfirm(tok)} autoFocus={!existing}/>
-        <div style={{display:"flex",gap:10}}>
-          <button onClick={()=>tok.startsWith("ghp_")&&onConfirm(tok)} disabled={!tok.startsWith("ghp_")}
-            style={{flex:1,padding:11,borderRadius:10,border:"none",background:tok.startsWith("ghp_")?"linear-gradient(135deg,#1a3a1a,#2d5a27)":"#ccc",color:"#fff",fontWeight:800,fontSize:14,cursor:tok.startsWith("ghp_")?"pointer":"not-allowed",fontFamily:"sans-serif"}}>
-            ✓ Enregistrer
-          </button>
-          <button onClick={onClose} style={{padding:"11px 16px",borderRadius:10,border:"1px solid #ddd",background:"#fff",color:"#555",fontWeight:600,cursor:"pointer",fontFamily:"sans-serif"}}>Fermer</button>
-        </div>
-        {existing && <button onClick={()=>{localStorage.removeItem("carnet-github-token");onClose();}}
-          style={{marginTop:10,width:"100%",padding:8,borderRadius:8,border:"1px solid #ffcdd2",background:"#fff8f8",color:"#c62828",fontWeight:600,fontSize:12,cursor:"pointer",fontFamily:"sans-serif"}}>
-          🗑 Supprimer le token
-        </button>}
-      </div>
     </div>
   );
 }
@@ -761,7 +694,7 @@ function StatsModal({ records, onClose }) {
 }
 
 // ══ MENU LATÉRAL ══════════════════════════════════════════════════
-function MenuPanel({ open, onClose, vaches, records, lastSaved, githubLoading, onGithubSave, onGithubRestore, onPrint, onStats, onManageToken, onImportVaches, onImportSauvegarde }) {
+function MenuPanel({ open, onClose, vaches, records, lastSaved, onPrint, onStats, onImportVaches, onImportSauvegarde }) {
   const [selVache, setSelVache] = useState("");
   const csvRef = useRef(null);
   const jsonRef = useRef(null);
@@ -913,26 +846,6 @@ function MenuPanel({ open, onClose, vaches, records, lastSaved, githubLoading, o
             <button onClick={downloadJSON} style={{width:"100%",padding:"9px 12px",borderRadius:8,border:"1px solid #bbdefb",background:"#f3f8ff",color:"#1565c0",fontWeight:600,fontSize:13,cursor:"pointer",fontFamily:"sans-serif"}}>📤 Exporter sauvegarde (JSON)</button>
           </div>
 
-          {/* GitHub */}
-          <div style={{marginBottom:18}}>
-            <div style={{fontSize:10,fontWeight:800,letterSpacing:2,textTransform:"uppercase",color:"#5a7a5a",fontFamily:"sans-serif",marginBottom:8,paddingBottom:5,borderBottom:"1px solid #e8f0e8"}}>🐙 GitHub</div>
-            <div style={{background:"#eef4ff",border:"1px solid #bbdefb",borderRadius:8,padding:"7px 10px",marginBottom:8,fontFamily:"sans-serif",fontSize:11,color:"#1565c0",lineHeight:1.5}}>
-              🔄 Synchro multi-appareils : fusion par fiche à l'ouverture et après chaque modification (aucune perte en saisie parallèle)
-            </div>
-            <button onClick={()=>{onGithubSave();onClose();}} disabled={githubLoading}
-              style={{width:"100%",marginBottom:6,padding:"9px 12px",borderRadius:8,border:"2px solid #1a3a1a",background:"#fff",color:githubLoading?"#8aaa8a":"#1a3a1a",fontWeight:700,fontSize:13,cursor:githubLoading?"not-allowed":"pointer",fontFamily:"sans-serif"}}>
-              🐙 {githubLoading?"En cours…":"Sauvegarder sur GitHub"}
-            </button>
-            <button onClick={()=>{onGithubRestore();onClose();}} disabled={githubLoading}
-              style={{width:"100%",marginBottom:6,padding:"9px 12px",borderRadius:8,border:"1px solid #ccc",background:"#f7fbf7",color:"#1a3a1a",fontWeight:600,fontSize:13,cursor:githubLoading?"not-allowed":"pointer",fontFamily:"sans-serif"}}>
-              🔄 Restaurer depuis GitHub
-            </button>
-            <button onClick={()=>{onManageToken();onClose();}}
-              style={{width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #e0e0e0",background:"#fafafa",color:"#555",fontWeight:600,fontSize:12,cursor:"pointer",fontFamily:"sans-serif"}}>
-              🔑 Gérer le token GitHub
-            </button>
-          </div>
-
           {/* PDF + Stats */}
           <div style={{marginBottom:18}}>
             <div style={{fontSize:10,fontWeight:800,letterSpacing:2,textTransform:"uppercase",color:"#5a7a5a",fontFamily:"sans-serif",marginBottom:8,paddingBottom:5,borderBottom:"1px solid #e8f0e8"}}>🖨️ PDF & Statistiques</div>
@@ -966,18 +879,10 @@ function App() {
   const [lastSaved, setLastSaved] = useState(null);
   const [showPrint, setShowPrint] = useState(false);
   const [showStats, setShowStats] = useState(false);
-  const [githubLoading, setGithubLoading] = useState(false);
-  const [showTokenModal, setShowTokenModal] = useState(false);
-  const [pendingGithubAction, setPendingGithubAction] = useState(null);
-  const [showRestoreConfirm, setShowRestoreConfirm] = useState(false);
   const [showAlertes, setShowAlertes] = useState(false);
   const [notifPermission, setNotifPermission] = useState(typeof Notification!=="undefined"?Notification.permission:"denied");
   const notifiedRef = useRef(new Set());
   const isLoading = useRef(true);
-  const recordsRef = useRef(records);
-  recordsRef.current = records; // toujours à jour → utilisé par les sauvegardes différées/flush
-  const autoSaveTimer = useRef(null);
-  const dirtyRef = useRef(false); // vrai quand des modifs utilisateur ne sont pas encore sur GitHub
 
   const showToast = (msg, type="success") => setToast({msg,type});
 
@@ -1043,117 +948,6 @@ function App() {
     return groups;
   },[filtered]);
 
-  // ── GitHub ──
-  const GITHUB_USER="davjog", GITHUB_REPO="sanitaire2", GITHUB_FILE="data.json";
-  const getToken=()=>localStorage.getItem("carnet-github-token")||"";
-
-  const githubAction=action=>{
-    if(action==="restore"){setShowRestoreConfirm(true);return;}
-    if(!getToken()){setPendingGithubAction(action);setShowTokenModal(true);}
-    else saveToGithub();
-  };
-
-  // Synchronisation GitHub : relit le distant, FUSIONNE avec le local, puis écrit l'union.
-  // Gère la saisie en parallèle sur plusieurs appareils sans perte de données.
-  const saveToGithub=async(token,silent=false)=>{
-    const tok=token||getToken();
-    if(!tok){if(!silent){setShowTokenModal(true);setPendingGithubAction("save");}return;}
-    if(!silent){setGithubLoading(true);showToast("Synchronisation GitHub…","loading");}
-    const URL_=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-    const H={Authorization:`token ${tok}`,Accept:"application/vnd.github.v3+json"};
-    try{
-      let done=false;
-      for(let attempt=0; attempt<4 && !done; attempt++){
-        // 1. Lecture du distant (sha + fiches)
-        let sha="",remoteRecs=[],remoteSaved="";
-        try{
-          const g=await fetch(URL_,{headers:H});
-          if(g.status===401){localStorage.removeItem("carnet-github-token");throw new Error("Token invalide");}
-          if(g.ok){const d=await g.json();sha=d.sha;const p=JSON.parse(decodeURIComponent(escape(atob(d.content))));if(Array.isArray(p.records))remoteRecs=p.records;remoteSaved=p.savedAt||"";}
-        }catch(e){if(e.message==="Token invalide")throw e;/* fichier absent → distant vide */}
-
-        // 2. Fusion local + distant
-        const local=recordsRef.current;
-        const merged=mergeRecords(local,remoteRecs);
-        const sM=sigRecords(merged),sL=sigRecords(local),sR=sigRecords(remoteRecs);
-
-        // 3a. Distant déjà à jour (contient déjà l'union) → rien à écrire
-        if(sM===sR){
-          if(sM!==sL) setRecords(merged); // on adopte d'éventuelles fiches distantes
-          const st=remoteSaved||new Date().toISOString();
-          try{localStorage.setItem("carnet-sanitaire-savedAt",st);setLastSaved(st);}catch(e){}
-          dirtyRef.current=false; done=true; break;
-        }
-
-        // 3b. Écriture de l'union
-        const stamp=new Date().toISOString();
-        const content=btoa(unescape(encodeURIComponent(JSON.stringify({version:3,savedAt:stamp,records:merged},null,2))));
-        const res=await fetch(URL_,{method:"PUT",headers:{...H,"Content-Type":"application/json"},body:JSON.stringify({message:`Carnet sanitaire ${new Date().toLocaleDateString("fr-FR")}`,content,...(sha?{sha}:{})})});
-        if(res.status===401){localStorage.removeItem("carnet-github-token");throw new Error("Token invalide");}
-        if(res.status===409||res.status===422){await new Promise(r=>setTimeout(r,400+attempt*300));continue;} // conflit d'écriture → on relit et refusionne
-        if(!res.ok)throw new Error("Erreur "+res.status);
-        if(sM!==sL) setRecords(merged); // adopte l'union localement (fiches distantes incluses)
-        try{localStorage.setItem("carnet-sanitaire-savedAt",stamp);setLastSaved(stamp);}catch(e){}
-        dirtyRef.current=false; done=true;
-      }
-      if(!done)throw new Error("Conflit persistant — réessayez");
-      showToast(silent?"🔄 Synchronisé avec GitHub":"✓ Synchronisé avec GitHub");
-    }catch(e){showToast("Erreur GitHub : "+e.message,"error");}
-    finally{if(!silent)setGithubLoading(false);}
-  };
-
-  const restoreFromGithub=async(token)=>{
-    const tok=token||getToken();
-    if(!tok){setShowTokenModal(true);setPendingGithubAction("restore");return;}
-    setGithubLoading(true);showToast("Restauration GitHub en cours…","loading");
-    try{
-      const res=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{headers:{Authorization:`token ${tok}`,Accept:"application/vnd.github.v3+json"}});
-      if(res.status===401){localStorage.removeItem("carnet-github-token");throw new Error("Token invalide");}
-      if(!res.ok)throw new Error("Fichier introuvable");
-      const d=await res.json();
-      const parsed=JSON.parse(decodeURIComponent(escape(atob(d.content))));
-      if(parsed.records){setRecords(parsed.records);showToast(`✓ ${parsed.records.length} fiche(s) restaurée(s)`);}
-      else throw new Error("Format invalide");
-    }catch(e){showToast("Erreur GitHub : "+e.message,"error");}
-    finally{setGithubLoading(false);}
-  };
-
-  // ── Synchronisation auto GitHub à l'ouverture ──
-  // À l'ouverture : on lance une synchro complète (relit le distant, fusionne avec le local,
-  // adopte les fiches distantes et renvoie l'union). Aucune perte, même en saisie parallèle.
-  const autoSyncDone=useRef(false);
-  useEffect(()=>{
-    if(autoSyncDone.current)return;
-    autoSyncDone.current=true;
-    if(!getToken())return;
-    (async()=>{
-      await new Promise(r=>setTimeout(r,400)); // laisse le chargement localStorage se faire d'abord
-      saveToGithub(undefined,true); // pull + merge + push en une passe
-    })();
-  },[]);
-
-  // ── Sauvegarde automatique GitHub après modification ──
-  // Déclenchée uniquement par une action utilisateur (dirtyRef). Débounce 3 s.
-  useEffect(()=>{
-    if(isLoading.current)return;
-    if(!dirtyRef.current)return;        // rien de neuf à envoyer
-    if(!getToken())return;             // pas de token → auto-save désactivée
-    if(autoSaveTimer.current)clearTimeout(autoSaveTimer.current);
-    autoSaveTimer.current=setTimeout(()=>{saveToGithub(undefined,true);},3000);
-  },[records]);
-
-  // Flush : appli mise en arrière-plan avec des modifs non envoyées → sauvegarde immédiate
-  useEffect(()=>{
-    const onHide=()=>{
-      if(document.visibilityState==="hidden"&&dirtyRef.current&&getToken()){
-        if(autoSaveTimer.current)clearTimeout(autoSaveTimer.current);
-        saveToGithub(undefined,true);
-      }
-    };
-    document.addEventListener("visibilitychange",onHide);
-    return ()=>document.removeEventListener("visibilitychange",onHide);
-  },[]);
-
   // ── Alertes ──
   const alertes = useMemo(()=>{
     const today=new Date();today.setHours(0,0,0,0);
@@ -1186,7 +980,6 @@ function App() {
   const handleSubmit=()=>{
     const vList=form.selectedVaches&&form.selectedVaches.length>0?form.selectedVaches:(form.nomVache?[{nom:form.nomVache,numero:form.numeroVache,travail:form.travailVache}]:[]);
     if(vList.length===0)return;
-    dirtyRef.current=true;
     const now=new Date().toISOString();
     const trts=form.traitements||[];
     const anneeVal=form.annee||(trts[0]?.dateDebut||"").split("-")[0]||new Date().getFullYear().toString();
@@ -1249,7 +1042,6 @@ function App() {
     setEditGroupId(rep.groupId);setShowForm(true);setDetailId(null);
   };
   const handleDelete=id=>{
-    dirtyRef.current=true;
     const ids=Array.isArray(id)?id:[id];
     const now=new Date().toISOString();
     // Suppression douce : on garde une « pierre tombale » pour que la suppression se propage
@@ -1273,28 +1065,11 @@ function App() {
       {toast && <Toast msg={toast.msg} type={toast.type} onClose={()=>setToast(null)}/>}
       {showPrint && <PrintModal records={liveRecords} onClose={()=>setShowPrint(false)}/>}
       {showStats && <StatsModal records={liveRecords} onClose={()=>setShowStats(false)}/>}
-      {showTokenModal && <TokenModal onClose={()=>{setShowTokenModal(false);setPendingGithubAction(null);}} onConfirm={tok=>{localStorage.setItem("carnet-github-token",tok);setShowTokenModal(false);if(pendingGithubAction==="save")saveToGithub(tok);else if(pendingGithubAction==="restore")restoreFromGithub(tok);setPendingGithubAction(null);}}/>}
-
-      {showRestoreConfirm && (
-        <div style={{position:"fixed",inset:0,zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
-          <div onClick={()=>setShowRestoreConfirm(false)} style={{position:"absolute",inset:0,background:"#0008"}}/>
-          <div style={{position:"relative",background:"#fff",borderRadius:16,padding:24,width:320,maxWidth:"95vw",boxShadow:"0 8px 40px #0004"}}>
-            <div style={{fontWeight:900,fontSize:17,color:"#c62828",fontFamily:"sans-serif",marginBottom:10}}>⚠️ Confirmer la restauration</div>
-            <div style={{fontSize:13,color:"#555",fontFamily:"sans-serif",marginBottom:18,lineHeight:1.6}}>Les données actuelles seront <strong>remplacées</strong> par celles de GitHub.</div>
-            <div style={{display:"flex",gap:10}}>
-              <button onClick={()=>{setShowRestoreConfirm(false);if(!getToken()){setPendingGithubAction("restore");setShowTokenModal(true);}else restoreFromGithub();}}
-                style={{flex:1,padding:11,borderRadius:10,border:"none",background:"#c62828",color:"#fff",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"sans-serif"}}>🔄 Oui, restaurer</button>
-              <button onClick={()=>setShowRestoreConfirm(false)} style={{padding:"11px 16px",borderRadius:10,border:"1px solid #ddd",background:"#fff",color:"#555",fontWeight:600,cursor:"pointer",fontFamily:"sans-serif"}}>Annuler</button>
-            </div>
-          </div>
-        </div>
-      )}
 
       <MenuPanel open={showMenu} onClose={()=>setShowMenu(false)} vaches={vaches} records={liveRecords} lastSaved={lastSaved}
-        githubLoading={githubLoading} onGithubSave={()=>{setShowMenu(false);setTimeout(()=>githubAction("save"),50);}} onGithubRestore={()=>{setShowMenu(false);setTimeout(()=>githubAction("restore"),50);}}
-        onPrint={()=>setShowPrint(true)} onStats={()=>setShowStats(true)} onManageToken={()=>{setShowMenu(false);setTimeout(()=>setShowTokenModal(true),50);}}
+        onPrint={()=>setShowPrint(true)} onStats={()=>setShowStats(true)}
         onImportVaches={nv=>{setVaches(nv.sort((a,b)=>a.nom.localeCompare(b.nom)));showToast(`✓ ${nv.length} vaches importées`);}}
-        onImportSauvegarde={nr=>{dirtyRef.current=true;setRecords(nr);showToast(`✓ ${nr.length} fiche(s) restaurée(s)`);}}/>
+        onImportSauvegarde={nr=>{setRecords(nr);showToast(`✓ ${nr.length} fiche(s) restaurée(s)`);}}/>
 
       {/* PANEL ALERTES */}
       {showAlertes && (
