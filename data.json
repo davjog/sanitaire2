@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-10T17:24:54.060Z",
+  "savedAt": "2026-08-12T04:15:55.832Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9086,6 +9086,43 @@
       "id": 1786382690007.9521,
       "updatedAt": "2026-08-10T17:24:50.005Z",
       "groupId": 1786382690005.3792
+    },
+    {
+      "nomVache": "JIVA",
+      "numeroVache": "",
+      "travailVache": "0820",
+      "selectedVaches": [
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820",
+          "naissance": "17/04/2014"
+        }
+      ],
+      "annee": "2026",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1786508087864.6667,
+          "medicament": "Aspirine ",
+          "posologie": "1",
+          "quantite": "",
+          "voieAdmin": "Per os (oral)",
+          "dateDebut": "2026-08-11",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786508152557.8337,
+      "updatedAt": "2026-08-12T04:15:52.556Z"
     }
   ]
 }
