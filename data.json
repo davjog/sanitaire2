@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-13T05:15:18.256Z",
+  "savedAt": "2026-08-13T05:16:02.692Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9111,7 +9111,7 @@
           "momentDebut": "soir",
           "dateFin": "",
           "momentFin": "matin",
-          "joursAttenteL": "10",
+          "joursAttenteL": "",
           "momentAttenteL": "matin",
           "joursAttenteV": "",
           "momentAttenteV": "matin",
@@ -9121,7 +9121,7 @@
         }
       ],
       "id": 1786508152557.8337,
-      "updatedAt": "2026-08-13T05:15:15.216Z",
+      "updatedAt": "2026-08-13T05:15:58.714Z",
       "deleted": false
     }
   ]
