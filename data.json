@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-13T05:20:05.379Z",
+  "savedAt": "2026-08-13T05:21:12.263Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9215,6 +9215,43 @@
       ],
       "id": 1786598401817.8667,
       "updatedAt": "2026-08-13T05:20:01.816Z"
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "annee": "2026",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1786598060084.8408,
+          "medicament": "Tolfine IM",
+          "posologie": "1 inj",
+          "quantite": "30ml",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-13",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786598468598.1091,
+      "updatedAt": "2026-08-13T05:21:08.598Z"
     }
   ]
 }
