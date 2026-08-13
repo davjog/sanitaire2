@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-12T11:59:41.705Z",
+  "savedAt": "2026-08-13T05:15:18.256Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9095,8 +9095,7 @@
         {
           "nom": "JIVA",
           "numero": "",
-          "travail": "0820",
-          "naissance": "17/04/2014"
+          "travail": "0820"
         }
       ],
       "annee": "2026",
@@ -9112,7 +9111,7 @@
           "momentDebut": "soir",
           "dateFin": "",
           "momentFin": "matin",
-          "joursAttenteL": "",
+          "joursAttenteL": "10",
           "momentAttenteL": "matin",
           "joursAttenteV": "",
           "momentAttenteV": "matin",
@@ -9122,7 +9121,8 @@
         }
       ],
       "id": 1786508152557.8337,
-      "updatedAt": "2026-08-12T04:15:52.556Z"
+      "updatedAt": "2026-08-13T05:15:15.216Z",
+      "deleted": false
     }
   ]
 }
