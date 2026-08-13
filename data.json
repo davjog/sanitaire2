@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-13T05:19:00.852Z",
+  "savedAt": "2026-08-13T05:20:05.379Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9178,6 +9178,43 @@
       ],
       "id": 1786598337011.9734,
       "updatedAt": "2026-08-13T05:18:57.010Z"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786598060084.8408,
+          "medicament": "Aspirine ",
+          "posologie": "50g/j",
+          "quantite": "",
+          "voieAdmin": "Per os (oral)",
+          "dateDebut": "2026-08-12",
+          "momentDebut": "soir",
+          "dateFin": "2026-08-14",
+          "momentFin": "soir",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "David",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786598401817.8667,
+      "updatedAt": "2026-08-13T05:20:01.816Z"
     }
   ]
 }
