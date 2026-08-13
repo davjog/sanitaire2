@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-13T17:21:11.868Z",
+  "savedAt": "2026-08-13T17:22:04.316Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9215,6 +9215,43 @@
       ],
       "id": 1786641668817.4429,
       "updatedAt": "2026-08-13T17:21:08.816Z"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "annee": "2026",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1786641471721.495,
+          "medicament": "Aspirine ",
+          "posologie": "1/jour",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-12",
+          "momentDebut": "soir",
+          "dateFin": "2026-08-14",
+          "momentFin": "soir",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "David ",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786641720490.4827,
+      "updatedAt": "2026-08-13T17:22:00.489Z"
     }
   ]
 }
