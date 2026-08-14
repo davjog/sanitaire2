@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-14T06:07:43.394Z",
+  "savedAt": "2026-08-14T13:50:56.219Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9289,6 +9289,43 @@
       ],
       "id": 1786687659672.9907,
       "updatedAt": "2026-08-14T06:07:39.671Z"
+    },
+    {
+      "nomVache": "JIVA",
+      "numeroVache": "",
+      "travailVache": "0820",
+      "selectedVaches": [
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820",
+          "naissance": "17/04/2014"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Infection respiratoire ",
+      "traitements": [
+        {
+          "id": 1786715386267.64,
+          "medicament": "Dexalone ",
+          "posologie": "1 inj",
+          "quantite": "15 ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-14",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "David",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786715452320.5115,
+      "updatedAt": "2026-08-14T13:50:52.320Z"
     }
   ]
 }
