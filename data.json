@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-15T04:42:13.758Z",
+  "savedAt": "2026-08-15T06:52:11.817Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9363,6 +9363,43 @@
       ],
       "id": 1786768930148.6833,
       "updatedAt": "2026-08-15T04:42:10.147Z"
+    },
+    {
+      "nomVache": "JIVA",
+      "numeroVache": "",
+      "travailVache": "0820",
+      "selectedVaches": [
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820",
+          "naissance": "17/04/2014"
+        }
+      ],
+      "date": "2026-08-15",
+      "raison": "Infection pulmonaire ",
+      "traitements": [
+        {
+          "id": 1786776601275.0847,
+          "medicament": "Tenaline ",
+          "posologie": "1 /inj",
+          "quantite": "60",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-15",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "David ",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786776728320.095,
+      "updatedAt": "2026-08-15T06:52:08.319Z"
     }
   ]
 }
