@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-14T13:50:56.219Z",
+  "savedAt": "2026-08-15T04:42:13.758Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9326,6 +9326,43 @@
       ],
       "id": 1786715452320.5115,
       "updatedAt": "2026-08-14T13:50:52.320Z"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "date": "2026-08-15",
+      "raison": "Mamite avd",
+      "traitements": [
+        {
+          "id": 1786768866177.5676,
+          "medicament": "Mastijet",
+          "posologie": "2/j",
+          "quantite": "",
+          "voieAdmin": "Intramammaire",
+          "dateDebut": "2026-08-14",
+          "momentDebut": "soir",
+          "dateFin": "2026-08-15",
+          "momentFin": "soir",
+          "joursAttenteL": "4",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "30",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786768930148.6833,
+      "updatedAt": "2026-08-15T04:42:10.147Z"
     }
   ]
 }
