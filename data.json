@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-16T17:15:33.239Z",
+  "savedAt": "2026-08-16T17:16:55.553Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9451,29 +9451,22 @@
       "travailVache": "7493",
       "selectedVaches": [
         {
-          "nom": "RUSTINE",
-          "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
-        },
-        {
           "nom": "NEMO",
           "numero": "",
-          "travail": "7493",
-          "naissance": "15/06/2017"
+          "travail": "7493"
         }
       ],
       "date": "2026-08-16",
-      "raison": "",
+      "raison": "Fièvre 39.4",
       "traitements": [
         {
           "id": 1786900505428.972,
           "medicament": "",
           "posologie": "",
-          "quantite": "",
-          "voieAdmin": "",
-          "dateDebut": "",
-          "momentDebut": "matin",
+          "quantite": "50g",
+          "voieAdmin": "Per os (oral)",
+          "dateDebut": "2026-08-16",
+          "momentDebut": "soir",
           "dateFin": "",
           "momentFin": "matin",
           "joursAttenteL": "",
@@ -9486,8 +9479,9 @@
         }
       ],
       "id": 1786900530198.4104,
-      "updatedAt": "2026-08-16T17:15:30.197Z",
-      "groupId": 1786900530197.1775
+      "updatedAt": "2026-08-16T17:16:51.737Z",
+      "groupId": 1786900530197.1775,
+      "deleted": false
     }
   ]
 }
