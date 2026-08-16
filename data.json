@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-15T06:54:17.987Z",
+  "savedAt": "2026-08-16T17:15:33.239Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9400,6 +9400,94 @@
       "id": 1786776728320.095,
       "updatedAt": "2026-08-15T06:54:14.182Z",
       "deleted": false
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "date": "2026-08-16",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1786900505428.972,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786900530197.3574,
+      "updatedAt": "2026-08-16T17:15:30.197Z",
+      "groupId": 1786900530197.1775
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "date": "2026-08-16",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1786900505428.972,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786900530198.4104,
+      "updatedAt": "2026-08-16T17:15:30.197Z",
+      "groupId": 1786900530197.1775
     }
   ]
 }
