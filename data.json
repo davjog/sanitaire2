@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-17T07:26:27.767Z",
+  "savedAt": "2026-08-17T07:26:57.982Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10296,11 +10296,10 @@
         {
           "nom": "JIVA",
           "numero": "",
-          "travail": "0820",
-          "naissance": "17/04/2014"
+          "travail": "0820"
         }
       ],
-      "date": "2026-08-17",
+      "date": "2026-08-15",
       "raison": "",
       "traitements": [
         {
@@ -10341,7 +10340,8 @@
         }
       ],
       "id": 1786951583969.9148,
-      "updatedAt": "2026-08-17T07:26:23.968Z"
+      "updatedAt": "2026-08-17T07:26:54.504Z",
+      "deleted": false
     }
   ]
 }
