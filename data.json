@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-17T07:22:11.776Z",
+  "savedAt": "2026-08-17T07:23:54.936Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9096,8 +9096,7 @@
         {
           "nom": "JIVA",
           "numero": "",
-          "travail": "0820",
-          "naissance": "17/04/2014"
+          "travail": "0820"
         }
       ],
       "annee": "2026",
@@ -9117,13 +9116,15 @@
           "momentAttenteL": "matin",
           "joursAttenteV": "",
           "momentAttenteV": "matin",
-          "numOrdonnance": "",
+          "numOrdonnance": "35372",
           "intervenant": "David",
           "photoOrdonnance": ""
         }
       ],
       "id": 1786715452320.5115,
-      "updatedAt": "2026-08-14T13:50:52.320Z"
+      "updatedAt": "2026-08-17T07:23:51.472Z",
+      "date": "2026-08-14",
+      "deleted": false
     },
     {
       "nomVache": "NEMO",
