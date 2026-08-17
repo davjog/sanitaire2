@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-17T07:21:49.357Z",
+  "savedAt": "2026-08-17T07:22:11.776Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9398,6 +9398,492 @@
       "updatedAt": "2026-08-16T17:16:51.737Z",
       "groupId": 1786900530197.1775,
       "deleted": false
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.5798,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.7676,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
+    },
+    {
+      "nomVache": "JIVA",
+      "numeroVache": "",
+      "travailVache": "0820",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.111,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.7234,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.729,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
+    },
+    {
+      "nomVache": "JIVA",
+      "numeroVache": "",
+      "travailVache": "0820",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        },
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493"
+        },
+        {
+          "nom": "JIVA",
+          "numero": "",
+          "travail": "0820"
+        }
+      ],
+      "annee": "2026",
+      "raison": "Fièvre ",
+      "traitements": [
+        {
+          "id": 1786380720335.874,
+          "medicament": "Multivin ",
+          "posologie": "",
+          "quantite": "5",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1786382640079.432,
+          "medicament": "Tolfine",
+          "posologie": "",
+          "quantite": "30",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-10",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "david",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1786951328104.7515,
+      "updatedAt": "2026-08-17T07:22:08.104Z",
+      "groupId": 1786382690005.3792,
+      "date": "2026-08-10"
     },
     {
       "nomVache": "RUSTINE",
