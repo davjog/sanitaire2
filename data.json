@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-17T07:18:00.432Z",
+  "savedAt": "2026-08-17T07:18:28.997Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9447,11 +9447,6 @@
           "nom": "NEMO",
           "numero": "",
           "travail": "7493"
-        },
-        {
-          "nom": "RUSTINE",
-          "numero": "",
-          "travail": "3868"
         }
       ],
       "date": "2026-08-16",
@@ -9459,7 +9454,7 @@
       "traitements": [
         {
           "id": 1786900505428.972,
-          "medicament": "",
+          "medicament": "aspirine",
           "posologie": "",
           "quantite": "50g",
           "voieAdmin": "Per os (oral)",
@@ -9477,7 +9472,7 @@
         }
       ],
       "id": 1786951077392.6306,
-      "updatedAt": "2026-08-17T07:17:57.392Z",
+      "updatedAt": "2026-08-17T07:18:25.336Z",
       "groupId": 1786900530197.1775,
       "deleted": false
     },
