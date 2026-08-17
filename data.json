@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-17T07:18:28.997Z",
+  "savedAt": "2026-08-17T07:18:45.768Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -9409,8 +9409,7 @@
         {
           "nom": "NEMO",
           "numero": "",
-          "travail": "7493",
-          "naissance": "15/06/2017"
+          "travail": "7493"
         }
       ],
       "date": "2026-08-17",
@@ -9418,7 +9417,7 @@
       "traitements": [
         {
           "id": 1786940061203.3167,
-          "medicament": "",
+          "medicament": "aspirine",
           "posologie": "",
           "quantite": "50g",
           "voieAdmin": "",
@@ -9436,7 +9435,8 @@
         }
       ],
       "id": 1786940110376.527,
-      "updatedAt": "2026-08-17T04:15:10.376Z"
+      "updatedAt": "2026-08-17T07:18:42.384Z",
+      "deleted": false
     },
     {
       "nomVache": "NEMO",
