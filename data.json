@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-21T19:07:22.844Z",
+  "savedAt": "2026-08-21T19:08:25.719Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10397,6 +10397,43 @@
       ],
       "id": 1787239732565.3945,
       "updatedAt": "2026-08-20T15:28:52.564Z"
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "date": "2026-08-21",
+      "raison": "Mamite arg",
+      "traitements": [
+        {
+          "id": 1787339241465.8503,
+          "medicament": "Tolfine IM",
+          "posologie": "27",
+          "quantite": "27ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-21",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787339301850.4993,
+      "updatedAt": "2026-08-21T19:08:21.850Z"
     }
   ]
 }
