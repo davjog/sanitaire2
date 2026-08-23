@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-23T17:24:22.149Z",
+  "savedAt": "2026-08-23T17:33:01.562Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10480,8 +10480,7 @@
         {
           "nom": "RUSTINE",
           "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
+          "travail": "3868"
         }
       ],
       "date": "2026-08-23",
@@ -10504,10 +10503,29 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1787505873440.9075,
+          "medicament": "Rumi c3",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-23",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
       "id": 1787505858258.4507,
-      "updatedAt": "2026-08-23T17:24:18.257Z"
+      "updatedAt": "2026-08-23T17:25:02.664Z",
+      "deleted": false
     }
   ]
 }
