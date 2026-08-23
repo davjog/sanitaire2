@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-23T16:19:52.660Z",
+  "savedAt": "2026-08-23T16:34:14.519Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10443,34 +10443,34 @@
         {
           "nom": "TARTINE",
           "numero": "",
-          "travail": "2792",
-          "naissance": "18/03/2022"
+          "travail": "2792"
         }
       ],
       "date": "2026-08-23",
-      "raison": "",
+      "raison": "Boiteries ard",
       "traitements": [
         {
           "id": 1787501945284.5571,
-          "medicament": "",
-          "posologie": "",
-          "quantite": "",
+          "medicament": "Ketodolor ",
+          "posologie": "1j",
+          "quantite": "20ml",
           "voieAdmin": "",
-          "dateDebut": "",
-          "momentDebut": "matin",
-          "dateFin": "",
-          "momentFin": "matin",
+          "dateDebut": "2026-08-22",
+          "momentDebut": "soir",
+          "dateFin": "2026-08-24",
+          "momentFin": "soir",
           "joursAttenteL": "",
           "momentAttenteL": "matin",
-          "joursAttenteV": "",
+          "joursAttenteV": "4",
           "momentAttenteV": "matin",
           "numOrdonnance": "",
-          "intervenant": "",
+          "intervenant": "David",
           "photoOrdonnance": ""
         }
       ],
       "id": 1787501989125.9863,
-      "updatedAt": "2026-08-23T16:19:49.124Z"
+      "updatedAt": "2026-08-23T16:21:44.323Z",
+      "deleted": false
     }
   ]
 }
