@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-23T16:19:07.083Z",
+  "savedAt": "2026-08-23T16:19:52.660Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10434,6 +10434,43 @@
       ],
       "id": 1787339301850.4993,
       "updatedAt": "2026-08-21T19:08:21.850Z"
+    },
+    {
+      "nomVache": "TARTINE",
+      "numeroVache": "",
+      "travailVache": "2792",
+      "selectedVaches": [
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        }
+      ],
+      "date": "2026-08-23",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1787501945284.5571,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787501989125.9863,
+      "updatedAt": "2026-08-23T16:19:49.124Z"
     }
   ]
 }
