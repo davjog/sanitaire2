@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-23T17:22:45.233Z",
+  "savedAt": "2026-08-23T17:24:22.149Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10471,6 +10471,43 @@
       "id": 1787501989125.9863,
       "updatedAt": "2026-08-23T17:22:41.413Z",
       "deleted": false
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-08-23",
+      "raison": "Manque de forme après vêlage 40.4°c",
+      "traitements": [
+        {
+          "id": 1787501945284.5571,
+          "medicament": "Tolfine IM",
+          "posologie": "1",
+          "quantite": "30ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-23",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787505858258.4507,
+      "updatedAt": "2026-08-23T17:24:18.257Z"
     }
   ]
 }
