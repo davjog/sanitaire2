@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-24T17:10:25.658Z",
+  "savedAt": "2026-08-24T17:12:03.375Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10471,6 +10471,43 @@
       "id": 1787501989125.9863,
       "updatedAt": "2026-08-23T16:21:44.323Z",
       "deleted": false
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-08-23",
+      "raison": "40.3 pas en forme rumic3 charbon ",
+      "traitements": [
+        {
+          "id": 1787591424026.2913,
+          "medicament": "Tolfine IM",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787591519462.7927,
+      "updatedAt": "2026-08-24T17:11:59.461Z"
     }
   ]
 }
