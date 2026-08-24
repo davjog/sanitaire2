@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-24T17:13:13.627Z",
+  "savedAt": "2026-08-24T17:14:42.831Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10517,12 +10517,11 @@
         {
           "nom": "RUSTINE",
           "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
+          "travail": "3868"
         }
       ],
       "date": "2026-08-24",
-      "raison": "",
+      "raison": "Manque de forme 39.7°c",
       "traitements": [
         {
           "id": 1787591424026.2913,
@@ -10544,7 +10543,8 @@
         }
       ],
       "id": 1787591589653.8054,
-      "updatedAt": "2026-08-24T17:13:09.653Z"
+      "updatedAt": "2026-08-24T17:13:42.974Z",
+      "deleted": false
     }
   ]
 }
