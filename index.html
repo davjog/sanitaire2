@@ -980,6 +980,7 @@ function App() {
   recordsRef.current = records; // toujours à jour → utilisé par les sauvegardes différées/flush
   const autoSaveTimer = useRef(null);
   const dirtyRef = useRef(false); // vrai quand des modifs utilisateur ne sont pas encore sur GitHub
+  const syncingRef = useRef(false); // vrai pendant qu'une synchro GitHub est en cours (évite les synchros concurrentes)
 
   const showToast = (msg, type="success") => setToast({msg,type});
 
@@ -1060,6 +1061,13 @@ function App() {
   const saveToGithub=async(token,silent=false)=>{
     const tok=token||getToken();
     if(!tok){if(!silent){setShowTokenModal(true);setPendingGithubAction("save");}return;}
+    if(syncingRef.current){
+      // Une synchro est déjà en cours : elle relit l'état le plus frais avant de terminer,
+      // donc les modifs en cours seront prises en compte sans qu'on lance un second appel concurrent.
+      if(!silent)showToast("Synchronisation déjà en cours…","loading");
+      return;
+    }
+    syncingRef.current=true;
     if(!silent){setGithubLoading(true);showToast("Synchronisation GitHub…","loading");}
     const URL_=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
     const H={Authorization:`token ${tok}`,Accept:"application/vnd.github.v3+json"};
@@ -1101,6 +1109,9 @@ function App() {
         if(res.status===409||res.status===422){await new Promise(r=>setTimeout(r,400+attempt*300));continue;} // conflit d'écriture → on relit et refusionne
         if(res.status===413)throw new Error("Fichier trop volumineux pour GitHub (limite 1 Mo)");
         if(!res.ok)throw new Error("Erreur "+res.status);
+        // Re-vérifie qu'aucune fiche locale n'est arrivée pendant l'envoi : si c'est le cas, on ne
+        // marque pas "propre" et on relit/refusionne tout de suite pour l'inclure à son tour.
+        if(sigRecords(recordsRef.current)!==sL){continue;}
         if(sM!==sL) setRecords(merged); // adopte l'union localement (fiches distantes incluses) — les photos restent en local
         try{localStorage.setItem("carnet-sanitaire-savedAt",stamp);setLastSaved(stamp);}catch(e){}
         dirtyRef.current=false; done=true;
@@ -1108,7 +1119,7 @@ function App() {
       if(!done)throw new Error("Conflit persistant — réessayez");
       showToast(silent?"🔄 Synchronisé avec GitHub":"✓ Synchronisé avec GitHub");
     }catch(e){showToast("Erreur GitHub : "+e.message,"error");}
-    finally{if(!silent)setGithubLoading(false);}
+    finally{syncingRef.current=false;if(!silent)setGithubLoading(false);}
   };
 
   const restoreFromGithub=async(token)=>{
