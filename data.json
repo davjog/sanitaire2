@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-27T13:39:02.490Z",
+  "savedAt": "2026-08-27T13:40:03.357Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10431,6 +10431,272 @@
       ],
       "id": 1787239732565.3945,
       "updatedAt": "2026-08-20T15:28:52.564Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        }
+      ],
+      "date": "2026-08-21",
+      "raison": "Mamite arg",
+      "traitements": [
+        {
+          "id": 1787339241465.8503,
+          "medicament": "Tolfine IM",
+          "posologie": "27",
+          "quantite": "27ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-21",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787339301850.4993,
+      "updatedAt": "2026-08-21T19:08:21.850Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TARTINE",
+      "numeroVache": "",
+      "travailVache": "2792",
+      "selectedVaches": [
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792"
+        }
+      ],
+      "date": "2026-08-23",
+      "raison": "Boiteries ard",
+      "traitements": [
+        {
+          "id": 1787501945284.5571,
+          "medicament": "Ketodolor ",
+          "posologie": "1j",
+          "quantite": "20ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-22",
+          "momentDebut": "soir",
+          "dateFin": "2026-08-24",
+          "momentFin": "soir",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "4",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "David",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787501989125.9863,
+      "updatedAt": "2026-08-23T16:21:44.323Z",
+      "deleted": false,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-08-23",
+      "raison": "40.3 pas en forme rumic3 charbon ",
+      "traitements": [
+        {
+          "id": 1787591424026.2913,
+          "medicament": "Tolfine IM",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "0",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "12",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787591519462.7927,
+      "updatedAt": "2026-08-24T17:11:59.461Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868"
+        }
+      ],
+      "date": "2026-08-24",
+      "raison": "Manque de forme 39.7°c",
+      "traitements": [
+        {
+          "id": 1787591424026.2913,
+          "medicament": "Tenaline ",
+          "posologie": "1 ",
+          "quantite": "60ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-24",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "7",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "21",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "David ",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787591589653.8054,
+      "updatedAt": "2026-08-24T17:13:42.974Z",
+      "deleted": false,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TARTINE",
+      "numeroVache": "",
+      "travailVache": "2792",
+      "selectedVaches": [
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        }
+      ],
+      "date": "2026-08-25",
+      "raison": "Boiteries ar",
+      "traitements": [
+        {
+          "id": 1787649405461.966,
+          "medicament": "Oxytetracycline ",
+          "posologie": "1/jour ",
+          "quantite": "35mk",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-25",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-27",
+          "momentFin": "matin",
+          "joursAttenteL": "3",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "14",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "1007028",
+          "intervenant": "Lucie ",
+          "photoOrdonnance": "[photo]"
+        }
+      ],
+      "id": 1787649563034.7065,
+      "updatedAt": "2026-08-25T09:19:23.034Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-08-25",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1787649405461.966,
+          "medicament": "Drench start rumiactif cforrumipjhyt cfor énergie cfor rumiphyt cfor cal ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-08-25",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-26",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "1007028",
+          "intervenant": "Luviy",
+          "photoOrdonnance": "[photo]"
+        }
+      ],
+      "id": 1787649695538.9258,
+      "updatedAt": "2026-08-25T09:21:35.538Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "BAGATELLE",
+      "numeroVache": "",
+      "travailVache": "3441",
+      "selectedVaches": [
+        {
+          "nom": "BAGATELLE",
+          "numero": "",
+          "travail": "3441",
+          "naissance": "22/08/2026"
+        }
+      ],
+      "date": "2026-08-25",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1787649405461.966,
+          "medicament": "Linco-spectin ",
+          "posologie": "1inj/j 2 le premier ",
+          "quantite": "5ml",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-08-25",
+          "momentDebut": "matin",
+          "dateFin": "2026-08-27",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1787649788771.7886,
+      "updatedAt": "2026-08-25T09:23:08.771Z",
       "photoOrdonnance": ""
     }
   ]
