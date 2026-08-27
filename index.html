@@ -392,6 +392,8 @@ function Toast({ msg, type, onClose }) {
 }
 
 // ══ MODAL TOKEN GITHUB ════════════════════════════════════════════
+const isValidGithubToken = t => /^(ghp_|github_pat_)/.test(t||"");
+
 function TokenModal({ onClose, onConfirm }) {
   const [tok, setTok] = useState("");
   const [show, setShow] = useState(false);
@@ -413,14 +415,14 @@ function TokenModal({ onClose, onConfirm }) {
           </div>
         )}
         <div style={{fontSize:12,color:"#5a7a5a",fontFamily:"sans-serif",marginBottom:10,lineHeight:1.6}}>
-          {existing?"Nouveau token pour remplacer l'actuel :":"Entrez votre token GitHub (ghp_...) — stocké localement dans ce navigateur."}
+          {existing?"Nouveau token pour remplacer l'actuel :":"Entrez votre token GitHub (ghp_... ou github_pat_...) — stocké localement dans ce navigateur."}
         </div>
-        <input type="password" value={tok} onChange={e=>setTok(e.target.value)} placeholder="ghp_..."
+        <input type="password" value={tok} onChange={e=>setTok(e.target.value)} placeholder="ghp_... ou github_pat_..."
           style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"2px solid #d4e8d4",fontSize:14,fontFamily:"sans-serif",boxSizing:"border-box",marginBottom:14}}
-          onKeyDown={e=>e.key==="Enter"&&tok.startsWith("ghp_")&&onConfirm(tok)} autoFocus={!existing}/>
+          onKeyDown={e=>e.key==="Enter"&&isValidGithubToken(tok)&&onConfirm(tok)} autoFocus={!existing}/>
         <div style={{display:"flex",gap:10}}>
-          <button onClick={()=>tok.startsWith("ghp_")&&onConfirm(tok)} disabled={!tok.startsWith("ghp_")}
-            style={{flex:1,padding:11,borderRadius:10,border:"none",background:tok.startsWith("ghp_")?"linear-gradient(135deg,#1a3a1a,#2d5a27)":"#ccc",color:"#fff",fontWeight:800,fontSize:14,cursor:tok.startsWith("ghp_")?"pointer":"not-allowed",fontFamily:"sans-serif"}}>
+          <button onClick={()=>isValidGithubToken(tok)&&onConfirm(tok)} disabled={!isValidGithubToken(tok)}
+            style={{flex:1,padding:11,borderRadius:10,border:"none",background:isValidGithubToken(tok)?"linear-gradient(135deg,#1a3a1a,#2d5a27)":"#ccc",color:"#fff",fontWeight:800,fontSize:14,cursor:isValidGithubToken(tok)?"pointer":"not-allowed",fontFamily:"sans-serif"}}>
             ✓ Enregistrer
           </button>
           <button onClick={onClose} style={{padding:"11px 16px",borderRadius:10,border:"1px solid #ddd",background:"#fff",color:"#555",fontWeight:600,cursor:"pointer",fontFamily:"sans-serif"}}>Fermer</button>
@@ -1004,13 +1006,20 @@ function App() {
     if(!tok){setShowTokenModal(true);setPendingGithubAction("save");return;}
     setGithubLoading(true);showToast("Sauvegarde GitHub en cours…","loading");
     try{
-      const content=btoa(unescape(encodeURIComponent(JSON.stringify({version:2,savedAt:new Date().toISOString(),records},null,2))));
+      // Retire les photos (base64) pour rester sous la limite de 1 Mo de l'API GitHub — elles restent en localStorage
+      const recordsSansPhotos=records.map(r=>({
+        ...r,
+        photoOrdonnance:r.photoOrdonnance?"[photo]":"",
+        traitements:(r.traitements||[]).map(t=>({...t,photoOrdonnance:t.photoOrdonnance?"[photo]":""})),
+      }));
+      const content=btoa(unescape(encodeURIComponent(JSON.stringify({version:2,savedAt:new Date().toISOString(),records:recordsSansPhotos},null,2))));
       let sha="";
       try{const g=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{headers:{Authorization:`token ${tok}`,Accept:"application/vnd.github.v3+json"}});if(g.ok){const d=await g.json();sha=d.sha;}}catch(e){}
       const res=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{method:"PUT",headers:{Authorization:`token ${tok}`,Accept:"application/vnd.github.v3+json","Content-Type":"application/json"},body:JSON.stringify({message:`Carnet sanitaire ${new Date().toLocaleDateString("fr-FR")}`,content,...(sha?{sha}:{})})});
       if(res.status===401){localStorage.removeItem("carnet-github-token");throw new Error("Token invalide");}
+      if(res.status===422||res.status===413)throw new Error("Fichier trop volumineux pour GitHub (limite 1 Mo)");
       if(!res.ok)throw new Error("Erreur "+res.status);
-      showToast("✓ Sauvegardé sur GitHub");
+      showToast("✓ Sauvegardé sur GitHub (photos exclues)");
     }catch(e){showToast("Erreur GitHub : "+e.message,"error");}
     finally{setGithubLoading(false);}
   };
