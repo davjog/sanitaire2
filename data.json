@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-03T07:53:03.384Z",
+  "savedAt": "2026-09-03T07:53:46.171Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10803,7 +10803,7 @@
           "momentAttenteV": "matin",
           "numOrdonnance": "",
           "intervenant": "",
-          "photoOrdonnance": ""
+          "photoOrdonnance": "[photo]"
         },
         {
           "id": 1788421957684.8352,
@@ -10825,7 +10825,7 @@
         }
       ],
       "id": 1788421938741.4226,
-      "updatedAt": "2026-09-03T07:52:59.704Z",
+      "updatedAt": "2026-09-03T07:53:41.188Z",
       "deleted": false,
       "photoOrdonnance": ""
     }
