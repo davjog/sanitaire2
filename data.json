@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-03T07:52:22.577Z",
+  "savedAt": "2026-09-03T07:53:03.384Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10745,8 +10745,7 @@
         {
           "nom": "RUSTINE",
           "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
+          "travail": "3868"
         }
       ],
       "date": "2026-09-03",
@@ -10805,10 +10804,29 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1788421957684.8352,
+          "medicament": "Pose  dun trocart",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-09-02",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
         }
       ],
       "id": 1788421938741.4226,
-      "updatedAt": "2026-09-03T07:52:18.741Z",
+      "updatedAt": "2026-09-03T07:52:59.704Z",
+      "deleted": false,
       "photoOrdonnance": ""
     }
   ]
