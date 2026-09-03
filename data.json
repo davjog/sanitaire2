@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-03T07:48:12.426Z",
+  "savedAt": "2026-09-03T07:52:22.577Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10735,6 +10735,80 @@
       ],
       "id": 1788421688979.3293,
       "updatedAt": "2026-09-03T07:48:08.978Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-09-03",
+      "raison": "Obstruction oesophage ",
+      "traitements": [
+        {
+          "id": 1788421598708.5044,
+          "medicament": "Citramox",
+          "posologie": "",
+          "quantite": "50",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-09-02",
+          "momentDebut": "matin",
+          "dateFin": "2026-09-04",
+          "momentFin": "matin",
+          "joursAttenteL": "3",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "18",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "1007031",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1788421852538.5315,
+          "medicament": "Metacam (méloxicam)",
+          "posologie": "",
+          "quantite": "8ml",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "5",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "15",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1788421890453.7874,
+          "medicament": "Spasmipur ",
+          "posologie": "",
+          "quantite": "10ml",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-09-02",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "1",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "3",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1788421938741.4226,
+      "updatedAt": "2026-09-03T07:52:18.741Z",
       "photoOrdonnance": ""
     }
   ]
