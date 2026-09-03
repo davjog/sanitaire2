@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-08-27T13:40:03.357Z",
+  "savedAt": "2026-09-03T07:48:12.426Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10697,6 +10697,44 @@
       ],
       "id": 1787649788771.7886,
       "updatedAt": "2026-08-25T09:23:08.771Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RUSTINE",
+      "numeroVache": "",
+      "travailVache": "3868",
+      "selectedVaches": [
+        {
+          "nom": "RUSTINE",
+          "numero": "",
+          "travail": "3868",
+          "naissance": "27/01/2020"
+        }
+      ],
+      "date": "2026-09-03",
+      "raison": "Manque d'appétit ",
+      "traitements": [
+        {
+          "id": 1788421598708.5044,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "Per os (oral)",
+          "dateDebut": "2026-09-01",
+          "momentDebut": "soir",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1788421688979.3293,
+      "updatedAt": "2026-09-03T07:48:08.978Z",
       "photoOrdonnance": ""
     }
   ]
