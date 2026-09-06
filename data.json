@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-06T03:38:00.155Z",
+  "savedAt": "2026-09-06T03:38:23.287Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10849,7 +10849,7 @@
           "posologie": "",
           "quantite": "",
           "voieAdmin": "",
-          "dateDebut": "",
+          "dateDebut": "2026-09-05",
           "momentDebut": "matin",
           "dateFin": "",
           "momentFin": "matin",
@@ -10863,7 +10863,7 @@
         }
       ],
       "id": 1788665823617.8477,
-      "updatedAt": "2026-09-06T03:37:56.213Z",
+      "updatedAt": "2026-09-06T03:38:19.484Z",
       "deleted": false,
       "photoOrdonnance": ""
     }
