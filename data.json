@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-06T03:37:07.558Z",
+  "savedAt": "2026-09-06T03:38:00.155Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10837,16 +10837,15 @@
         {
           "nom": "RUSTINE",
           "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
+          "travail": "3868"
         }
       ],
       "date": "2026-09-05",
-      "raison": "",
+      "raison": "Obstruction oesophage ",
       "traitements": [
         {
           "id": 1788665736734.7346,
-          "medicament": "",
+          "medicament": "Tolfine IM",
           "posologie": "",
           "quantite": "",
           "voieAdmin": "",
@@ -10854,9 +10853,9 @@
           "momentDebut": "matin",
           "dateFin": "",
           "momentFin": "matin",
-          "joursAttenteL": "",
+          "joursAttenteL": "0",
           "momentAttenteL": "matin",
-          "joursAttenteV": "",
+          "joursAttenteV": "12",
           "momentAttenteV": "matin",
           "numOrdonnance": "",
           "intervenant": "",
@@ -10864,7 +10863,8 @@
         }
       ],
       "id": 1788665823617.8477,
-      "updatedAt": "2026-09-06T03:37:03.616Z",
+      "updatedAt": "2026-09-06T03:37:56.213Z",
+      "deleted": false,
       "photoOrdonnance": ""
     }
   ]
