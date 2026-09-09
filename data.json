@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-09T05:14:00.773Z",
+  "savedAt": "2026-09-09T05:16:38.041Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10875,20 +10875,19 @@
         {
           "nom": "RUSTINE",
           "numero": "",
-          "travail": "3868",
-          "naissance": "27/01/2020"
+          "travail": "3868"
         }
       ],
       "date": "2026-09-09",
-      "raison": "",
+      "raison": "Gastrite aigues",
       "traitements": [
         {
           "id": 1788930794547.0054,
-          "medicament": "",
+          "medicament": "Phosphaluvet ",
           "posologie": "",
-          "quantite": "",
+          "quantite": "250g",
           "voieAdmin": "",
-          "dateDebut": "",
+          "dateDebut": "2026-09-09",
           "momentDebut": "matin",
           "dateFin": "",
           "momentFin": "matin",
@@ -10898,11 +10897,12 @@
           "momentAttenteV": "matin",
           "numOrdonnance": "",
           "intervenant": "",
-          "photoOrdonnance": ""
+          "photoOrdonnance": "[photo]"
         }
       ],
       "id": 1788930837689.6265,
-      "updatedAt": "2026-09-09T05:13:57.688Z",
+      "updatedAt": "2026-09-09T05:16:33.926Z",
+      "deleted": false,
       "photoOrdonnance": ""
     }
   ]
