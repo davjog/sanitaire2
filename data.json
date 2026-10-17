@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-09-15T17:03:04.690Z",
+  "savedAt": "2026-10-17T13:49:12.483Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -10941,6 +10941,6936 @@
       ],
       "id": 1789491781156.9514,
       "updatedAt": "2026-09-15T17:03:01.155Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "ADELE",
+      "numeroVache": "",
+      "travailVache": "1746",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.6855,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "API",
+      "numeroVache": "",
+      "travailVache": "3427",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.057,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "ARIBO",
+      "numeroVache": "",
+      "travailVache": "3428",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.9978,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "ARIEL",
+      "numeroVache": "",
+      "travailVache": "1747",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.6829,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "ATHENA",
+      "numeroVache": "",
+      "travailVache": "3430",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.2878,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "JALISCA",
+      "numeroVache": "",
+      "travailVache": "4689",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.3374,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "LOLITA",
+      "numeroVache": "",
+      "travailVache": "6325",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.733,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "LUCIOLE",
+      "numeroVache": "",
+      "travailVache": "4698",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.4104,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "MOUSSELINE",
+      "numeroVache": "",
+      "travailVache": "6868",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.1501,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NEMO",
+      "numeroVache": "",
+      "travailVache": "7493",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.5894,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NESQUICK",
+      "numeroVache": "",
+      "travailVache": "3418",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.211,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NOISETTE",
+      "numeroVache": "",
+      "travailVache": "8780",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.365,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "OLAF",
+      "numeroVache": "",
+      "travailVache": "5584",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.9612,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "OLGA",
+      "numeroVache": "",
+      "travailVache": "4776",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.2139,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "OUVRIERE",
+      "numeroVache": "",
+      "travailVache": "5582",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.8152,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "PUCE",
+      "numeroVache": "",
+      "travailVache": "3865",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.3152,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "RACLETTE",
+      "numeroVache": "",
+      "travailVache": "3883",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.7766,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "SHIPIE",
+      "numeroVache": "",
+      "travailVache": "2783",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.7004,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "SIDONIE",
+      "numeroVache": "",
+      "travailVache": "3705",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.2727,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TAGADA",
+      "numeroVache": "",
+      "travailVache": "2806",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.1345,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TARTIFLETE",
+      "numeroVache": "",
+      "travailVache": "6192",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.278,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TARTINE",
+      "numeroVache": "",
+      "travailVache": "2792",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.417,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "THALIA",
+      "numeroVache": "",
+      "travailVache": "2802",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.165,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "TOUPIE",
+      "numeroVache": "",
+      "travailVache": "1093",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.6921,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "UGOLINE",
+      "numeroVache": "",
+      "travailVache": "6208",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.698,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "UGUETTE",
+      "numeroVache": "",
+      "travailVache": "6210",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.1807,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "VAIANA",
+      "numeroVache": "",
+      "travailVache": "1738",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.6187,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "VALDA",
+      "numeroVache": "",
+      "travailVache": "1735",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.385,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "VALJEAN",
+      "numeroVache": "",
+      "travailVache": "9860",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.743,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "VERVEINE",
+      "numeroVache": "",
+      "travailVache": "6857",
+      "selectedVaches": [
+        {
+          "nom": "ADELE",
+          "numero": "",
+          "travail": "1746",
+          "naissance": "04/02/2025"
+        },
+        {
+          "nom": "API",
+          "numero": "",
+          "travail": "3427",
+          "naissance": "16/12/2025"
+        },
+        {
+          "nom": "ARIBO",
+          "numero": "",
+          "travail": "3428",
+          "naissance": "28/12/2025"
+        },
+        {
+          "nom": "ARIEL",
+          "numero": "",
+          "travail": "1747",
+          "naissance": "18/02/2025"
+        },
+        {
+          "nom": "ATHENA",
+          "numero": "",
+          "travail": "3430",
+          "naissance": "09/01/2026"
+        },
+        {
+          "nom": "JALISCA",
+          "numero": "",
+          "travail": "4689",
+          "naissance": "02/11/2014"
+        },
+        {
+          "nom": "LOLITA",
+          "numero": "",
+          "travail": "6325",
+          "naissance": "18/12/2015"
+        },
+        {
+          "nom": "LUCIOLE",
+          "numero": "",
+          "travail": "4698",
+          "naissance": "21/04/2015"
+        },
+        {
+          "nom": "MOUSSELINE",
+          "numero": "",
+          "travail": "6868",
+          "naissance": "08/09/2016"
+        },
+        {
+          "nom": "NEMO",
+          "numero": "",
+          "travail": "7493",
+          "naissance": "15/06/2017"
+        },
+        {
+          "nom": "NESQUICK",
+          "numero": "",
+          "travail": "3418",
+          "naissance": "18/02/2017"
+        },
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        },
+        {
+          "nom": "OLAF",
+          "numero": "",
+          "travail": "5584",
+          "naissance": "31/12/2018"
+        },
+        {
+          "nom": "OLGA",
+          "numero": "",
+          "travail": "4776",
+          "naissance": "15/01/2018"
+        },
+        {
+          "nom": "OUVRIERE",
+          "numero": "",
+          "travail": "5582",
+          "naissance": "13/12/2018"
+        },
+        {
+          "nom": "PUCE",
+          "numero": "",
+          "travail": "3865",
+          "naissance": "31/12/2019"
+        },
+        {
+          "nom": "RACLETTE",
+          "numero": "",
+          "travail": "3883",
+          "naissance": "20/11/2020"
+        },
+        {
+          "nom": "SHIPIE",
+          "numero": "",
+          "travail": "2783",
+          "naissance": "09/12/2021"
+        },
+        {
+          "nom": "SIDONIE",
+          "numero": "",
+          "travail": "3705",
+          "naissance": "30/11/2021"
+        },
+        {
+          "nom": "TAGADA",
+          "numero": "",
+          "travail": "2806",
+          "naissance": "17/12/2022"
+        },
+        {
+          "nom": "TARTIFLETE",
+          "numero": "",
+          "travail": "6192",
+          "naissance": "20/12/2022"
+        },
+        {
+          "nom": "TARTINE",
+          "numero": "",
+          "travail": "2792",
+          "naissance": "18/03/2022"
+        },
+        {
+          "nom": "THALIA",
+          "numero": "",
+          "travail": "2802",
+          "naissance": "21/11/2022"
+        },
+        {
+          "nom": "TOUPIE",
+          "numero": "",
+          "travail": "1093",
+          "naissance": "03/06/2022"
+        },
+        {
+          "nom": "UGOLINE",
+          "numero": "",
+          "travail": "6208",
+          "naissance": "23/11/2023"
+        },
+        {
+          "nom": "UGUETTE",
+          "numero": "",
+          "travail": "6210",
+          "naissance": "01/12/2023"
+        },
+        {
+          "nom": "VAIANA",
+          "numero": "",
+          "travail": "1738",
+          "naissance": "06/12/2024"
+        },
+        {
+          "nom": "VALDA",
+          "numero": "",
+          "travail": "1735",
+          "naissance": "29/11/2024"
+        },
+        {
+          "nom": "VALJEAN",
+          "numero": "",
+          "travail": "9860",
+          "naissance": "01/10/2024"
+        },
+        {
+          "nom": "VERVEINE",
+          "numero": "",
+          "travail": "6857",
+          "naissance": "26/01/2024"
+        }
+      ],
+      "date": "2026-10-17",
+      "raison": "Virus respi",
+      "traitements": [
+        {
+          "id": 1792244693030.8125,
+          "medicament": "",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1792244939769.019,
+          "medicament": "Nasym",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792244948914.2202,
+      "updatedAt": "2026-10-17T13:49:08.913Z",
+      "groupId": 1792244948913.4216,
       "photoOrdonnance": ""
     }
   ]
