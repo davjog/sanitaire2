@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-25T17:49:22.421Z",
+  "savedAt": "2026-10-25T17:50:54.960Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -17947,6 +17947,44 @@
       ],
       "id": 1792950558473.3594,
       "updatedAt": "2026-10-25T17:49:18.472Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NOISETTE",
+      "numeroVache": "",
+      "travailVache": "8780",
+      "selectedVaches": [
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        }
+      ],
+      "date": "2026-10-25",
+      "raison": "Mamite av d",
+      "traitements": [
+        {
+          "id": 1792950460666.598,
+          "medicament": "Ubrolexin",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "Intramammaire",
+          "dateDebut": "2026-10-25",
+          "momentDebut": "soir",
+          "dateFin": "2026-10-27",
+          "momentFin": "soir",
+          "joursAttenteL": "5",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "10",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1792950649820.855,
+      "updatedAt": "2026-10-25T17:50:49.819Z",
       "photoOrdonnance": ""
     }
   ]
