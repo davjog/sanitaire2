@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-25T17:50:54.960Z",
+  "savedAt": "2026-10-26T08:48:52.147Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -17985,6 +17985,44 @@
       ],
       "id": 1792950649820.855,
       "updatedAt": "2026-10-25T17:50:49.819Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NOISETTE",
+      "numeroVache": "",
+      "travailVache": "8780",
+      "selectedVaches": [
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        }
+      ],
+      "date": "2026-10-26",
+      "raison": "Manque appétit 39.8",
+      "traitements": [
+        {
+          "id": 1793004483825.5818,
+          "medicament": "Aimant ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "",
+          "dateDebut": "2026-10-26",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1793004529031.983,
+      "updatedAt": "2026-10-26T08:48:49.030Z",
       "photoOrdonnance": ""
     }
   ]
