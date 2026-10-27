@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-27T17:30:16.284Z",
+  "savedAt": "2026-10-27T17:33:23.487Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18033,8 +18033,7 @@
         {
           "nom": "NOISETTE",
           "numero": "",
-          "travail": "8780",
-          "naissance": "09/11/2017"
+          "travail": "8780"
         }
       ],
       "date": "2026-10-27",
@@ -18057,10 +18056,47 @@
           "numOrdonnance": "1038479",
           "intervenant": "Hannappe",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1793122220044.6287,
+          "medicament": "Ubropen",
+          "posologie": "1 tube par jour",
+          "quantite": "",
+          "voieAdmin": "Intramammaire",
+          "dateDebut": "2026-10-27",
+          "momentDebut": "soir",
+          "dateFin": "2026-10-29",
+          "momentFin": "soir",
+          "joursAttenteL": "6",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "3",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        },
+        {
+          "id": 1793122306897.3699,
+          "medicament": "Stop m",
+          "posologie": "1inj/j",
+          "quantite": "",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-10-27",
+          "momentDebut": "matin",
+          "dateFin": "2026-10-29",
+          "momentFin": "matin",
+          "joursAttenteL": "4",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "14",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": "[photo]"
         }
       ],
       "id": 1793122212627.428,
-      "updatedAt": "2026-10-27T17:30:12.626Z",
+      "updatedAt": "2026-10-27T17:33:19.354Z",
+      "deleted": false,
       "photoOrdonnance": ""
     }
   ]
