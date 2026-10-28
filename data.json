@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-28T17:33:35.515Z",
+  "savedAt": "2026-10-28T17:34:54.276Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18145,8 +18145,7 @@
         {
           "nom": "OLGA",
           "numero": "",
-          "travail": "4776",
-          "naissance": "15/01/2018"
+          "travail": "4776"
         }
       ],
       "date": "2026-10-28",
@@ -18169,10 +18168,29 @@
           "numOrdonnance": "",
           "intervenant": "",
           "photoOrdonnance": ""
+        },
+        {
+          "id": 1793208815311.6204,
+          "medicament": "Daiteystart",
+          "posologie": "1",
+          "quantite": "2 bolus",
+          "voieAdmin": "Per os (oral)",
+          "dateDebut": "2026-10-28",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "1038481",
+          "intervenant": "",
+          "photoOrdonnance": "[photo]"
         }
       ],
       "id": 1793208811395.8762,
-      "updatedAt": "2026-10-28T17:33:31.395Z",
+      "updatedAt": "2026-10-28T17:34:50.212Z",
+      "deleted": false,
       "photoOrdonnance": ""
     }
   ]
