@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-28T17:34:54.276Z",
+  "savedAt": "2026-10-28T17:42:26.394Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18191,6 +18191,44 @@
       "id": 1793208811395.8762,
       "updatedAt": "2026-10-28T17:34:50.212Z",
       "deleted": false,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "BALTAZAR",
+      "numeroVache": "",
+      "travailVache": "3442",
+      "selectedVaches": [
+        {
+          "nom": "BALTAZAR",
+          "numero": "",
+          "travail": "3442",
+          "naissance": "23/10/2026"
+        }
+      ],
+      "date": "2026-10-28",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1793208630956.9724,
+          "medicament": "Linco-spectin",
+          "posologie": "1/inj/12h puis 1inj/j",
+          "quantite": "6ml",
+          "voieAdmin": "Injectable IM",
+          "dateDebut": "2026-10-28",
+          "momentDebut": "soir",
+          "dateFin": "2026-11-01",
+          "momentFin": "soir",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "14",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1793209341803.0442,
+      "updatedAt": "2026-10-28T17:42:21.802Z",
       "photoOrdonnance": ""
     }
   ]
