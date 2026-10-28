@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-27T17:33:23.487Z",
+  "savedAt": "2026-10-28T17:31:13.066Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18065,7 +18065,7 @@
           "voieAdmin": "Intramammaire",
           "dateDebut": "2026-10-27",
           "momentDebut": "soir",
-          "dateFin": "2026-10-29",
+          "dateFin": "2026-10-31",
           "momentFin": "soir",
           "joursAttenteL": "6",
           "momentAttenteL": "matin",
@@ -18095,7 +18095,7 @@
         }
       ],
       "id": 1793122212627.428,
-      "updatedAt": "2026-10-27T17:33:19.354Z",
+      "updatedAt": "2026-10-28T17:31:09.953Z",
       "deleted": false,
       "photoOrdonnance": ""
     }
