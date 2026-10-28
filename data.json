@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-28T17:31:13.066Z",
+  "savedAt": "2026-10-28T17:32:40.861Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18097,6 +18097,44 @@
       "id": 1793122212627.428,
       "updatedAt": "2026-10-28T17:31:09.953Z",
       "deleted": false,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NOISETTE",
+      "numeroVache": "",
+      "travailVache": "8780",
+      "selectedVaches": [
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        }
+      ],
+      "date": "2026-10-28",
+      "raison": "",
+      "traitements": [
+        {
+          "id": 1793208630956.9724,
+          "medicament": "Nace 7% ",
+          "posologie": "1fois",
+          "quantite": "3l",
+          "voieAdmin": "Injectable IV",
+          "dateDebut": "2026-10-28",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1793208756662.731,
+      "updatedAt": "2026-10-28T17:32:36.661Z",
       "photoOrdonnance": ""
     }
   ]
