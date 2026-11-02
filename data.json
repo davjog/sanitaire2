@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-10-28T17:42:26.394Z",
+  "savedAt": "2026-11-02T09:27:30.909Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -18229,6 +18229,44 @@
       ],
       "id": 1793209341803.0442,
       "updatedAt": "2026-10-28T17:42:21.802Z",
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "NOISETTE",
+      "numeroVache": "",
+      "travailVache": "8780",
+      "selectedVaches": [
+        {
+          "nom": "NOISETTE",
+          "numero": "",
+          "travail": "8780",
+          "naissance": "09/11/2017"
+        }
+      ],
+      "date": "2026-11-02",
+      "raison": "39.3 fièvre douleur pour marcher",
+      "traitements": [
+        {
+          "id": 1793611563915.316,
+          "medicament": "Tolfine ",
+          "posologie": "1 inj",
+          "quantite": "28ml",
+          "voieAdmin": "",
+          "dateDebut": "2026-11-02",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "",
+          "intervenant": "",
+          "photoOrdonnance": ""
+        }
+      ],
+      "id": 1793611647119.4658,
+      "updatedAt": "2026-11-02T09:27:27.118Z",
       "photoOrdonnance": ""
     }
   ]
