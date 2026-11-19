@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-11-19T04:49:33.831Z",
+  "savedAt": "2026-11-19T04:50:32.264Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -19553,184 +19553,9 @@
       "travailVache": "6325",
       "selectedVaches": [
         {
-          "nom": "ADELE",
-          "numero": "",
-          "travail": "1746",
-          "naissance": "04/02/2025"
-        },
-        {
-          "nom": "API",
-          "numero": "",
-          "travail": "3427",
-          "naissance": "16/12/2025"
-        },
-        {
-          "nom": "ARIBO",
-          "numero": "",
-          "travail": "3428",
-          "naissance": "28/12/2025"
-        },
-        {
-          "nom": "ARIEL",
-          "numero": "",
-          "travail": "1747",
-          "naissance": "18/02/2025"
-        },
-        {
-          "nom": "ATHENA",
-          "numero": "",
-          "travail": "3430",
-          "naissance": "09/01/2026"
-        },
-        {
-          "nom": "JALISCA",
-          "numero": "",
-          "travail": "4689",
-          "naissance": "02/11/2014"
-        },
-        {
           "nom": "LOLITA",
           "numero": "",
-          "travail": "6325",
-          "naissance": "18/12/2015"
-        },
-        {
-          "nom": "LUCIOLE",
-          "numero": "",
-          "travail": "4698",
-          "naissance": "21/04/2015"
-        },
-        {
-          "nom": "MOUSSELINE",
-          "numero": "",
-          "travail": "6868",
-          "naissance": "08/09/2016"
-        },
-        {
-          "nom": "NEMO",
-          "numero": "",
-          "travail": "7493",
-          "naissance": "15/06/2017"
-        },
-        {
-          "nom": "NESQUICK",
-          "numero": "",
-          "travail": "3418",
-          "naissance": "18/02/2017"
-        },
-        {
-          "nom": "NOISETTE",
-          "numero": "",
-          "travail": "8780",
-          "naissance": "09/11/2017"
-        },
-        {
-          "nom": "OLAF",
-          "numero": "",
-          "travail": "5584",
-          "naissance": "31/12/2018"
-        },
-        {
-          "nom": "OLGA",
-          "numero": "",
-          "travail": "4776",
-          "naissance": "15/01/2018"
-        },
-        {
-          "nom": "OUVRIERE",
-          "numero": "",
-          "travail": "5582",
-          "naissance": "13/12/2018"
-        },
-        {
-          "nom": "PUCE",
-          "numero": "",
-          "travail": "3865",
-          "naissance": "31/12/2019"
-        },
-        {
-          "nom": "RACLETTE",
-          "numero": "",
-          "travail": "3883",
-          "naissance": "20/11/2020"
-        },
-        {
-          "nom": "SHIPIE",
-          "numero": "",
-          "travail": "2783",
-          "naissance": "09/12/2021"
-        },
-        {
-          "nom": "SIDONIE",
-          "numero": "",
-          "travail": "3705",
-          "naissance": "30/11/2021"
-        },
-        {
-          "nom": "TAGADA",
-          "numero": "",
-          "travail": "2806",
-          "naissance": "17/12/2022"
-        },
-        {
-          "nom": "TARTIFLETE",
-          "numero": "",
-          "travail": "6192",
-          "naissance": "20/12/2022"
-        },
-        {
-          "nom": "TARTINE",
-          "numero": "",
-          "travail": "2792",
-          "naissance": "18/03/2022"
-        },
-        {
-          "nom": "THALIA",
-          "numero": "",
-          "travail": "2802",
-          "naissance": "21/11/2022"
-        },
-        {
-          "nom": "TOUPIE",
-          "numero": "",
-          "travail": "1093",
-          "naissance": "03/06/2022"
-        },
-        {
-          "nom": "UGOLINE",
-          "numero": "",
-          "travail": "6208",
-          "naissance": "23/11/2023"
-        },
-        {
-          "nom": "UGUETTE",
-          "numero": "",
-          "travail": "6210",
-          "naissance": "01/12/2023"
-        },
-        {
-          "nom": "VAIANA",
-          "numero": "",
-          "travail": "1738",
-          "naissance": "06/12/2024"
-        },
-        {
-          "nom": "VALJEAN",
-          "numero": "",
-          "travail": "9860",
-          "naissance": "01/10/2024"
-        },
-        {
-          "nom": "VERVEINE",
-          "numero": "",
-          "travail": "6857",
-          "naissance": "26/01/2024"
-        },
-        {
-          "nom": "VALDA",
-          "numero": "",
-          "travail": "1735",
-          "naissance": "29/11/2024"
+          "travail": "6325"
         }
       ],
       "date": "2026-11-19",
@@ -19738,7 +19563,7 @@
       "traitements": [
         {
           "id": 1795063591012.5552,
-          "medicament": "Nazil",
+          "medicament": "Nasym",
           "posologie": "",
           "quantite": "2ml",
           "voieAdmin": "Injectable IM",
@@ -19756,8 +19581,9 @@
         }
       ],
       "id": 1795063770167.9993,
-      "updatedAt": "2026-11-19T04:49:30.166Z",
+      "updatedAt": "2026-11-19T04:50:28.275Z",
       "groupId": 1795063770166.9827,
+      "deleted": false,
       "photoOrdonnance": ""
     },
     {
