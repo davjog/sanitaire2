@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "savedAt": "2026-11-19T04:50:32.264Z",
+  "savedAt": "2026-11-27T09:38:49.102Z",
   "records": [
     {
       "nomVache": "JALISCA",
@@ -24483,6 +24483,44 @@
       "id": 1795063770167.494,
       "updatedAt": "2026-11-19T04:49:30.166Z",
       "groupId": 1795063770166.9827,
+      "photoOrdonnance": ""
+    },
+    {
+      "nomVache": "BICHETTE",
+      "numeroVache": "",
+      "travailVache": "3443",
+      "selectedVaches": [
+        {
+          "nom": "BICHETTE",
+          "numero": "",
+          "travail": "3443",
+          "naissance": "13/11/2026"
+        }
+      ],
+      "date": "2026-11-27",
+      "raison": "Vaccin vrs grippe intra nasal ",
+      "traitements": [
+        {
+          "id": 1795771992587.8508,
+          "medicament": "Bovils ",
+          "posologie": "",
+          "quantite": "",
+          "voieAdmin": "Autre",
+          "dateDebut": "2026-11-27",
+          "momentDebut": "matin",
+          "dateFin": "",
+          "momentFin": "matin",
+          "joursAttenteL": "",
+          "momentAttenteL": "matin",
+          "joursAttenteV": "",
+          "momentAttenteV": "matin",
+          "numOrdonnance": "97601",
+          "intervenant": "David ",
+          "photoOrdonnance": "[photo]"
+        }
+      ],
+      "id": 1795772310225.4634,
+      "updatedAt": "2026-11-27T09:38:30.220Z",
       "photoOrdonnance": ""
     }
   ]
